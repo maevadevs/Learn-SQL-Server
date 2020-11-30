@@ -61,7 +61,7 @@ WHERE list_price BETWEEN 1899.00 AND 1999.99
 ORDER BY list_price DESC;
 ```
 
-We can use the `IN` operator for values withing a specific list or sub-query
+We can use the `IN` operator for values withing a specific list or subquery
 
 ```sql
 SELECT product_id, product_name, category_id, model_year, list_price
