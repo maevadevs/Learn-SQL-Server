@@ -10,6 +10,7 @@ FROM table_name;
 
 - Uses the combination of values in all specified columns in the `SELECT` list to evaluate the uniqueness
 - If applied to a column that has `NULL`, it will keep only one `NULL` and eliminates the others
+- **Note: The `DISTINCT` clause is redundant when `GROUP BY` is used**
 
 ## Examples `SELECT DISTINCT`
 

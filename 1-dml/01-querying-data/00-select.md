@@ -70,7 +70,7 @@ ORDER BY first_name;
 
 - To group rows into groups
 - Requires the use of an aggregate function
-- SQL Server processes the clauses in the following sequence: `FROM -> WHERE -> GROUP BY -> SELECT -> ORDER BY`
+- SQL Server processes the clauses in the following sequence: `FROM -> ON -> OUTER -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> TOP`
 
 ### Example `SELECT GROUP BY`
 
