@@ -29,5 +29,4 @@
 - Beginning with SSMS 18.7, Azure Data Studio is automatically installed alongside SSMS
 - Users of SSMS are now able to benefit from the innovations and features in AzDS
 - AzDS is a cross-platform and open-source desktop tool for your environments, whether in the cloud, on-premises, or hybrid
-
 - [Download the installation media](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
