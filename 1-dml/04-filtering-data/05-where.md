@@ -74,7 +74,7 @@ We can use the `LIKE` operator for finding specific strings. This can be used fo
 
 - `%` - A string of zero or more characters
 - `_` - A single characters
-- `[charRange]` - Any single character within a specified range. The characters within the square brackets and are used for the matching process
+- `[charRange]` - Any single character within a specified range. The characters within the square brackets are used for the matching process
 - `[^charRange]` - None of the single characters within the specified range
 - `[char-char]` - A range of characters
 
