@@ -85,7 +85,7 @@ ORDER BY city_count DESC;
 ## `SELECT` with group conditions `HAVING`
 
 - To filter groups based on one or more conditions
-- The `WHERE` clause filters rows while the `HAVING` clause filter groups (i.e. the results of `GROUP BY`)
+- The `WHERE` clause filters on individual rows while the `HAVING` clause filter on aggregations (i.e. the results of `GROUP BY`)
 
 ### Example `SELECT HAVING`
 

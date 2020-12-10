@@ -20,7 +20,7 @@ NULL = NULL --> UNKNOWN
 
 ## `IS NULL`
 
-- We cannot compare `NULL` as in `= NULL` because it evaluates to `UNKNWON`
+- We cannot compare `NULL` as in `x = NULL` because it evaluates to `UNKNWON`
 - Allows to filter for values that are `NULL`
 
 ```sql

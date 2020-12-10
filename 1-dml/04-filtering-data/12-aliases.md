@@ -1,6 +1,6 @@
 # Aliases
 
-- Use column aliases to change the heading of the query output and table alia
+- Use column aliases to change the heading of the query output and table alias
 - Improve readability of queries
 - We can use basic column transformations and assign the result to aliases
 - A temporary name during the query execution

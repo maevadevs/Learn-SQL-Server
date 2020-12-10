@@ -4,8 +4,8 @@ Sort the result set of a query by one or more columns
 
 ## Basic `ORDER BY`
 
-- With `SELECT`, SQL Server can return a result set with an unspecified order of rows
-- To guarantee that the rows in the result set are sorted is to use `ORDER BY`
+- With `SELECT` alone, SQL Server returns a result set in an unspecified order of rows
+- To guarantee that the rows in the result set are sorted, use `ORDER BY`
 - If you specify multiple columns, the result set is sorted by the first column and then that sorted result set is sorted by the second column, and so on
 - The columns that appear in the `ORDER BY` clause must correspond to either:
   - A column in the select list

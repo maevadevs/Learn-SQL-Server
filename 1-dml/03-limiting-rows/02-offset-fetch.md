@@ -21,7 +21,7 @@ FETCH [FIRST|NEXT] fetch_row_count [ROW|ROWS] ONLY
 - `FIRST|NEXT` - Aliases
 - `ROW|ROWS` - Aliases
 
-<img src="../figures/offset-fetch.png" width=50%>
+<img src="../../figures/offset-fetch.png" width=50%>
 
 ## Examples `OFFSET` & `FETCH`
 

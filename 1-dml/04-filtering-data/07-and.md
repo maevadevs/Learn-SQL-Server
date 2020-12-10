@@ -3,9 +3,9 @@
 Combine two Boolean expressions and return `TRUE` if and only if **all** expressions are `TRUE`, otherwise return `FALSE`
 
 - If any expression is `FALSE`, always return `FALSE`
-- `FALSE AND UNKNOWN -> FALSE`
-- `TRUE AND UNKNOWN -> UNKNOWN`
-- `UNKNOWN AND UNKNOWN -> UNKNOWN`
+  - `FALSE AND UNKNOWN -> FALSE`
+  - `TRUE AND UNKNOWN -> UNKNOWN`
+  - `UNKNOWN AND UNKNOWN -> UNKNOWN`
 
 ```sql
 boolean_expression AND boolean_expression
@@ -33,8 +33,8 @@ ORDER BY list_price DESC;
 ```
 
 - We can also combine with other logical operators
-- `AND` takes precedence over `OR`
-- If we want to be explicit on the order of priority, we can wrap the conditions inside parentheses
+  - **`AND` takes precedence over `OR`**
+  - If we want to be explicit on the order of priority, we can wrap the conditions inside parentheses
 
 ```sql
 SELECT *

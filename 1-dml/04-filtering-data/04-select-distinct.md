@@ -1,6 +1,6 @@
 # `SELECT DISTINCT`
 
-- Retrieve only the distinct values in a specified list of columns
+- Retrieve only the distinct (unique) values in a specified list of columns
 - It removes the duplicate values in the column from the result set
 
 ```sql
@@ -22,7 +22,7 @@ FROM sales.customers
 ORDER BY city;
 ```
 
-Select only the unique combinations of city and state
+Select only the *unique combinations* of city and state
 
 ```sql
 SELECT DISTINCT city, state
@@ -40,7 +40,8 @@ ORDER BY phone;
 
 ## Equivalent `GROUP BY`
 
-It is also possible to return uniques using `GROUP BY`. Here, we return distinct cities together with state and zip.
+- We can also return uniques using `GROUP BY` by grouping by all the selected columns
+- Here, we return distinct cities together with state and zip.
 
 ```sql
 SELECT city, state, zip_code
