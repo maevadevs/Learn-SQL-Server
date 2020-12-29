@@ -1,14 +1,13 @@
 # SQL Server Structure
 
 - RDBMS developed by Microsoft
-- Tied to Transact-SQL (T-SQL)
-- **T-SQL** -  Microsoft’s implementation of SQL that adds a set of proprietary programming constructs
-- 2016: SQL Server 2017 made available on Linux
+- Tied to Transact-SQL (T-SQL) - Microsoft's implementation of SQL that adds a set of proprietary programming constructs
+- SQL Server 2017 was made available on Linux
 
-Components:
+Primary Components:
 
 - **Database Engine**
-- **SQLOS**
+- **SQL Server Operating System - SQLOS**
 - **SQL Server Services and Tools**
 
 <img src="../figures/sql-server-architecture.png" width=70%>
@@ -20,10 +19,10 @@ Components:
 
 Two components:
 
-- **Relational Engine**
+- **Relational Engine/Query Processor**
 - **Storage Engine**
 
-### Relational Engine
+### Relational Engine/Query Processor
 
 - Query Processor: Process the queries
 - Request data from the storage engine based on the query
@@ -72,12 +71,15 @@ Two components:
 ### Developer Edition
 
 - Free
+- Fully equivalent to Enterprise Edition
 - For database development and testing
+- Not licensed for production
 
 ### Express Edition
 
 - Free
 - For small databases up to 10 GB
+- Limited features
 
 ### Standard Edition
 
