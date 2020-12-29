@@ -1,3 +1,3 @@
-# T-SQL References
+# SQL Server References
 
-References from T-SQL Tutorial.
+References from [SQL Server Tutorial](https://www.sqlservertutorial.net/)
