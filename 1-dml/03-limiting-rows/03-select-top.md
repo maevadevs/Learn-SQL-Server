@@ -6,7 +6,10 @@
 - **Because the order of rows stored in a table is unspecified, the `SELECT TOP` statement is always used in conjunction with the `ORDER BY` clause, similar to `OFFSET/FETCH`**
 
 ```sql
-SELECT TOP n [PERCENT] [WITH TIES] col1, col2, col3
+SELECT TOP n [PERCENT] [WITH TIES] 
+  col1, 
+  col2, 
+  col3
 FROM schema_name.table_name
 ORDER BY col1;
 ```
@@ -27,7 +30,9 @@ ORDER BY col1;
 We can use `SELECT TOP` with a constant value
 
 ```sql
-SELECT TOP 10 product_name, list_price
+SELECT TOP 10
+  product_name, 
+  list_price
 FROM production.products
 ORDER BY list_price DESC;
 ```
@@ -35,7 +40,9 @@ ORDER BY list_price DESC;
 We can use `PERCENT` to specify the number of products returned in the result set. If the result is a float, it is rounded to the next integer.
 
 ```sql
-SELECT TOP 1 PERCENT product_name, list_price
+SELECT TOP 1 PERCENT
+  product_name, 
+    list_price
 FROM production.products
 ORDER BY list_price DESC;
 ```
@@ -43,7 +50,9 @@ ORDER BY list_price DESC;
 We can use `WITH TIES` to include any rows that match the values in the last row (ties)
 
 ```sql
-SELECT TOP 3 WITH TIES product_name, list_price
+SELECT TOP 3 WITH TIES 
+  product_name, 
+  list_price
 FROM production.products
 ORDER BY list_price DESC;
 ```
