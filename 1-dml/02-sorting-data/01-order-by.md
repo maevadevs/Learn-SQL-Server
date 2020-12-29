@@ -15,7 +15,10 @@ Sort the result set of a query by one or more columns
 - When processing a `SELECT` statement with an `ORDER BY` clause, the `ORDER BY` clause is the very last clause to be processed
   
 ```sql
-SELECT col1, col2, col3
+SELECT 
+  col1, 
+  col2, 
+  col3
 FROM schema_name.table_name
 ORDER BY col1 [ASC|DESC], col2 [ASC|DESC];
 ```
@@ -23,25 +26,39 @@ ORDER BY col1 [ASC|DESC], col2 [ASC|DESC];
 ### Examples Basic `ORDER BY`
 
 ```sql
-SELECT first_name, last_name
+-- Basic ORDER BY
+SELECT 
+  first_name, 
+  last_name
 FROM sales.customers
 ORDER BY first_name;
 ```
 
 ```sql
-SELECT first_name, last_name
+-- ORDER BY Descending
+SELECT 
+  first_name, 
+  last_name
 FROM sales.customers
 ORDER BY first_name DESC;
 ```
 
 ```sql
-SELECT city, first_name, last_name
+-- ORDER BY Multiple Columns
+SELECT 
+  city, 
+  first_name, 
+  last_name
 FROM sales.customers
 ORDER BY city, first_name;
 ```
 
 ```sql
-SELECT city, first_name, last_name
+-- ORDER BY Multiple Columns and Multiple Orders
+SELECT 
+  city, 
+  first_name, 
+  last_name
 FROM sales.customers
 ORDER BY city DESC, first_name ASC;
 ```
@@ -49,7 +66,11 @@ ORDER BY city DESC, first_name ASC;
 It is possible to sort the result set by a column that does not appear on the select list but exists on the table
 
 ```sql
-SELECT city, first_name, last_name
+-- State is not in the list but in the table
+SELECT 
+  city, 
+  first_name, 
+  last_name
 FROM sales.customers
 ORDER BY state;
 ```
@@ -57,7 +78,10 @@ ORDER BY state;
 It is also possible to sort by the result of function applied on a column
 
 ```sql
-SELECT first_name, last_name
+-- ORDER BY the result of a function on a column
+SELECT 
+  first_name, 
+  last_name
 FROM sales.customers
 ORDER BY LEN(first_name) DESC;
 ```
@@ -66,13 +90,15 @@ ORDER BY LEN(first_name) DESC;
 
 - That is, we sort based on the order of the columns in the `SELECT` clause
 - The order is 1-based
-- However, using ordinal positions of columns in the `ORDER BY` clause is considered as bad programming practice:
+- **However, using ordinal positions of columns in the `ORDER BY` clause is considered as bad programming practice**
   - The columns in the original table don’t have ordinal positions and need to be referenced by name
   - When you modify the `SELECT` list, you may forget to make the corresponding changes in the `ORDER BY` clause
 - **It is a good practice to always specify the column names explicitly in the `ORDER BY` clause**
 
 ```sql
-SELECT first_name, last_name
+SELECT 
+  first_name, 
+  last_name
 FROM sales.customers
 ORDER BY 1 DESC, 2; -- First_name DESC, then last_name ASC
 ```
