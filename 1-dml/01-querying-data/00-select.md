@@ -10,7 +10,10 @@
 - The return of the query is called a `result set`
 
 ```sql
-SELECT col1, col2, col3
+SELECT 
+  col1, 
+  col2, 
+  col3
 FROM schema_name.table_name;
 ```
 
@@ -30,7 +33,10 @@ FROM schema_name.table_name;
 ### Examples `SELECT`
 
 ```sql
-SELECT first_name, last_name, email
+SELECT 
+  first_name, 
+  last_name, 
+  email
 FROM sales.customers;
 ```
 
@@ -54,6 +60,7 @@ WHERE state = 'CA';
 
 ## `SELECT` with `ORDER BY`
 
+- The order of the result set from `SELECT` is not assured
 - To sort the result set based on one or more columns
 - SQL Server processes the clauses of the query in the following sequence: `FROM -> WHERE -> SELECT -> ORDER BY`
 
@@ -75,7 +82,9 @@ ORDER BY first_name;
 ### Example `SELECT GROUP BY`
 
 ```sql
-SELECT city, COUNT(*) as city_count
+SELECT 
+  city, 
+  COUNT(*) AS city_count
 FROM sales.customers
 WHERE state = 'CA'
 GROUP BY city
@@ -90,7 +99,9 @@ ORDER BY city_count DESC;
 ### Example `SELECT HAVING`
 
 ```sql
-SELECT city, COUNT(*) as city_count
+SELECT 
+  city, 
+  COUNT(*) AS city_count
 FROM sales.customers
 WHERE state = 'CA'
 GROUP BY city
