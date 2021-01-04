@@ -19,12 +19,12 @@ Using column alias with column transformations
 ```sql
 SELECT first_name + ' ' + last_name AS full_name
 FROM sales.customers
-ORDER BY full_name;
+ORDER BY full_name
 ```
 
 ```sql
 SELECT category_name 'Product Category'
-FROM production.categories;
+FROM production.categories
 ```
 
 - We can use column aliases in `ORDER BY`
@@ -65,7 +65,7 @@ SELECT
   last_name, 
   order_id
 FROM sales.customers INNER JOIN sales.orders
-  ON sales.orders.customer_id = cid;
+  ON sales.orders.customer_id = cid
 ```
 
 We can re-write in the following way
@@ -78,7 +78,7 @@ SELECT
   last_name, 
   order_id
 FROM sales.customers c INNER JOIN sales.orders o
-  ON o.customer_id = c.customer_id;
+  ON o.customer_id = c.customer_id
 ```
 
 - **NOTE**: `FROM` is executed before `SELECT` so we can use the table aliases in `SELECT`

@@ -37,7 +37,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE 't%s'
-ORDER BY first_name;
+ORDER BY first_name
 ```
 
 Using the `_` wildcard
@@ -49,7 +49,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE '_u%'
-ORDER BY first_name;
+ORDER BY first_name
 ```
 
 Using a list of characters
@@ -61,7 +61,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE '[YZ]%' -- Last name starts with Y or Z
-ORDER BY last_name;
+ORDER BY last_name
 ```
 
 Using a range of characters
@@ -73,7 +73,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE '[A-C]%' -- Last name starts with A,B, or C
-ORDER BY first_name;
+ORDER BY first_name
 ```
 
 Using the NOT wildcard (`^`)
@@ -85,7 +85,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE '[^A-X]%' -- Last name not starting with A-X
-ORDER BY last_name;
+ORDER BY last_name
 ```
 
 Using the `NOT LIKE` operator for getting the complement set
@@ -97,7 +97,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE first_name NOT LIKE 'A%' -- Last name not starting with A
-ORDER BY first_name;
+ORDER BY first_name
 ```
 
 Using escape characters
@@ -107,7 +107,7 @@ SELECT
   feedback_id, 
   comment
 FROM sales.feedbacks
-WHERE comment LIKE '%30\%%' ESCAPE '\';
+WHERE comment LIKE '%30\%%' ESCAPE '\'
 ```
 
 - Specified that the character `\` is the escape character: This can be any other character as well

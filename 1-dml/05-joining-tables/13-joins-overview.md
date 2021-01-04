@@ -1,29 +1,33 @@
 # Joins Overview
 
 - In RDBMS, data are distributed across multiple logical tables
-- For a complete set of data, we need to query multiple tables and join them together
+- For a complete set of data, we need to query multiple tables and join their columns together
 
 ## Inner Join Overview
 
 - Join two tables on a column
-- Only includes rows from the left table which have matching rows from the right table
+- Only includes rows which have matching rows from both tables
 
 ```sql
-SELECT t1.col1, t1.col2, t2.col1, t2.col2
+SELECT 
+  t1.col1, 
+  t1.col2, 
+  t2.col1, 
+  t2.col2
 FROM table1 AS t1 INNER JOIN table2 AS t2
-ON t1.col1 = t2.col2;
+  ON t1.col1 = t2.col2
 ```
 
 ### Inner Join Example
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
+  c.id AS candidate_id, 
+  c.fullname AS candidate_name,
+  e.id AS employee_id,
+  e.fullname AS employee_name
 FROM hr.candidates c INNER JOIN hr.employees e 
-ON e.fullname = c.fullname;
+  ON e.fullname = c.fullname
 ```
 
 ### Inner Join Example Venn Diagram
@@ -33,26 +37,30 @@ ON e.fullname = c.fullname;
 ## Left Join / Left Outer Join Overview
 
 - Join two tables on a column
-- Include everything from the left table
+- Include all rows from the left table that meet the predicate
 - Only includes rows from the right table which have matching rows from the left table
 - If a row in the left table does not have a matching row in the right table, the columns of the right table will have `NULL`
 
 ```sql
-SELECT t1.col1, t1.col2, t2.col1, t2.col2
+SELECT 
+  t1.col1, 
+  t1.col2, 
+  t2.col1,
+  t2.col2
 FROM table1 AS t1 LEFT JOIN table2 AS t2
-ON t1.col1 = t2.col2;
+  ON t1.col1 = t2.col2
 ```
 
 ### Left Join Example
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
+  c.id AS candidate_id, 
+  c.fullname AS candidate_name,
+  e.id AS employee_id,
+  e.fullname AS employee_name
 FROM hr.candidates c LEFT JOIN hr.employees e 
-ON e.fullname = c.fullname;
+  ON e.fullname = c.fullname
 ```
 
 ### Left Join Example Venn Diagram
@@ -65,13 +73,13 @@ ON e.fullname = c.fullname;
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
+  c.id AS candidate_id, 
+  c.fullname AS candidate_name,
+  e.id AS employee_id,
+  e.fullname AS employee_name
 FROM hr.candidates c LEFT JOIN hr.employees e 
-ON e.fullname = c.fullname
-WHERE e.id IS NULL;
+  ON e.fullname = c.fullname
+WHERE e.id IS NULL
 ```
 
 ### Exclusive Left Join Example Venn Diagram
@@ -87,21 +95,25 @@ WHERE e.id IS NULL;
 - **Right join is the same as left join with swapped table order**
 
 ```sql
-SELECT t1.col1, t1.col2, t2.col1, t2.col2
+SELECT 
+  t1.col1, 
+  t1.col2, 
+  t2.col1, 
+  t2.col2
 FROM table1 AS t1 RIGHT JOIN table2 AS t2
-ON t1.col1 = t2.col2;
+  ON t1.col1 = t2.col2
 ```
 
 ### Right Join Example
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
+  c.id AS candidate_id, 
+  c.fullname AS candidate_name,
+  e.id AS employee_id,
+  e.fullname AS employee_name
 FROM hr.candidates c RIGHT JOIN hr.employees e 
-ON e.fullname = c.fullname;
+  ON e.fullname = c.fullname
 ```
 
 ### Right Join Example Venn Diagram
@@ -114,13 +126,13 @@ ON e.fullname = c.fullname;
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
+  c.id AS candidate_id, 
+  c.fullname AS candidate_name,
+  e.id AS employee_id,
+  e.fullname AS employee_name
 FROM hr.candidates c RIGHT JOIN hr.employees e 
-ON e.fullname = c.fullname
-WHERE c.id IS NULL;
+  ON e.fullname = c.fullname
+WHERE c.id IS NULL
 ```
 
 ### Exclusive Right Join Example Venn Diagram
@@ -135,21 +147,25 @@ WHERE c.id IS NULL;
 - If a row in the left table does not have a matching row in the right table, the columns of the right table will have `NULL`
 
 ```sql
-SELECT t1.col1, t1.col2, t2.col1, t2.col2
+SELECT 
+  t1.col1, 
+  t1.col2, 
+  t2.col1, 
+  t2.col2
 FROM table1 AS t1 FULL JOIN table2 AS t2
-ON t1.col1 = t2.col2;
+  ON t1.col1 = t2.col2
 ```
 
 ### Full Join Example
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
+  c.id AS candidate_id, 
+  c.fullname AS candidate_name,
+  e.id AS employee_id,
+  e.fullname AS employee_name
 FROM hr.candidates c FULL JOIN hr.employees e 
-ON e.fullname = c.fullname;
+  ON e.fullname = c.fullname
 ```
 
 ### Full Join Example Venn Diagram
@@ -162,13 +178,13 @@ ON e.fullname = c.fullname;
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
+  c.id AS candidate_id, 
+  c.fullname AS candidate_name,
+  e.id AS employee_id,
+  e.fullname AS employee_name
 FROM hr.candidates c FULL JOIN hr.employees e 
-ON e.fullname = c.fullname
-WHERE c.id IS NULL OR e.id IS NULL;
+  ON e.fullname = c.fullname
+WHERE c.id IS NULL OR e.id IS NULL
 ```
 
 ### Exclusive Full Join Example Venn Diagram
