@@ -4,8 +4,10 @@
 - It removes the duplicate values in the column from the result set
 
 ```sql
-SELECT DISTINCT col1, col2
-FROM table_name;
+SELECT DISTINCT 
+  col1, 
+  col2
+FROM table_name
 ```
 
 - Uses the combination of values in all specified columns in the `SELECT` list to evaluate the uniqueness
@@ -19,15 +21,19 @@ Select only the unique cities
 ```sql
 SELECT DISTINCT city
 FROM sales.customers
-ORDER BY city;
+ORDER BY city
 ```
 
 Select only the *unique combinations* of city and state
 
 ```sql
-SELECT DISTINCT city, state
+SELECT DISTINCT 
+  city, 
+  state
 FROM sales.customers
-ORDER BY state, city;
+ORDER BY 
+  state, 
+  city
 ```
 
 Select `NULL` only once
@@ -35,27 +41,40 @@ Select `NULL` only once
 ```sql
 SELECT DISTINCT phone
 FROM sales.customers
-ORDER BY phone;
+ORDER BY phone
 ```
 
 ## Equivalent `GROUP BY`
 
 - We can also return uniques using `GROUP BY` by grouping by all the selected columns
-- Here, we return distinct cities together with state and zip.
+- Here, we return distinct cities together with state and zip
 
 ```sql
-SELECT city, state, zip_code
+SELECT 
+  city, 
+  state, 
+  zip_code
 FROM sales.customers
-GROUP BY city, state, zip_code
-ORDER BY state, city;
+GROUP BY 
+  city, 
+  state, 
+  zip_code
+ORDER BY 
+  state, 
+  city
 ```
 
 This is equivalent to the following `SELECT DISTINCT`
 
 ```sql
-SELECT DISTINCT city, state, zip_code
+SELECT DISTINCT 
+  city, 
+  state, 
+  zip_code
 FROM sales.customers
-ORDER BY state, city;
+ORDER BY 
+  state, 
+  city
 ```
 
 - Both `DISTINCT` and `GROUP BY` reduces the number of returned rows in the result set by removing the duplicates

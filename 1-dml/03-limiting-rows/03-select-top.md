@@ -11,7 +11,7 @@ SELECT TOP n [PERCENT] [WITH TIES]
   col2, 
   col3
 FROM schema_name.table_name
-ORDER BY col1;
+ORDER BY col1
 ```
 
 - The `SELECT` statement can have other clauses
@@ -34,7 +34,7 @@ SELECT TOP 10
   product_name, 
   list_price
 FROM production.products
-ORDER BY list_price DESC;
+ORDER BY list_price DESC
 ```
 
 We can use `PERCENT` to specify the number of products returned in the result set. If the result is a float, it is rounded to the next integer.
@@ -44,7 +44,7 @@ SELECT TOP 1 PERCENT
   product_name, 
     list_price
 FROM production.products
-ORDER BY list_price DESC;
+ORDER BY list_price DESC
 ```
 
 We can use `WITH TIES` to include any rows that match the values in the last row (ties)
@@ -54,5 +54,5 @@ SELECT TOP 3 WITH TIES
   product_name, 
   list_price
 FROM production.products
-ORDER BY list_price DESC;
+ORDER BY list_price DESC
 ```

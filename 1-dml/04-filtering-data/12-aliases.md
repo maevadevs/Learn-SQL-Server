@@ -10,7 +10,6 @@
 ```sql
 column_name|expression AS column_alias
 column_name|expression column_alias
-
 ```
 
 ## Example Column Alias
@@ -29,7 +28,7 @@ FROM production.categories;
 ```
 
 - We can use column aliases in `ORDER BY`
-- We cannot use column aliases in `GROUP BY`, `WHERE`, and `HAVING` because of the logical order of processing
+- **We cannot use column aliases in `GROUP BY`, `WHERE`, and `HAVING` because of the logical order of processing**
   - SQL Server processes the clauses in the following sequence: `FROM -> ON -> OUTER -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> TOP`
   - Aliases are defined at the `SELECT` clause
   - `ORDER BY` is after `SELECT`
@@ -38,7 +37,9 @@ FROM production.categories;
 
 ```sql
 -- This might not work well and is not supported
-SELECT col1 + 10 AS res, res + 20 AS final
+SELECT 
+  col1 + 10 AS temp, 
+  temp + 20 AS final
 ```
 
 ## Table Aliases
@@ -58,17 +59,26 @@ table_name table_alias
 
 ```sql
 -- Join without Aliases
-SELECT sales.customers.customer_id, first_name, last_name, order_id
+SELECT 
+  sales.customers.customer_id AS cid, 
+  first_name, 
+  last_name, 
+  order_id
 FROM sales.customers INNER JOIN sales.orders
-ON sales.orders.customer_id = sales.customers.customer_id;
+  ON sales.orders.customer_id = cid;
 ```
 
 We can re-write in the following way
 
 ```sql
-SELECT c.customer_id, first_name, last_name, order_id
+SELECT 
+  c.customer_id AS cid, 
+  o.customer_id AS order_cid,
+  first_name, 
+  last_name, 
+  order_id
 FROM sales.customers c INNER JOIN sales.orders o
-ON o.customer_id = c.customer_id;
+  ON o.customer_id = c.customer_id;
 ```
 
 - **NOTE**: `FROM` is executed before `SELECT` so we can use the table aliases in `SELECT`

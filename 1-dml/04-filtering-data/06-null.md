@@ -24,17 +24,29 @@ NULL = NULL --> UNKNOWN
 - Allows to filter for values that are `NULL`
 
 ```sql
-SELECT customer_id, first_name, last_name, phone
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name, 
+  phone
 FROM sales.customers
 WHERE phone = NULL --> UNKNWON: Empty set
-ORDER BY first_name, last_name;
+ORDER BY 
+  first_name, 
+  last_name
 ```
 
 ```sql
-SELECT customer_id, first_name, last_name, phone
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name, 
+  phone
 FROM sales.customers
 WHERE phone IS NULL --> Correct
-ORDER BY first_name, last_name;
+ORDER BY 
+  first_name, 
+  last_name
 ```
 
 ## `IS NOT NULL`
@@ -42,22 +54,34 @@ ORDER BY first_name, last_name;
 Returns the complement set of `IS NULL`
 
 ```sql
-SELECT customer_id, first_name, last_name, phone
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name, 
+  phone
 FROM sales.customers
 WHERE phone IS NOT NULL
-ORDER BY first_name, last_name;
+ORDER BY
+  first_name, 
+  last_name
 ```
 
 This is equivalent to the following, using negative sub-query for the complement set
 
 ```sql
 -- The complement set of IS NULL
-SELECT customer_id, first_name, last_name, phone
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name, 
+  phone
 FROM sales.customers
 WHERE customer_id NOT IN (
   SELECT customer_id
   FROM sales.customers
   WHERE phone IS NULL
 )
-ORDER BY first_name, last_name;
+ORDER BY 
+  first_name, 
+  last_name
 ```

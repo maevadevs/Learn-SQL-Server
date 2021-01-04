@@ -3,7 +3,7 @@
 - A logical operator that determines if a character string matches a specified pattern
 - To filter rows with `WHERE` based on pattern matching
 - This can be used for partial RegEx functionalities
-- More flexible than the equal `=` and not equal `!=` string comparison operators
+- More flexible than the string comparison equal `=` and not equal `!=` operators
 - Returns `TRUE` if the column or expression matches the specified pattern
 - We can negate with `NOT LIKE`
 
@@ -21,7 +21,7 @@ column|expression LIKE pattern [ESCAPE escape_character]
 
 ## Escape Characters
 
-- To treat the wildcard characters as the regular characters
+- To treat the wildcard characters as regular characters
 - We can only escape one character at a time
 - We use the `ESCAPE` clause for this
   - We specify which character to use as the escape character
@@ -31,7 +31,10 @@ column|expression LIKE pattern [ESCAPE escape_character]
 Using the `%` wildcard
 
 ```sql
-SELECT customer_id, first_name, last_name
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name
 FROM sales.customers
 WHERE last_name LIKE 't%s'
 ORDER BY first_name;
@@ -40,7 +43,10 @@ ORDER BY first_name;
 Using the `_` wildcard
 
 ```sql
-SELECT customer_id, first_name, last_name
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name
 FROM sales.customers
 WHERE last_name LIKE '_u%'
 ORDER BY first_name;
@@ -49,7 +55,10 @@ ORDER BY first_name;
 Using a list of characters
 
 ```sql
-SELECT customer_id, first_name, last_name
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name
 FROM sales.customers
 WHERE last_name LIKE '[YZ]%' -- Last name starts with Y or Z
 ORDER BY last_name;
@@ -58,7 +67,10 @@ ORDER BY last_name;
 Using a range of characters
 
 ```sql
-SELECT customer_id, first_name, last_name
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name
 FROM sales.customers
 WHERE last_name LIKE '[A-C]%' -- Last name starts with A,B, or C
 ORDER BY first_name;
@@ -67,7 +79,10 @@ ORDER BY first_name;
 Using the NOT wildcard (`^`)
 
 ```sql
-SELECT customer_id, first_name, last_name
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name
 FROM sales.customers
 WHERE last_name LIKE '[^A-X]%' -- Last name not starting with A-X
 ORDER BY last_name;
@@ -76,7 +91,10 @@ ORDER BY last_name;
 Using the `NOT LIKE` operator for getting the complement set
 
 ```sql
-SELECT customer_id, first_name, last_name
+SELECT 
+  customer_id, 
+  first_name, 
+  last_name
 FROM sales.customers
 WHERE first_name NOT LIKE 'A%' -- Last name not starting with A
 ORDER BY first_name;
@@ -85,10 +103,12 @@ ORDER BY first_name;
 Using escape characters
 
 ```sql
-SELECT feedback_id, comment
+SELECT 
+  feedback_id, 
+  comment
 FROM sales.feedbacks
 WHERE comment LIKE '%30\%%' ESCAPE '\';
 ```
 
 - Specified that the character `\` is the escape character: This can be any other character as well
-- Treat the following `%` character as a literal string instead of a wildcard
+- Treat the next `%` character as a literal string instead of a wildcard
