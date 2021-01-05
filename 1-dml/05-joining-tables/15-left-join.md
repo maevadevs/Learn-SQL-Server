@@ -8,7 +8,7 @@
 ```sql
 SELECT select_list
 FROM T1 LEFT JOIN T2 
-  ON join_predicate;
+  ON join_predicate
 ```
 
 - Include all rows from the left table that meet the predicate
@@ -29,7 +29,7 @@ SELECT
   order_id
 FROM production.products p LEFT JOIN sales.order_items o 
   ON o.product_id = p.product_id
-ORDER BY order_id;
+ORDER BY order_id
 ```
 
 We can run left join on multiple tables at once
@@ -45,7 +45,7 @@ FROM production.products p
     ON i.product_id = p.product_id
 	LEFT JOIN sales.orders o
 		ON o.order_id = i.order_id
-ORDER BY order_id;
+ORDER BY order_id
 ```
 
 ## Conditions in `WHERE` vs in `ON` clause
@@ -62,7 +62,7 @@ SELECT
 FROM production.products p LEFT JOIN sales.order_items o 
    ON o.product_id = p.product_id
 WHERE order_id = 100
-ORDER BY order_id;
+ORDER BY order_id
 ```
 
 **Case in `ON`: Return all `products` but only the `order` with id 100 has the associated product's information**
@@ -75,7 +75,7 @@ SELECT
 FROM production.products p LEFT JOIN sales.order_items o 
   ON o.product_id = p.product_id 
   AND o.order_id = 100
-ORDER BY order_id DESC;
+ORDER BY order_id DESC
 ```
 
 ### Exclusive Left Join
@@ -89,7 +89,7 @@ SELECT
 FROM production.products p LEFT JOIN sales.order_items o 
   ON o.product_id = p.product_id
 WHERE order_id IS NULL
-ORDER BY order_id;
+ORDER BY order_id
 ```
 
 - SQL Server processes the `WHERE` clause after the `LEFT JOIN` clause

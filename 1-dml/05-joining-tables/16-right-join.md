@@ -9,7 +9,7 @@
 ```sql
 SELECT select_list
 FROM T1 RIGHT JOIN T2 
-  ON join_predicate;
+  ON join_predicate
 ```
 
 - Include all rows from the right table that meet the predicate
@@ -28,7 +28,7 @@ SELECT
   order_id
 FROM production.products p RIGHT JOIN sales.order_items o 
   ON o.product_id = p.product_id
-ORDER BY order_id;
+ORDER BY order_id
 ```
 
 We can run right join on multiple tables at once
@@ -44,7 +44,7 @@ FROM production.products p
     ON i.product_id = p.product_id
 	RIGHT JOIN sales.orders o
 		ON o.order_id = i.order_id
-ORDER BY order_id;
+ORDER BY order_id
 ```
 
 ## Conditions in `WHERE` vs in `ON` clause
@@ -61,7 +61,7 @@ SELECT
 FROM production.products p RIGHT JOIN sales.order_items o 
    ON o.product_id = p.product_id
 WHERE order_id = 100
-ORDER BY order_id;
+ORDER BY order_id
 ```
 
 **Case in `ON`: Return all `orders` but only the `products` with id > 100 has the associated product's information**
@@ -74,7 +74,7 @@ SELECT
 FROM production.products p RIGHT JOIN sales.order_items o 
   ON o.product_id = p.product_id 
   AND o.product_id > 100
-ORDER BY order_id DESC;
+ORDER BY order_id DESC
 ```
 
 ### Exclusive Right Join
@@ -88,7 +88,7 @@ SELECT
 FROM sales.order_items o RIGHT JOIN production.products p 
   ON o.product_id = p.product_id
 WHERE order_id IS NULL
-ORDER BY product_name;
+ORDER BY product_name
 ```
 
 - SQL Server processes the `WHERE` clause after the `RIGHT JOIN` clause

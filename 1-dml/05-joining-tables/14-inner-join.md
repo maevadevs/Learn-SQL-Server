@@ -9,7 +9,7 @@
 ```sql
 SELECT select_list
 FROM T1 INNER JOIN T2 
-  ON join_predicate;
+  ON join_predicate
 ```
 
 - Only rows that cause the join predicate to evaluate to `TRUE` are included in the result set
@@ -48,7 +48,7 @@ FROM production.products p
     ON c.category_id = p.category_id
   INNER JOIN production.brands b 
     ON b.brand_id = p.brand_id
-ORDER BY product_name DESC;
+ORDER BY product_name DESC
 ```
 
 ## Conditions in `WHERE` vs in `ON` clause

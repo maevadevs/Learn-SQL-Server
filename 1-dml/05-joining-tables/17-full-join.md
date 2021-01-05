@@ -10,11 +10,11 @@
 ```sql
 SELECT select_list
 FROM T1 FULL OUTER JOIN T2 
-  ON join_predicate;
+  ON join_predicate
 
 SELECT select_list
 FROM T1 FULL JOIN T2 
-  ON join_predicate;
+  ON join_predicate
 ```
 
 ## Figure Explanations
@@ -29,7 +29,7 @@ SELECT
   order_id
 FROM production.products p FULL JOIN sales.order_items o 
   ON o.product_id = p.product_id
-ORDER BY order_id;
+ORDER BY order_id
 ```
 
 ### Exclusive Full Join
@@ -45,5 +45,5 @@ FROM production.products p FULL JOIN sales.order_items o
   ON o.product_id = p.product_id
   WHERE o.order_id IS NULL
     OR p.product_name IS NULL
-ORDER BY order_id;
+ORDER BY order_id
 ```
