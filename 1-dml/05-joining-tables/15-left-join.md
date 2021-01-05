@@ -1,4 +1,4 @@
-# Left Join / Left Outer Join
+# `LEFT JOIN`/`LEFT OUTER JOIN`
 
 - Join two or more tables on a column
 - Returns all rows from the left table and matching rows or `NULL` values from the right table

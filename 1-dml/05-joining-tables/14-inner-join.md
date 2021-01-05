@@ -1,4 +1,4 @@
-# Inner Join
+# `INNER JOIN`
 
 - One of the most commonly used joins in SQL Server
 - Query data from two or more related tables

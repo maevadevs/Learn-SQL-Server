@@ -1,4 +1,4 @@
-# Full Join / Full Outer Join
+# `FULL JOIN`/`FULL OUTER JOIN`
 
 - Returns a result set that includes rows from both left and right tables
 - When no matching rows exist for the row in any table, the columns of the opposite table will have nulls

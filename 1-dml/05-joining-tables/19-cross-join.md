@@ -1,4 +1,4 @@
-# Cross Join
+# `CROSS JOIN`
 
 - Join every row from the first table with every row from the second table
 - Returns a Cartesian product of rows from both tables

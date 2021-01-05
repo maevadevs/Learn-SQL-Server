@@ -1,4 +1,4 @@
-# Right Join / Right Outer Join
+# `RIGHT JOIN`/`RIGHT OUTER JOIN`
 
 - Join two or more tables on a column
 - Returns all rows from the right table and matching rows or `NULL` values from the left table
