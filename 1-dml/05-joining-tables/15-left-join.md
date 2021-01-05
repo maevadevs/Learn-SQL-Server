@@ -32,7 +32,7 @@ FROM production.products p LEFT JOIN sales.order_items o
 ORDER BY order_id;
 ```
 
-We can run inner join on multiple tables at once
+We can run left join on multiple tables at once
 
 ```sql
 SELECT
@@ -53,7 +53,7 @@ ORDER BY order_id;
 - Conditions could be added on either `ON` or `WHERE`
 - Each one would have a different result
 
-Finds the `products` that belong to the `order` id 100
+**Case in `WHERE`: Finds the `products` that belong to the `order` id 100**
 
 ```sql
 SELECT
@@ -65,7 +65,7 @@ WHERE order_id = 100
 ORDER BY order_id;
 ```
 
-Return all `products` but only the `order` with id 100 has the associated product's information
+**Case in `ON`: Return all `products` but only the `order` with id 100 has the associated product's information**
 
 ```sql
 SELECT
