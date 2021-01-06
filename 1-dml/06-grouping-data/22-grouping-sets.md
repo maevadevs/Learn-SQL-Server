@@ -1,6 +1,10 @@
 # `GROUPING SETS`
 
-- Generates multiple grouping sets
+- Generates multiple grouping sets in one query
+- Think of it as a way to generate in one single result set:
+  - subtotals by subgroups
+  - subtotals by groups
+  - grand-total
 
 ## Creating a New Table for Example
 
@@ -65,7 +69,7 @@ ORDER BY brand
 ```
 
 The following query defines an *empty* grouping set `()`: It returns the sales amount for *all* brands and categories
-  - There is no grouping
+  - There is no grouping: This is the grand total
 
 ```sql
 SELECT SUM (sales) AS sales
@@ -93,7 +97,7 @@ SELECT
   category,
   SUM (sales) AS sales
 FROM sales.sales_summary
-GROUP BY
+GROUP BY  -- (brand, category)
   brand,
   category
 
@@ -104,7 +108,7 @@ SELECT
   NULL,
   SUM (sales) AS sales
 FROM sales.sales_summary
-GROUP BY brand
+GROUP BY brand -- (brand)
 
 UNION ALL
 
@@ -113,14 +117,14 @@ SELECT
   category,
   SUM (sales) AS sales
 FROM sales.sales_summary
-GROUP BY category
+GROUP BY category -- (category)
 
 UNION ALL
 
 SELECT -- Need the same number of columns
   NULL,
   NULL,
-  SUM (sales)
+  SUM (sales) -- ()
 FROM sales.sales_summary
 ORDER BY brand, category
 ```
