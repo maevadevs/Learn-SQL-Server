@@ -16,7 +16,7 @@ NULL > 0    --> UNKNOWN
 NULL = NULL --> UNKNOWN
 ```
 
-- `NULL` is equal to nothing, not even to itself
+- **`NULL` is never equal to anything, not even to itself**
 
 ## `IS NULL`
 
@@ -24,6 +24,7 @@ NULL = NULL --> UNKNOWN
 - Allows to filter for values that are `NULL`
 
 ```sql
+--This does not work
 SELECT 
   customer_id, 
   first_name, 
@@ -37,6 +38,7 @@ ORDER BY
 ```
 
 ```sql
+--This works
 SELECT 
   customer_id, 
   first_name, 

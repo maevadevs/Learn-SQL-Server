@@ -1,6 +1,6 @@
 # SQL Server References
 
-This is a reference for SQL Server from the [SQL Server Tutorial](https://www.sqlservertutorial.net/).
+This is a sumary of references for SQL Server from the [SQL Server Tutorial](https://www.sqlservertutorial.net/).
 
 SQL commands are mainly categorized into 5 categories:
 
@@ -35,3 +35,49 @@ A Transaction is a set of SQL statements that are executed on the data stored in
 ## MS Transact-SQL
 
 On top of those 5 categories, MS SQL Server uses Transact-SQL dialects which is a language extension by Microsoft. Transact-SQL makes SQL Server use a turing-complete programming language instead of the non-turing-complete ANSI/ISO SQL.
+
+## Organization
+
+- Introduction
+  - SQL Server Structure
+  - Installation
+  - Using SSMS and Default System Databases
+  - Loading a Sample Database
+- DML
+  - Querying Data
+    - `SELECT`
+  - Sorting Data
+    - `ORDER BY`
+  - Limiting Rows
+    - `OFFSET FETCH`
+    - `SELECT TOP`
+  - Filtering Data
+    - `SELECT DISTINCT`
+    - `WHERE`
+    - `NULL`
+    - `AND`
+    - `OR`
+    - `IN`
+    - `BETWEEN`
+    - `LIKE`
+    - `ALIASES`
+  - Joining Tables
+    - Joins Overview
+    - `INNER JOIN`
+    - `LEFT JOIN`
+    - `RIGHT JOIN`
+    - `FULL JOIN`
+    - `SELF JOIN`
+    - `CROSS JOIN`
+  - Grouping Data
+    - `GROUP BY`
+    - `HAVING`
+    - `UNION ALL` and `GROUPING SET`
+    - `CUBE`
+    - `ROLLUP`
+  - Subquery
+    - Nested Queries
+    - Correlated Subquery
+    - `EXISTS`
+    - `ANY`/`SOME`
+    - `ALL`

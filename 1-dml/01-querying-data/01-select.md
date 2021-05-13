@@ -5,7 +5,7 @@
 
 ## Basic `SELECT`
 
-- SQL Server uses schemas to logically groups related tables and other database objects
+- SQL Server uses *schemas* to logically groups related tables and other database objects
 - The most basic form of `SELECT`
 - The return of the query is called a `result set`
 
@@ -19,6 +19,10 @@ FROM schema_name.table_name;
 
 - SQL Server processes the `FROM` clause first and then the `SELECT` clause even though the `SELECT` clause appears first in the query
 
+```
+FROM > SELECT
+```
+
 ```sql
 SELECT *
 FROM schema_name.table_name;
@@ -27,8 +31,14 @@ FROM schema_name.table_name;
 - `SELECT *` is useful for examining the columns and data of a table that you are not familiar with
   - **However, do not use `SELECT *` for real production code**
   - It retrieves more data than your application needs to function
-  - Causes unnecessary data to transfer
+  - This causes unnecessary data to transfer
   - Affecting performance
+
+**SQL Server processes the clauses in the following sequence:**
+
+```
+FROM > ON > OUTER > WHERE > GROUP BY > HAVING > SELECT > DISTINCT > ORDER BY > TOP
+```
 
 ### Examples `SELECT`
 
@@ -48,7 +58,11 @@ FROM sales.customers;
 ## `SELECT WHERE`
 
 - To filter rows based on one or more conditions
-- When the `WHERE` clause is available, SQL Server processes the clauses of the query in the following sequence: `FROM -> WHERE -> SELECT`
+- When the `WHERE` clause is available, SQL Server processes the clauses of the query in the following sequence
+
+```
+FROM > WHERE > SELECT`
+```
 
 ### Example `SELECT WHERE`
 
@@ -62,7 +76,11 @@ WHERE state = 'CA';
 
 - The order of the result set from `SELECT` is not assured
 - To sort the result set based on one or more columns
-- SQL Server processes the clauses of the query in the following sequence: `FROM -> WHERE -> SELECT -> ORDER BY`
+- SQL Server processes the clauses of the query in the following sequence
+
+```
+FROM > WHERE > SELECT > ORDER BY
+```
 
 ### Example `SELECT ORDER BY`
 
@@ -77,7 +95,11 @@ ORDER BY first_name;
 
 - To group rows into groups
 - Requires the use of an aggregate function
-- SQL Server processes the clauses in the following sequence: `FROM -> ON -> OUTER -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> TOP`
+- SQL Server processes the clauses in the following sequence: 
+
+```
+FROM > WHERE > GROUP BY > SELECT > ORDER BY
+```
 
 ### Example `SELECT GROUP BY`
 
@@ -95,6 +117,11 @@ ORDER BY city_count DESC;
 
 - To filter groups based on one or more conditions
 - The `WHERE` clause filters on individual rows while the `HAVING` clause filter on aggregations (i.e. the results of `GROUP BY`)
+- SQL Server processes the clauses in the following sequence: 
+
+```
+FROM > WHERE > GROUP BY > HAVING > SELECT > ORDER BY
+```
 
 ### Example `SELECT HAVING`
 

@@ -16,7 +16,7 @@ SELECT
   customer_id
 FROM sales.orders
 WHERE customer_id IN (
-  -- This isa subquery
+  -- This is a subquery
   SELECT customer_id
   FROM sales.customers
   WHERE city = 'New York'

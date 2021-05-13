@@ -19,7 +19,7 @@
 - `msdb`
 - `tempdb`
 
-If you install the *Polybase* feature (for querying external *Hadoop* data and data in *Azure Blob Storage*), the following would also be installed as default:
+**NOTE: If you install the *Polybase* feature (for querying external *Hadoop* data and data in *Azure Blob Storage*), the following would also be installed as default:**
 
 - `DWConfiguration`
 - `DWDiagnostics`
@@ -86,4 +86,4 @@ SELECT @@version AS SqlServerVersion;
 ```
 
 - Click the *Execute* button (Or F5)
-- The Results window shows the version of the SQL Server
+- The Results window should show the version of the SQL Server

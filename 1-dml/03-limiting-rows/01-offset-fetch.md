@@ -1,7 +1,7 @@
 # `OFFSET` & `FETCH`
 
 - Limit the number of rows returned by a `SELECT` query
-- **These are options of `ORDER BY`**
+- **These are options for `ORDER BY`**
   - **You must use `OFFSET` and `FETCH` with `ORDER BY`**
 - `OFFSET` and `FETCH` are preferable for implementing the query paging solution than the `TOP` clause as they are more generalized
 - `OFFSET` and `FETCH` have been available since SQL Server 2012 and in Azure SQL Database
@@ -15,15 +15,16 @@ FROM schema_name.table_name
 ORDER BY 
   col1 [ASC|DESC], 
   col2 [ASC|DESC]
-OFFSET offset_row_count [ROW|ROWS]
-FETCH [FIRST|NEXT] fetch_row_count [ROW|ROWS] ONLY
+OFFSET n_row [ROW|ROWS]
+FETCH [FIRST|NEXT] m_row [ROW|ROWS] ONLY
 ```
 
 - `OFFSET` - The number of rows to skip before starting to return rows from the query
-  - `offset_row_count` - Can be constant, variable, or parameter >= 0
+  - `n_row` - Can be constant, variable, or parameter >= 0
 - `FETCH` - The number of rows to return after the `OFFSET` clause has been processed
-  - `fetch_row_count` - Can be constant, variable, or parameter >= 0
-- **`OFFSET` clause is mandatory but the `FETCH` clause is optional**
+  - `m_row` - Can be constant, variable, or parameter >= 0
+- **`OFFSET` clause is mandatory**
+- **`FETCH` clause is optional**
 - `FIRST|NEXT` - Aliases
 - `ROW|ROWS` - Aliases
 

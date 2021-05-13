@@ -1,7 +1,7 @@
 # `SELECT DISTINCT`
 
 - Retrieve only the distinct (unique) values in a specified list of columns
-- It removes the duplicate values in the column from the result set
+- It removes the duplicate values in the column from the result setik
 
 ```sql
 SELECT DISTINCT 
