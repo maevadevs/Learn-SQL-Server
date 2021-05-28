@@ -2,40 +2,6 @@
 
 This is a sumary of references for SQL Server from the [SQL Server Tutorial](https://www.sqlservertutorial.net/).
 
-SQL commands are mainly categorized into 5 categories:
-
-- DML
-- DQL
-- DDL
-- DCL
-- TCL
-
-## DML - Data Manipulation Language
-
-DML is made of the SQL commands that deals with the manipulation of data present in the database. This includes most of the SQL statements.
-
-## DQL - Data Querying Language
-
-To an extent, we could also include DQL as part of DML. DML statements are used for performing queries on the data within schema objects. The purpose of DQL Command is to get some schema relation based on the query passed to it.
-
-## DDL - Data Definition Language
-
-DDL consists of the SQL commands that can be used to define the database schema. It simply deals with descriptions of the database schema and is used to create and modify the structure of database objects in the database.
-
-## DCL - Data Control Language
-
-DCL includes commands which mainly deals with the rights, permissions, and other controls of the database system.
-
-## TCL - Transaction Control Language
-
-These commands are used for maintaining consistency of the database and for the management of transactions made by the DML commands.
-
-A Transaction is a set of SQL statements that are executed on the data stored in DBMS. Whenever any transaction is made these transactions are temporarily happen in database. So to make the changes permanent, we use TCL commands.
-
-## MS Transact-SQL
-
-On top of those 5 categories, MS SQL Server uses Transact-SQL dialects which is a language extension by Microsoft. Transact-SQL makes SQL Server use a turing-complete programming language instead of the non-turing-complete ANSI/ISO SQL.
-
 ## Folder Organization
 
 Here is the folder organization of this reference:
@@ -43,45 +9,61 @@ Here is the folder organization of this reference:
 ### Introduction
 
 - [SQL Server Structure](0-introduction/00-sqlserver-structure.md)
-- Installation
-- Using SSMS and Default System Databases
-- Loading a Sample Database
+- [Installation](0-introduction/01-installation.md)
+- [Using SSMS and Default System Databases](0-introduction/02-using-ssms-and-default-sys-dbs.md)
+- [Loading a Sample Database](0-introduction/03-loading-sample-db.md)
 
-- DML
-  - Querying Data
-    - `SELECT`
-  - Sorting Data
-    - `ORDER BY`
-  - Limiting Rows
-    - `OFFSET FETCH`
-    - `SELECT TOP`
-  - Filtering Data
-    - `SELECT DISTINCT`
-    - `WHERE`
-    - `NULL`
-    - `AND`
-    - `OR`
-    - `IN`
-    - `BETWEEN`
-    - `LIKE`
-    - `ALIASES`
-  - Joining Tables
-    - Joins Overview
-    - `INNER JOIN`
-    - `LEFT JOIN`
-    - `RIGHT JOIN`
-    - `FULL JOIN`
-    - `SELF JOIN`
-    - `CROSS JOIN`
-  - Grouping Data
-    - `GROUP BY`
-    - `HAVING`
-    - `UNION ALL` and `GROUPING SET`
-    - `CUBE`
-    - `ROLLUP`
-  - Subquery
-    - Nested Queries
-    - Correlated Subquery
-    - `EXISTS`
-    - `ANY`/`SOME`
-    - `ALL`
+### Data Manipulation Language (DML) / Data Querying Language (DQL)
+
+- [About DML/DQL](1-dml-dql/about.md)
+
+#### Querying Data
+
+- [`SELECT`](1-dml-dql/01-querying-data/01-select.md)
+  
+#### Sorting Data
+
+- [`ORDER BY`](1-dml-dql/02-sorting-data/01-order-by.md)
+
+#### Limiting Rows
+
+- [`OFFSET FETCH`](1-dml-dql/03-limiting-rows/01-offset-fetch.md)
+- [`SELECT TOP`](1-dml-dql/03-limiting-rows/02-select-top.md)
+
+#### Filtering Data
+
+- [`SELECT DISTINCT`](1-dml-dql/04-filtering-data/01-select-distinct.md)
+- [`WHERE`](1-dml-dql/04-filtering-data/02-where.md)
+- [`NULL`](1-dml-dql/04-filtering-data/03-null.md)
+- [`AND`](1-dml-dql/04-filtering-data/04-and.md)
+- [`OR`](1-dml-dql/04-filtering-data/05-or.md)
+- [`IN`](1-dml-dql/04-filtering-data/06-in.md)
+- [`BETWEEN`](1-dml-dql/04-filtering-data/07-between.md)
+- [`LIKE`](1-dml-dql/04-filtering-data/08-like.md)
+- [`ALIASES`](1-dml-dql/04-filtering-data/09-aliases.md)
+
+#### Joining Tables
+
+- [Joins Overview](1-dml-dql/05-joining-tables/01-joins-overview.md)
+- [`INNER JOIN`](1-dml-dql/05-joining-tables/02-inner-join.md)
+- [`LEFT JOIN`](1-dml-dql/05-joining-tables/03-left-join.md)
+- [`RIGHT JOIN`](1-dml-dql/05-joining-tables/04-right-join.md)
+- [`FULL JOIN`](1-dml-dql/05-joining-tables/05-full-join.md)
+- [`SELF JOIN`](1-dml-dql/05-joining-tables/06-self-join.md)
+- [`CROSS JOIN`](1-dml-dql/05-joining-tables/07-cross-join.md)
+
+#### Grouping Data
+
+- [`GROUP BY`](1-dml-dql/06-grouping-data/01-group-by.md)
+- [`HAVING`](1-dml-dql/06-grouping-data/02-having.md)
+- [`UNION ALL` and `GROUPING SET`](1-dml-dql/06-grouping-data/03-union-all-and-grouping-sets.md)
+- [`CUBE`](1-dml-dql/06-grouping-data/04-cube.md)
+- [`ROLLUP`](1-dml-dql/06-grouping-data/05-rollup.md)
+
+#### Subquery
+
+- [Nested Queries](1-dml-dql/07-subquery/01-nested-queries.md)
+- [Correlated Subquery](1-dml-dql/07-subquery/02-correlated-subquery.md)
+- [`EXISTS`](1-dml-dql/07-subquery/03-exists.md)
+- [`ANY`/`SOME`](1-dml-dql/07-subquery/04-any-some.md)
+- [`ALL`](1-dml-dql/07-subquery/05-all.md)
