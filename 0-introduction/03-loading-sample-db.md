@@ -1,6 +1,8 @@
 # Loading Sample Database
 
-Here is the sample `BikeStores` database that we will load into our SQL Server instance
+Here is the sample `BikeStores` database that we will load into our SQL Server instance. 
+
+Restoration steps are available in `queries/bikestores-sample-db`
 
 - 2 schemas
 - 9 tables

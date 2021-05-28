@@ -1,12 +1,7 @@
-/*
---------------------------------------------------------------------
-© 2017 sqlservertutorial.net All Rights Reserved
---------------------------------------------------------------------
-Name   : BikeStores
-Link   : http://www.sqlservertutorial.net/load-sample-database/
-Version: 1.0
---------------------------------------------------------------------
-*/
+/**
+ * Drop all objects in BikeStores Database
+ * This can be used to restore the Database from a fresh state
+ */
 
 -- drop tables
 DROP TABLE IF EXISTS sales.order_items;
@@ -18,8 +13,11 @@ DROP TABLE IF EXISTS production.brands;
 DROP TABLE IF EXISTS sales.customers;
 DROP TABLE IF EXISTS sales.staffs;
 DROP TABLE IF EXISTS sales.stores;
+DROP TABLE IF EXISTS hr.employees;
+DROP TABLE IF EXISTS hr.candidates;
 
 -- drop the schemas
 
 DROP SCHEMA IF EXISTS sales;
 DROP SCHEMA IF EXISTS production;
+DROP SCHEMA IF EXISTS hr;

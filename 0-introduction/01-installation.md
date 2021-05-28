@@ -2,7 +2,7 @@
 
 ## Installing SQL Server Database Engine & Features
 
-- [Download the installation media](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+- [Download the installation media](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (Choose the *Developer Edition* for learning-purposes)
 - Choose Custom installation
 - Specify the download location and start downloading
 - Open the download and start `SETUP.exe`
@@ -30,3 +30,5 @@
 - Beginning with SSMS 18.7, Azure Data Studio is automatically installed alongside SSMS
 - Users of SSMS are now able to benefit from the innovations and features in AzDS
 - AzDS is a cross-platform and open-source desktop tool for your environments, whether in the cloud, on-premises, or hybrid
+
+Check the `knowledgebase` folder for additional goodies

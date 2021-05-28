@@ -36,7 +36,9 @@ A Transaction is a set of SQL statements that are executed on the data stored in
 
 On top of those 5 categories, MS SQL Server uses Transact-SQL dialects which is a language extension by Microsoft. Transact-SQL makes SQL Server use a turing-complete programming language instead of the non-turing-complete ANSI/ISO SQL.
 
-## Organization
+## Folder Organization
+
+Here is the folder organization of this reference:
 
 - Introduction
   - SQL Server Structure

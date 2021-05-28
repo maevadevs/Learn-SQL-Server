@@ -5,7 +5,7 @@
 - This can be used for partial RegEx functionalities
 - More flexible than the string comparison equal `=` and not equal `!=` operators
 - Returns `TRUE` if the column or expression matches the specified pattern
-- We can negate with `NOT LIKE`
+- We can negate using `NOT LIKE`
 
 ```sql
 column|expression LIKE pattern [ESCAPE escape_character]

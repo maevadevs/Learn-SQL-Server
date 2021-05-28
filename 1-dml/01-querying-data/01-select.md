@@ -17,15 +17,15 @@ SELECT
 FROM schema_name.table_name;
 ```
 
-- SQL Server processes the `FROM` clause first and then the `SELECT` clause even though the `SELECT` clause appears first in the query
+- Even though the `SELECT` clause appears first in the query, SQL Server processes:
+
+1. The `FROM` clause first
+1. Then the `SELECT` clause 
+
+**Overall, SQL Server processes the clauses in the following sequence:**
 
 ```
-FROM > SELECT
-```
-
-```sql
-SELECT *
-FROM schema_name.table_name;
+FROM > ON > OUTER > WHERE > GROUP BY > HAVING > SELECT > DISTINCT > ORDER BY > TOP
 ```
 
 - `SELECT *` is useful for examining the columns and data of a table that you are not familiar with
@@ -33,11 +33,11 @@ FROM schema_name.table_name;
   - It retrieves more data than your application needs to function
   - This causes unnecessary data to transfer
   - Affecting performance
+  - When you use it for testing, it is better to use it with `TOP`
 
-**SQL Server processes the clauses in the following sequence:**
-
-```
-FROM > ON > OUTER > WHERE > GROUP BY > HAVING > SELECT > DISTINCT > ORDER BY > TOP
+```sql
+SELECT *
+FROM schema_name.table_name;
 ```
 
 ### Examples `SELECT`
@@ -74,8 +74,8 @@ WHERE state = 'CA';
 
 ## `SELECT` with `ORDER BY`
 
-- The order of the result set from `SELECT` is not assured
-- To sort the result set based on one or more columns
+- The order of the result set from `SELECT` by itself is not assured
+- To sort the result set based on one or more columns, use `ORDER BY`
 - SQL Server processes the clauses of the query in the following sequence
 
 ```
@@ -94,7 +94,7 @@ ORDER BY first_name;
 ## `SELECT` with `GROUP BY`
 
 - To group rows into groups
-- Requires the use of an aggregate function
+- **Requires the use of an aggregate function**
 - SQL Server processes the clauses in the following sequence: 
 
 ```
@@ -135,3 +135,5 @@ GROUP BY city
 HAVING COUNT(*) > 10
 ORDER BY city_count DESC;
 ```
+
+**NOTE: You cannot use column aliases in `HAVING` clause**

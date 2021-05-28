@@ -2,8 +2,8 @@
 
 ||MSSQL|PostgreSQL
 |--|:--|:--
-**Price**|$3,586 to $13,748|Free
-**License**|Standard, Enterprise|Free
+**Price**|Free, $3,586 to $13,748|Free
+**License**|Developer, Standard, Enterprise|Free
 **Source Code**|Closed Source|Open Source
 **Developer**|Microsoft|The PostgreSQL Global Development Group
 **Initial Release**|1989|1989

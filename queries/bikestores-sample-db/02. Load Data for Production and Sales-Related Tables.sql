@@ -1,14 +1,10 @@
-/*
---------------------------------------------------------------------
-© 2017 sqlservertutorial.net All Rights Reserved
---------------------------------------------------------------------
-Name   : BikeStoresSample
-Link   : http://www.sqlservertutorial.net/load-sample-database/
-Version: 1.0
---------------------------------------------------------------------
-*/
+/**
+ * Create or Restore BikeStores Database
+ * - Load data for production-related Tables
+ * - Load data for sales-related Tables
+ */
 
-USE BikeStoresSample;
+USE BikeStoresSampleDB;
 
 SET IDENTITY_INSERT production.brands ON;  
 
