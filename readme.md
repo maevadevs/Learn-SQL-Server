@@ -40,11 +40,13 @@ On top of those 5 categories, MS SQL Server uses Transact-SQL dialects which is 
 
 Here is the folder organization of this reference:
 
-- Introduction
-  - SQL Server Structure
-  - Installation
-  - Using SSMS and Default System Databases
-  - Loading a Sample Database
+### Introduction
+
+- [SQL Server Structure](0-introduction/00-sqlserver-structure.md)
+- Installation
+- Using SSMS and Default System Databases
+- Loading a Sample Database
+
 - DML
   - Querying Data
     - `SELECT`
