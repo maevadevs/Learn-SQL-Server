@@ -9,11 +9,11 @@ SELECT
   col2, 
   col3
 FROM table_name
-WHERE search_condition
+WHERE search_condition;
 ```
 
-- Search Condition is a logical expression or a combination of multiple logical expressions, often called a *Predicate*
-- SQL Server uses 3-valued predicate logic:
+- `search_condition` is a logical expression or a combination of multiple logical expressions, often called a **Predicate**
+- **SQL Server uses 3-valued predicate logic:**
   - `TRUE`
   - `FALSE`
   - `UNKNOWN`
@@ -32,10 +32,10 @@ SELECT
   list_price
 FROM production.products
 WHERE category_id = 1
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
-We can use mutliple conditions, either *must be true* or *either be true*
+We can use mutliple conditions, which can be *must be true* or *either be true*
 
 ```sql
 SELECT 
@@ -47,7 +47,7 @@ SELECT
 FROM production.products
 WHERE category_id = 1 
   AND model_year = 2018
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
 ```sql
@@ -60,7 +60,7 @@ SELECT
 FROM production.products
 WHERE list_price > 3000 
   OR model_year = 2018
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
 We can use comparison operators
@@ -75,10 +75,11 @@ SELECT
 FROM production.products
 WHERE list_price >= 300 
   AND model_year <= 2018
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
-We can use `BETWEEN` for a range of value. The values used with `BETWEEN` are inclusive on both end
+- We can use `BETWEEN` for a range of value
+- **The values used with `BETWEEN` are inclusive on both end**
 
 ```sql
 SELECT 
@@ -89,10 +90,10 @@ SELECT
   list_price
 FROM production.products
 WHERE list_price BETWEEN 1899.00 AND 1999.99
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
-This is equivalent to
+This is equivalent to the following
 
 ```sql
 SELECT 
@@ -104,10 +105,11 @@ SELECT
 FROM production.products
 WHERE list_price >= 1899.00 
   AND list_price <= 1999.99
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
-We can use the `IN` operator for values within a specific list or subquery
+- We can use the `IN` operator for values within a specific list or subquery
+- This is equivalent to using multiple `AND` operators
 
 ```sql
 SELECT 
@@ -122,11 +124,13 @@ WHERE list_price IN (
   369.99, 
   489.99
 )
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
-We can use the `LIKE` operator for finding specific strings. This can be used for partial RegEx functionalities
-
+- We can use the `LIKE` operator for finding specific strings
+- This can be used for partial RegEx functionalities
+- **SQL Server does not have built-in support for RegEx**
+<!---->
 - `%` - A string of zero or more characters
 - `_` - A single characters
 - `[charRange]` - Any single character within a specified range. The characters within the square brackets are used for the matching process
@@ -142,5 +146,5 @@ SELECT
   list_price
 FROM production.products
 WHERE product_name LIKE '%Cruiser%'
-ORDER BY list_price
+ORDER BY list_price;
 ```
