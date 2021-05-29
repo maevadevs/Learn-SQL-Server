@@ -41,7 +41,7 @@ SELECT
   o.order_date
 FROM production.products p 
   LEFT JOIN sales.order_items i ON i.product_id = p.product_id
-	LEFT JOIN sales.orders o ON o.order_id = i.order_id
+  LEFT JOIN sales.orders o ON o.order_id = i.order_id
 ORDER BY order_id;
 ```
 
