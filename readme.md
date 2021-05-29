@@ -1,6 +1,6 @@
 # SQL Server References
 
-This is a sumary of references for SQL Server from the [SQL Server Tutorial](https://www.sqlservertutorial.net/).
+This is a collection of references for SQL Server.
 
 ## Folder Organization
 

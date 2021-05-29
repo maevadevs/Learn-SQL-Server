@@ -1,7 +1,7 @@
 # Joins Overview
 
 - In RDBMS, data are distributed across multiple logical tables
-- For a complete set of data, we need to query multiple tables and join their columns together
+- To get complete sets of data, we need to query over multiple tables and join their columns together
 
 ## Inner Join Overview
 
@@ -15,7 +15,7 @@ SELECT
   t2.col1, 
   t2.col2
 FROM table1 AS t1 INNER JOIN table2 AS t2
-  ON t1.col1 = t2.col2
+  ON t1.col1 = t2.col2;
 ```
 
 ### Inner Join Example
@@ -27,7 +27,7 @@ SELECT
   e.id AS employee_id,
   e.fullname AS employee_name
 FROM hr.candidates c INNER JOIN hr.employees e 
-  ON e.fullname = c.fullname
+  ON e.fullname = c.fullname;
 ```
 
 ### Inner Join Example Venn Diagram
@@ -48,7 +48,7 @@ SELECT
   t2.col1,
   t2.col2
 FROM table1 AS t1 LEFT JOIN table2 AS t2
-  ON t1.col1 = t2.col2
+  ON t1.col1 = t2.col2;
 ```
 
 ### Left Join Example
@@ -59,8 +59,8 @@ SELECT
   c.fullname AS candidate_name,
   e.id AS employee_id,
   e.fullname AS employee_name
-FROM hr.candidates c LEFT JOIN hr.employees e 
-  ON e.fullname = c.fullname
+FROM hr.candidates AS c LEFT JOIN hr.employees AS e 
+  ON e.fullname = c.fullname;
 ```
 
 ### Left Join Example Venn Diagram
@@ -69,7 +69,7 @@ FROM hr.candidates c LEFT JOIN hr.employees e
 
 ### Exclusive Left Join
 
-- We can get row only in the left table but not in the right table by applying a `WHERE` condition with `NULL`
+- We can get rows only in the left table but not in the right table by applying a `WHERE` condition with `NULL`
 
 ```sql
 SELECT  
@@ -77,9 +77,9 @@ SELECT
   c.fullname AS candidate_name,
   e.id AS employee_id,
   e.fullname AS employee_name
-FROM hr.candidates c LEFT JOIN hr.employees e 
+FROM hr.candidates AS c LEFT JOIN hr.employees AS e 
   ON e.fullname = c.fullname
-WHERE e.id IS NULL
+WHERE e.id IS NULL;
 ```
 
 ### Exclusive Left Join Example Venn Diagram
@@ -101,7 +101,7 @@ SELECT
   t2.col1, 
   t2.col2
 FROM table1 AS t1 RIGHT JOIN table2 AS t2
-  ON t1.col1 = t2.col2
+  ON t1.col1 = t2.col2;
 ```
 
 ### Right Join Example
@@ -112,8 +112,8 @@ SELECT
   c.fullname AS candidate_name,
   e.id AS employee_id,
   e.fullname AS employee_name
-FROM hr.candidates c RIGHT JOIN hr.employees e 
-  ON e.fullname = c.fullname
+FROM hr.candidates AS c RIGHT JOIN hr.employees AS e 
+  ON e.fullname = c.fullname;
 ```
 
 ### Right Join Example Venn Diagram
@@ -122,7 +122,7 @@ FROM hr.candidates c RIGHT JOIN hr.employees e
 
 ### Exclusive Right Join
 
-- We can get row only in the Right table but not in the left table by applying a `WHERE` condition with `NULL`
+- We can get rows only in the right table but not in the left table by applying a `WHERE` condition with `NULL`
 
 ```sql
 SELECT  
@@ -130,9 +130,9 @@ SELECT
   c.fullname AS candidate_name,
   e.id AS employee_id,
   e.fullname AS employee_name
-FROM hr.candidates c RIGHT JOIN hr.employees e 
+FROM hr.candidates AS c RIGHT JOIN hr.employees AS e 
   ON e.fullname = c.fullname
-WHERE c.id IS NULL
+WHERE c.id IS NULL;
 ```
 
 ### Exclusive Right Join Example Venn Diagram
@@ -153,7 +153,7 @@ SELECT
   t2.col1, 
   t2.col2
 FROM table1 AS t1 FULL JOIN table2 AS t2
-  ON t1.col1 = t2.col2
+  ON t1.col1 = t2.col2;
 ```
 
 ### Full Join Example
@@ -164,8 +164,8 @@ SELECT
   c.fullname AS candidate_name,
   e.id AS employee_id,
   e.fullname AS employee_name
-FROM hr.candidates c FULL JOIN hr.employees e 
-  ON e.fullname = c.fullname
+FROM hr.candidates AS c FULL JOIN hr.employees AS e 
+  ON e.fullname = c.fullname;
 ```
 
 ### Full Join Example Venn Diagram
@@ -174,7 +174,7 @@ FROM hr.candidates c FULL JOIN hr.employees e
 
 ### Exclusive Full Join
 
-- We can get row only in either the Left or Right table but not in the intersection by applying a `WHERE` condition with `NULL`
+- We can get rows only in either the Left or Right table but not in the intersection by applying a `WHERE` condition with `NULL`
 
 ```sql
 SELECT  
@@ -182,7 +182,7 @@ SELECT
   c.fullname AS candidate_name,
   e.id AS employee_id,
   e.fullname AS employee_name
-FROM hr.candidates c FULL JOIN hr.employees e 
+FROM hr.candidates AS c FULL JOIN hr.employees AS e 
   ON e.fullname = c.fullname
 WHERE c.id IS NULL OR e.id IS NULL
 ```
