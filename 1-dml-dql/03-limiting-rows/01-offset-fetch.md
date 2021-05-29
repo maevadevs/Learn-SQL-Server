@@ -3,7 +3,7 @@
 - Limit the number of rows returned by a `SELECT` query
 - **These are options for `ORDER BY`**
   - **You must use `OFFSET` and `FETCH` with `ORDER BY`**
-- `OFFSET` and `FETCH` are preferable for implementing the query paging solution than the `TOP` clause as they are more generalized
+- **Use Case: `OFFSET` and `FETCH` are preferable for implementing the query paging solution than the `TOP` clause as they are more generalized**
 - `OFFSET` and `FETCH` have been available since SQL Server 2012 and in Azure SQL Database
 
 ```sql
@@ -16,7 +16,7 @@ ORDER BY
   col1 [ASC|DESC], 
   col2 [ASC|DESC]
 OFFSET n_row [ROW|ROWS]
-FETCH [FIRST|NEXT] m_row [ROW|ROWS] ONLY
+FETCH [FIRST|NEXT] m_row [ROW|ROWS] ONLY;
 ```
 
 - `OFFSET` - The number of rows to skip before starting to return rows from the query
@@ -32,6 +32,8 @@ FETCH [FIRST|NEXT] m_row [ROW|ROWS] ONLY
 
 ## Examples `OFFSET` & `FETCH`
 
+Let's say we start with the following basic `ORDER BY` query for `products`
+
 ```sql
 SELECT 
   product_name, 
@@ -39,7 +41,7 @@ SELECT
 FROM production.products
 ORDER BY 
   list_price DESC, 
-  product_name
+  product_name;
 ```
 
 We can skip the first 10 products and return the rest
@@ -52,7 +54,7 @@ FROM production.products
 ORDER BY 
   list_price DESC, 
   product_name
-OFFSET 10 ROWS
+OFFSET 10 ROWS;
 ```
 
 We can skip the first 10 products and select the next 10 products
@@ -66,7 +68,7 @@ ORDER BY
   list_price DESC, 
   product_name
 OFFSET 10 ROWS
-FETCH NEXT 10 ROWS ONLY
+FETCH NEXT 10 ROWS ONLY;
 ```
 
 We can get the top 10 most expensive products
@@ -80,7 +82,7 @@ ORDER BY
   list_price DESC, 
   product_name
 OFFSET 0 ROWS
-FETCH FIRST 10 ROWS ONLY
+FETCH FIRST 10 ROWS ONLY;
 ```
 
 This is the same as using `SELECT TOP`
@@ -92,5 +94,5 @@ SELECT TOP 10
 FROM production.products
 ORDER BY 
   list_price DESC, 
-  product_name
+  product_name;
 ```
