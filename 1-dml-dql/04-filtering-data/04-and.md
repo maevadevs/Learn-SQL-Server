@@ -18,7 +18,7 @@ SELECT *
 FROM production.products
 WHERE category_id = 1
   AND list_price > 400
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
 We can use multiple conditions with `AND`
@@ -29,7 +29,7 @@ FROM production.products
 WHERE category_id = 1
   AND list_price > 400
   AND brand_id = 1
-ORDER BY list_price DESC
+ORDER BY list_price DESC;
 ```
 
 - We can also combine with other logical operators
@@ -44,5 +44,5 @@ WHERE (
   OR brand_id = 2
 )
   AND list_price > 1000
-ORDER BY brand_id DESC
+ORDER BY brand_id DESC;
 ```
