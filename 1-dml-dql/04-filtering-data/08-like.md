@@ -2,7 +2,7 @@
 
 - A logical operator that determines if a character string matches a specified pattern
 - To filter rows with `WHERE` based on pattern matching
-- This can be used for partial RegEx functionalities
+- **SQL Server does not support RegEx but we can use `LIKE` for partial support instead**
 - More flexible than the string comparison equal `=` and not equal `!=` operators
 - Returns `TRUE` if the column or expression matches the specified pattern
 - We can negate using `NOT LIKE`
@@ -23,8 +23,12 @@ column|expression LIKE pattern [ESCAPE escape_character]
 
 - To treat the wildcard characters as regular characters
 - We can only escape one character at a time
-- We use the `ESCAPE` clause for this
+- **We use the `ESCAPE` clause for this**
   - We specify which character to use as the escape character
+
+```sql
+LIKE '%30\%%' ESCAPE '\' -- Specifying wildcards around "30%"
+```
 
 ## Example `LIKE`
 
@@ -37,7 +41,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE 't%s'
-ORDER BY first_name
+ORDER BY first_name;
 ```
 
 Using the `_` wildcard
@@ -49,7 +53,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE '_u%'
-ORDER BY first_name
+ORDER BY first_name;
 ```
 
 Using a list of characters
@@ -61,7 +65,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE '[YZ]%' -- Last name starts with Y or Z
-ORDER BY last_name
+ORDER BY last_name;
 ```
 
 Using a range of characters
@@ -72,8 +76,8 @@ SELECT
   first_name, 
   last_name
 FROM sales.customers
-WHERE last_name LIKE '[A-C]%' -- Last name starts with A,B, or C
-ORDER BY first_name
+WHERE last_name LIKE '[A-C]%' -- Last name starts with A, B, or C
+ORDER BY first_name;
 ```
 
 Using the NOT wildcard (`^`)
@@ -85,7 +89,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE last_name LIKE '[^A-X]%' -- Last name not starting with A-X
-ORDER BY last_name
+ORDER BY last_name;
 ```
 
 Using the `NOT LIKE` operator for getting the complement set
@@ -97,7 +101,7 @@ SELECT
   last_name
 FROM sales.customers
 WHERE first_name NOT LIKE 'A%' -- Last name not starting with A
-ORDER BY first_name
+ORDER BY first_name;
 ```
 
 Using escape characters
@@ -107,8 +111,9 @@ SELECT
   feedback_id, 
   comment
 FROM sales.feedbacks
-WHERE comment LIKE '%30\%%' ESCAPE '\'
+WHERE comment LIKE '%30\%%' ESCAPE '\';
 ```
 
-- Specified that the character `\` is the escape character: This can be any other character as well
-- Treat the next `%` character as a literal string instead of a wildcard
+- Specified that the character `\` is the escape character
+  - This can be any other character as well
+  - Treat the next `%` character as a literal string instead of a wildcard
