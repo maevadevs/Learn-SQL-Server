@@ -11,9 +11,9 @@
 
 ```sql
 SELECT 
-  col1, 
-  col2, 
-  col3
+    col1, 
+    col2, 
+    col3
 FROM schema_name.table_name;
 ```
 
@@ -25,18 +25,27 @@ FROM schema_name.table_name;
 **Overall, SQL Server processes the clauses in the following sequence:**
 
 ```
-FROM > ON > OUTER > WHERE > GROUP BY > HAVING > SELECT > DISTINCT > ORDER BY > TOP
+- FROM
+- ON
+- OUTER
+- WHERE
+- GROUP BY
+- HAVING
+- SELECT
+- DISTINCT
+- ORDER BY
+- TOP
 ```
 
 - `SELECT *` is useful for examining the columns and data of a table that you are not familiar with
-  - **However, do not use `SELECT *` for real production code**
+  - **However, do not use `SELECT *` in real production code**
   - It retrieves more data than your application needs to function
   - This causes unnecessary data to transfer
   - Affecting performance
   - When you use it for testing, it is better to use it with `TOP`
 
 ```sql
-SELECT *
+SELECT TOP 10 *
 FROM schema_name.table_name;
 ```
 
@@ -44,14 +53,14 @@ FROM schema_name.table_name;
 
 ```sql
 SELECT 
-  first_name, 
-  last_name, 
-  email
+    first_name, 
+    last_name, 
+    email
 FROM sales.customers;
 ```
 
 ```sql
-SELECT *
+SELECT TOP 10 *
 FROM sales.customers;
 ```
 
@@ -61,13 +70,15 @@ FROM sales.customers;
 - When the `WHERE` clause is available, SQL Server processes the clauses of the query in the following sequence
 
 ```
-FROM > WHERE > SELECT`
+- FROM
+- WHERE
+- SELECT`
 ```
 
 ### Example `SELECT WHERE`
 
 ```sql
-SELECT *
+SELECT TOP 10 *
 FROM sales.customers
 WHERE state = 'CA';
 ```
@@ -79,16 +90,21 @@ WHERE state = 'CA';
 - SQL Server processes the clauses of the query in the following sequence
 
 ```
-FROM > WHERE > SELECT > ORDER BY
+- FROM
+- WHERE
+- SELECT
+- ORDER BY
 ```
+
+- By default, `ORDER BY` will return in an Ascending order: Specify `DESC` otherwise
 
 ### Example `SELECT ORDER BY`
 
 ```sql
-SELECT *
+SELECT TOP 10 *
 FROM sales.customers
 WHERE state = 'CA'
-ORDER BY first_name;
+ORDER BY first_name DESC;
 ```
 
 ## `SELECT` with `GROUP BY`
@@ -98,15 +114,19 @@ ORDER BY first_name;
 - SQL Server processes the clauses in the following sequence: 
 
 ```
-FROM > WHERE > GROUP BY > SELECT > ORDER BY
+- FROM
+- WHERE
+- GROUP BY
+- SELECT
+- ORDER BY
 ```
 
 ### Example `SELECT GROUP BY`
 
 ```sql
 SELECT 
-  city, 
-  COUNT(*) AS city_count
+    city, 
+    COUNT(*) AS city_count
 FROM sales.customers
 WHERE state = 'CA'
 GROUP BY city
@@ -116,24 +136,28 @@ ORDER BY city_count DESC;
 ## `SELECT` with group conditions `HAVING`
 
 - To filter groups based on one or more conditions
-- The `WHERE` clause filters on individual rows while the `HAVING` clause filter on aggregations (i.e. the results of `GROUP BY`)
+- The `WHERE` clause filters on individual rows while the `HAVING` clause filter on aggregations (i.e. applies on the results after `GROUP BY`)
+- **NOTE: You cannot use column aliases in `HAVING` clause**
 - SQL Server processes the clauses in the following sequence: 
 
 ```
-FROM > WHERE > GROUP BY > HAVING > SELECT > ORDER BY
+- FROM
+- WHERE
+- GROUP BY
+- HAVING
+- SELECT
+- ORDER BY
 ```
 
 ### Example `SELECT HAVING`
 
 ```sql
 SELECT 
-  city, 
-  COUNT(*) AS city_count
+    city, 
+    COUNT(*) AS city_count
 FROM sales.customers
 WHERE state = 'CA'
 GROUP BY city
-HAVING COUNT(*) > 10
+HAVING COUNT(*) > 10 -- Cannot use column aliases here
 ORDER BY city_count DESC;
 ```
-
-**NOTE: You cannot use column aliases in `HAVING` clause**
