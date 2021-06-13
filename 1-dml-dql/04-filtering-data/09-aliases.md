@@ -1,11 +1,11 @@
 # Aliases
 
-- Use column aliases to change the heading of the query output and table alias
+- Use aliases to change the column heading of the query output and table alias
 - Improve readability of queries
 - We can use basic column transformations and assign the result to aliases
 - A temporary name during the query execution
 - We use `AS` to assign aliases. But it is optional so we can do without it
-- If the column alias contains spaces, you need to enclose it in quotation marks
+- **If the column alias contains spaces, you need to enclose it in quotation marks**
 
 ```sql
 column_name|expression AS column_alias
@@ -30,7 +30,7 @@ FROM production.categories;
 - We can use column aliases in `ORDER BY`
 - **We cannot use column aliases in `GROUP BY`, `WHERE`, and `HAVING` because of the logical order of processing**
   - **Aliases are defined at the level of `SELECT` clause**
-  - `ORDER BY` is after `SELECT`
+  - `ORDER BY` is evaluated after `SELECT`
   - SQL Server processes the clauses in the following sequence:
 
 ```
@@ -43,14 +43,14 @@ FROM -> ON -> OUTER -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDE
 ```sql
 -- This does not work well and is not supported
 SELECT 
-  col1 + 10 AS temp, 
-  temp + 20 AS final;
+    col1 + 10 AS temp, 
+    temp + 20 AS final;
 GO
 
 -- Instead, do the following
 SELECT 
-  col1 + 10 AS temp, 
-  col1 + 10 + 20 AS final;
+    col1 + 10 AS temp, 
+    col1 + 10 + 20 AS final;
 GO
 ```
 
@@ -73,12 +73,12 @@ table_name table_alias
 ```sql
 -- Join without Aliases
 SELECT 
-  sales.customers.customer_id AS cid, 
-  first_name, 
-  last_name, 
-  order_id
-FROM sales.customers INNER JOIN sales.orders
-  ON sales.orders.customer_id = cid;
+    sales.customers.customer_id AS cid, 
+    first_name, 
+    last_name, 
+    order_id
+FROM sales.customers 
+    INNER JOIN sales.orders ON sales.orders.customer_id = cid;
 ```
 
 We can re-write in the following way
@@ -86,11 +86,11 @@ We can re-write in the following way
 ```sql
 -- We can use table aliases in SELECT
 SELECT 
-  c.customer_id AS cid, 
-  o.customer_id AS order_cid,
-  first_name, 
-  last_name, 
-  order_id
-FROM sales.customers AS c INNER JOIN sales.orders AS o
-  ON o.customer_id = c.customer_id;
+    c.customer_id AS cid, 
+    o.customer_id AS order_cid,
+    first_name, 
+    last_name, 
+    order_id
+FROM sales.customers AS c 
+    INNER JOIN sales.orders AS o ON o.customer_id = c.customer_id;
 ```
