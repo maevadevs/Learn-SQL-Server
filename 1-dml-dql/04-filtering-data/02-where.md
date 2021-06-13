@@ -46,7 +46,7 @@ SELECT
     list_price
 FROM production.products
 WHERE category_id = 1 
-  AND model_year = 2018
+    AND model_year = 2018
 ORDER BY list_price DESC;
 ```
 
@@ -59,7 +59,7 @@ SELECT
     list_price
 FROM production.products
 WHERE list_price > 3000 
-  OR model_year = 2018
+    OR model_year = 2018
 ORDER BY list_price DESC;
 ```
 
@@ -74,7 +74,7 @@ SELECT
     list_price
 FROM production.products
 WHERE list_price >= 300 
-  AND model_year <= 2018
+    AND model_year <= 2018
 ORDER BY list_price DESC;
 ```
 
@@ -104,7 +104,7 @@ SELECT
     list_price
 FROM production.products
 WHERE list_price >= 1899.00 
-  AND list_price <= 1999.99
+    AND list_price <= 1999.99
 ORDER BY list_price DESC;
 ```
 
