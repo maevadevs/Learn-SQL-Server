@@ -44,9 +44,9 @@ AND
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  list_price
+    product_id, 
+    product_name, 
+    list_price
 FROM production.products
 WHERE list_price BETWEEN 149.99 AND 199.99
 ORDER BY list_price;
@@ -56,9 +56,9 @@ We use `NOT BETWEEN` to get the complement
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  list_price
+    product_id, 
+    product_name, 
+    list_price
 FROM production.products
 WHERE list_price NOT BETWEEN 149.99 AND 199.99
 ORDER BY list_price;
@@ -70,10 +70,10 @@ ORDER BY list_price;
 
 ```sql
 SELECT 
-  order_id, 
-  customer_id, 
-  order_date, 
-  order_status
+    order_id, 
+    customer_id, 
+    order_date, 
+    order_status
 FROM sales.orders
 WHERE order_date BETWEEN '2017-01-15' AND '2017-01-17'
 ORDER BY order_date;
