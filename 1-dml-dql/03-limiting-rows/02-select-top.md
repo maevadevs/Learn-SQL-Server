@@ -7,9 +7,9 @@
 
 ```sql
 SELECT TOP n [PERCENT] [WITH TIES] 
-  col1, 
-  col2, 
-  col3
+    col1, 
+    col2, 
+    col3
 FROM schema_name.table_name
 ORDER BY col1;
 ```
@@ -31,8 +31,8 @@ We can use `SELECT TOP` with a constant value
 
 ```sql
 SELECT TOP 10
-  product_name, 
-  list_price
+    product_name, 
+    list_price
 FROM production.products
 ORDER BY list_price DESC;
 ```
@@ -41,7 +41,7 @@ We can use `PERCENT` to specify the number of products returned in the result se
 
 ```sql
 SELECT TOP 1 PERCENT
-  product_name, 
+    product_name, 
     list_price
 FROM production.products
 ORDER BY list_price DESC;
@@ -51,8 +51,8 @@ We can use `WITH TIES` to include any rows that match the values in the last row
 
 ```sql
 SELECT TOP 3 WITH TIES 
-  product_name, 
-  list_price
+    product_name, 
+    list_price
 FROM production.products
 ORDER BY list_price DESC;
 ```
