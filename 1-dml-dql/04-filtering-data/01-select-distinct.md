@@ -5,8 +5,8 @@
 
 ```sql
 SELECT DISTINCT 
-  col1, 
-  col2
+    col1, 
+    col2
 FROM table_name;
 ```
 
@@ -28,12 +28,12 @@ Select only the *unique combinations* of city and state
 
 ```sql
 SELECT DISTINCT 
-  city, 
-  state
+    city, 
+    state
 FROM sales.customers
 ORDER BY 
-  state, 
-  city;
+    state, 
+    city;
 ```
 
 Select `NULL` only once
@@ -51,30 +51,30 @@ ORDER BY phone;
 
 ```sql
 SELECT 
-  city, 
-  state, 
-  zip_code
+    city, 
+    state, 
+    zip_code
 FROM sales.customers
 GROUP BY 
-  city, 
-  state, 
-  zip_code
+    city, 
+    state, 
+    zip_code
 ORDER BY 
-  state, 
-  city;
+    state, 
+    city;
 ```
 
 This is equivalent to the following `SELECT DISTINCT`
 
 ```sql
 SELECT DISTINCT 
-  city, 
-  state, 
-  zip_code
+    city, 
+    state, 
+    zip_code
 FROM sales.customers
 ORDER BY 
-  state, 
-  city;
+    state, 
+    city;
 ```
 
 - Both `DISTINCT` and `GROUP BY` reduces the number of returned rows in the result set by removing the duplicates
