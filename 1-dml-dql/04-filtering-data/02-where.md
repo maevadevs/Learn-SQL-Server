@@ -5,9 +5,9 @@
 
 ```sql
 SELECT 
-  col1, 
-  col2, 
-  col3
+    col1, 
+    col2, 
+    col3
 FROM table_name
 WHERE search_condition;
 ```
@@ -25,11 +25,11 @@ We can use a simple equality
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  category_id, 
-  model_year, 
-  list_price
+    product_id, 
+    product_name, 
+    category_id, 
+    model_year, 
+    list_price
 FROM production.products
 WHERE category_id = 1
 ORDER BY list_price DESC;
@@ -39,11 +39,11 @@ We can use mutliple conditions, which can be *must be true* or *either be true*
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  category_id, 
-  model_year, 
-  list_price
+    product_id, 
+    product_name, 
+    category_id, 
+    model_year, 
+    list_price
 FROM production.products
 WHERE category_id = 1 
   AND model_year = 2018
@@ -52,11 +52,11 @@ ORDER BY list_price DESC;
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  category_id, 
-  model_year, 
-  list_price
+    product_id, 
+    product_name, 
+    category_id, 
+    model_year, 
+    list_price
 FROM production.products
 WHERE list_price > 3000 
   OR model_year = 2018
@@ -67,11 +67,11 @@ We can use comparison operators
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  category_id, 
-  model_year, 
-  list_price
+    product_id, 
+    product_name, 
+    category_id, 
+    model_year, 
+    list_price
 FROM production.products
 WHERE list_price >= 300 
   AND model_year <= 2018
@@ -83,11 +83,11 @@ ORDER BY list_price DESC;
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  category_id, 
-  model_year, 
-  list_price
+    product_id, 
+    product_name, 
+    category_id, 
+    model_year, 
+    list_price
 FROM production.products
 WHERE list_price BETWEEN 1899.00 AND 1999.99
 ORDER BY list_price DESC;
@@ -97,11 +97,11 @@ This is equivalent to the following
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  category_id, 
-  model_year, 
-  list_price
+    product_id, 
+    product_name, 
+    category_id, 
+    model_year, 
+    list_price
 FROM production.products
 WHERE list_price >= 1899.00 
   AND list_price <= 1999.99
@@ -113,16 +113,16 @@ ORDER BY list_price DESC;
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  category_id, 
-  model_year, 
-  list_price
+    product_id, 
+    product_name, 
+    category_id, 
+    model_year, 
+    list_price
 FROM production.products
 WHERE list_price IN (
-  299.99, 
-  369.99, 
-  489.99
+    299.99, 
+    369.99, 
+    489.99
 )
 ORDER BY list_price DESC;
 ```
@@ -139,11 +139,11 @@ ORDER BY list_price DESC;
 
 ```sql
 SELECT 
-  product_id, 
-  product_name, 
-  category_id, 
-  model_year, 
-  list_price
+    product_id, 
+    product_name, 
+    category_id, 
+    model_year, 
+    list_price
 FROM production.products
 WHERE product_name LIKE '%Cruiser%'
 ORDER BY list_price;
