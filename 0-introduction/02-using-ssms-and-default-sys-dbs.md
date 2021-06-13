@@ -21,7 +21,7 @@
 
 **NOTE on Polybase DBs**
 
-If you install the *Polybase* feature (for querying external *Hadoop* data and data in *Azure Blob Storage*), the following would also be installed as default:**
+If you install the *Polybase* feature (for querying external *Hadoop* data and data in *Azure Blob Storage*), the following would also be installed as default:
 
 - `DWConfiguration`
 - `DWDiagnostics`
