@@ -53,8 +53,8 @@ ORDER BY product_name DESC;
 - Normally, filtering is processed in the `WHERE` clause once the two tables have already been joined
 - It is possible though that you might want to filter one or both of the tables before joining them
   - The `WHERE` clause applies to the whole result set (after join)
-  - The `ON` clause only applies to the join in question
-- **For `INNER JOIN`, additional condition in `ON` is functionally equivalent if it is placed in the `WHERE` clause**
+  - The `ON` clause only applies while the tables are being joined
+- **For `INNER JOIN`, additional conditions in `ON` is functionally equivalent if it is placed in the `WHERE` clause**
 
 ```sql
 SELECT *
