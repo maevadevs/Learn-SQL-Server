@@ -11,108 +11,119 @@
 SELECT select_list
 FROM table_name
 GROUP BY
-  column_name1,
-  column_name2,
-  ...
+    column_name1,
+    column_name2,
+    ...;
 ```
 
 ## Example of `GROUP BY`
 
 ```sql
 SELECT
-  customer_id,
-  YEAR (order_date) AS order_year
-FROM sales.orders
-WHERE customer_id IN (1, 2)
+    o.customer_id,
+	  c.first_name,
+	  c.last_name,
+    YEAR (o.order_date) AS order_year,
+    COUNT (o.order_id) AS order_count
+FROM sales.orders AS o JOIN sales.customers AS c 
+	  ON o.customer_id = c.customer_id
+WHERE o.customer_id IN (1, 2)
 GROUP BY 
-  customer_id,
-  YEAR (order_date)
-ORDER BY customer_id
+    o.customer_id,
+	  c.first_name,
+	  c.last_name,
+    YEAR (o.order_date)
+ORDER BY o.customer_id;
 ```
 
-We can get the same result set using `SELECT DISTINCT`
+We can get the same result set using `SELECT DISTINCT`, minus the aggregation (aggregation requires the use of `GROUP BY`)
 
 ```sql
 SELECT DISTINCT
-  customer_id,
-  YEAR (order_date) order_year
-FROM sales.orders
-WHERE customer_id IN (1, 2)
-ORDER BY customer_id
+    o.customer_id,
+    c.first_name,
+    c.last_name,
+    YEAR (o.order_date) AS order_year
+FROM sales.orders o JOIN sales.customers c 
+	  ON o.customer_id = c.customer_id
+WHERE o.customer_id IN (1, 2)
+ORDER BY o.customer_id;
 ```
 
 ## Using Aggregate Functions
 
 - `GROUP BY` clause is often used with aggregate functions for generating summary reports
   - Arranges rows into groups
-  - If you want to refer to any column or expression that is not listed in the `GROUP BY` clause, you must use that column as the input of an aggregate function
-- *Aggregate Functions* perform calculations on a group and returns a unique value per group
+  - **If you want to refer to any column or expression that is not listed in the `GROUP BY` clause, you must use that column as the input of an aggregate function**
+- ***Aggregate Functions* perform calculations on a group and returns a unique value per group**
   - Returns the summary for each group
 
 ### Using `GROUP BY` with `COUNT()` example
 
 ```sql
 SELECT
-  state,
-  city,
-  COUNT (customer_id) AS customer_count
+    state,
+    city,
+    COUNT (customer_id) AS customer_count
 FROM sales.customers
 GROUP BY 
-  state,
-  city
-ORDER BY city
+    state,
+    city
+ORDER BY 
+    state, 
+    city;
 ```
 
 ### Using `GROUP BY` with `MIN()` and `MAX()` example
 
 ```sql
 SELECT
-  brand_name,
-  MIN (list_price) AS min_price,
-  MAX (list_price) AS max_price
+    brand_name,
+    MIN (list_price) AS min_price,
+    MAX (list_price) AS max_price
 FROM production.products p INNER JOIN production.brands b 
-  ON b.brand_id = p.brand_id
+    ON b.brand_id = p.brand_id
 WHERE model_year = 2018
 GROUP BY brand_name
-ORDER BY brand_name
+ORDER BY brand_name;
 ```
 
 ### Using `GROUP BY` with `AVG()` example
 
 ```sql
 SELECT
-  brand_name,
-  AVG (list_price) AS avg_price
+    brand_name,
+    AVG (list_price) AS avg_price
 FROM production.products p INNER JOIN production.brands b 
-  ON b.brand_id = p.brand_id
+    ON b.brand_id = p.brand_id
 WHERE model_year = 2018
 GROUP BY brand_name
-ORDER BY brand_name
+ORDER BY brand_name;
 ```
 
 ### Using `GROUP BY` with `SUM()` example
 
 ```sql
 SELECT
-  order_id,
-  SUM (quantity * list_price * (1 - discount)) AS net_value
+    order_id,
+    SUM (quantity * list_price * (1 - discount)) AS net_value
 FROM sales.order_items
-GROUP BY order_id
+GROUP BY order_id;
 ```
 
 ### Example Using Multiple Aggregate Functions
 
 ```sql
 SELECT
-  customer_id,
-  YEAR (order_date) AS order_year,
-  COUNT (order_id) AS order_placed
+    customer_id,
+    YEAR (order_date) AS order_year,
+    COUNT (order_id) AS order_placed,
 FROM sales.orders
 WHERE customer_id IN (1, 2)
 GROUP BY
-  customer_id,
-  YEAR (order_date)
-ORDER BY customer_id
+    customer_id,
+    YEAR (order_date)
+ORDER BY customer_id;
 ```
 
 ### List of T-SQL Aggregate Functions
