@@ -2,7 +2,7 @@
 
 - Similar to `CUBE`, also generate multiple grouping sets
   - However, it does not produce all the combination
-  - Instead, it assumes a **hierachical order among the selected dimension and only produce aggregation for each hierarchical level**
+  - Instead, it assumes a **hierachical order among the selected dimensions and only produce aggregation for each hierarchical level**
 - The hierarchy order is the one specified in the `ROLLUP` clause, with higher order going first
 - **The order of the specified hierarchy is important**
 - So `ROLLUP` generate a subset of the result set of `CUBE`
