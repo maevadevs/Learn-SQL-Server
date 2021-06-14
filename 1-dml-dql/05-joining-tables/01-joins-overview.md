@@ -10,24 +10,24 @@
 
 ```sql
 SELECT 
-  t1.col1, 
-  t1.col2, 
-  t2.col1, 
-  t2.col2
-FROM table1 AS t1 INNER JOIN table2 AS t2
-  ON t1.col1 = t2.col2;
+    t1.col1, 
+    t1.col2, 
+    t2.col1, 
+    t2.col2
+FROM table1 AS t1 
+    INNER JOIN table2 AS t2 ON t1.col1 = t2.col2;
 ```
 
 ### Inner Join Example
 
 ```sql
 SELECT  
-  c.id AS candidate_id, 
-  c.fullname AS candidate_name,
-  e.id AS employee_id,
-  e.fullname AS employee_name
-FROM hr.candidates c INNER JOIN hr.employees e 
-  ON e.fullname = c.fullname;
+    c.id AS candidate_id, 
+    c.fullname AS candidate_name,
+    e.id AS employee_id,
+    e.fullname AS employee_name
+FROM hr.candidates c 
+    INNER JOIN hr.employees e ON e.fullname = c.fullname;
 ```
 
 ### Inner Join Example Venn Diagram
@@ -43,24 +43,24 @@ FROM hr.candidates c INNER JOIN hr.employees e
 
 ```sql
 SELECT 
-  t1.col1, 
-  t1.col2, 
-  t2.col1,
-  t2.col2
-FROM table1 AS t1 LEFT JOIN table2 AS t2
-  ON t1.col1 = t2.col2;
+    t1.col1, 
+    t1.col2, 
+    t2.col1,
+    t2.col2
+FROM table1 AS t1 
+    LEFT JOIN table2 AS t2 ON t1.col1 = t2.col2;
 ```
 
 ### Left Join Example
 
 ```sql
 SELECT  
-  c.id AS candidate_id, 
-  c.fullname AS candidate_name,
-  e.id AS employee_id,
-  e.fullname AS employee_name
-FROM hr.candidates AS c LEFT JOIN hr.employees AS e 
-  ON e.fullname = c.fullname;
+    c.id AS candidate_id, 
+    c.fullname AS candidate_name,
+    e.id AS employee_id,
+    e.fullname AS employee_name
+FROM hr.candidates AS c 
+    LEFT JOIN hr.employees AS e ON e.fullname = c.fullname;
 ```
 
 ### Left Join Example Venn Diagram
@@ -73,12 +73,12 @@ FROM hr.candidates AS c LEFT JOIN hr.employees AS e
 
 ```sql
 SELECT  
-  c.id AS candidate_id, 
-  c.fullname AS candidate_name,
-  e.id AS employee_id,
-  e.fullname AS employee_name
-FROM hr.candidates AS c LEFT JOIN hr.employees AS e 
-  ON e.fullname = c.fullname
+    c.id AS candidate_id, 
+    c.fullname AS candidate_name,
+    e.id AS employee_id,
+    e.fullname AS employee_name
+FROM hr.candidates AS c 
+    LEFT JOIN hr.employees AS e ON e.fullname = c.fullname
 WHERE e.id IS NULL;
 ```
 
@@ -96,24 +96,24 @@ WHERE e.id IS NULL;
 
 ```sql
 SELECT 
-  t1.col1, 
-  t1.col2, 
-  t2.col1, 
-  t2.col2
-FROM table1 AS t1 RIGHT JOIN table2 AS t2
-  ON t1.col1 = t2.col2;
+    t1.col1, 
+    t1.col2, 
+    t2.col1, 
+    t2.col2
+FROM table1 AS t1 
+    RIGHT JOIN table2 AS t2 ON t1.col1 = t2.col2;
 ```
 
 ### Right Join Example
 
 ```sql
 SELECT  
-  c.id AS candidate_id, 
-  c.fullname AS candidate_name,
-  e.id AS employee_id,
-  e.fullname AS employee_name
-FROM hr.candidates AS c RIGHT JOIN hr.employees AS e 
-  ON e.fullname = c.fullname;
+    c.id AS candidate_id, 
+    c.fullname AS candidate_name,
+    e.id AS employee_id,
+    e.fullname AS employee_name
+FROM hr.candidates AS c 
+    RIGHT JOIN hr.employees AS e ON e.fullname = c.fullname;
 ```
 
 ### Right Join Example Venn Diagram
@@ -126,12 +126,12 @@ FROM hr.candidates AS c RIGHT JOIN hr.employees AS e
 
 ```sql
 SELECT  
-  c.id AS candidate_id, 
-  c.fullname AS candidate_name,
-  e.id AS employee_id,
-  e.fullname AS employee_name
-FROM hr.candidates AS c RIGHT JOIN hr.employees AS e 
-  ON e.fullname = c.fullname
+    c.id AS candidate_id, 
+    c.fullname AS candidate_name,
+    e.id AS employee_id,
+    e.fullname AS employee_name
+FROM hr.candidates AS c 
+    RIGHT JOIN hr.employees AS e ON e.fullname = c.fullname
 WHERE c.id IS NULL;
 ```
 
@@ -148,24 +148,24 @@ WHERE c.id IS NULL;
 
 ```sql
 SELECT 
-  t1.col1, 
-  t1.col2, 
-  t2.col1, 
-  t2.col2
-FROM table1 AS t1 FULL JOIN table2 AS t2
-  ON t1.col1 = t2.col2;
+    t1.col1, 
+    t1.col2, 
+    t2.col1, 
+    t2.col2
+FROM table1 AS t1 
+    FULL JOIN table2 AS t2 ON t1.col1 = t2.col2;
 ```
 
 ### Full Join Example
 
 ```sql
 SELECT  
-  c.id AS candidate_id, 
-  c.fullname AS candidate_name,
-  e.id AS employee_id,
-  e.fullname AS employee_name
-FROM hr.candidates AS c FULL JOIN hr.employees AS e 
-  ON e.fullname = c.fullname;
+    c.id AS candidate_id, 
+    c.fullname AS candidate_name,
+    e.id AS employee_id,
+    e.fullname AS employee_name
+FROM hr.candidates AS c 
+    FULL JOIN hr.employees AS e ON e.fullname = c.fullname;
 ```
 
 ### Full Join Example Venn Diagram
@@ -178,12 +178,12 @@ FROM hr.candidates AS c FULL JOIN hr.employees AS e
 
 ```sql
 SELECT  
-  c.id AS candidate_id, 
-  c.fullname AS candidate_name,
-  e.id AS employee_id,
-  e.fullname AS employee_name
-FROM hr.candidates AS c FULL JOIN hr.employees AS e 
-  ON e.fullname = c.fullname
+    c.id AS candidate_id, 
+    c.fullname AS candidate_name,
+    e.id AS employee_id,
+    e.fullname AS employee_name
+FROM hr.candidates AS c 
+    FULL JOIN hr.employees AS e ON e.fullname = c.fullname
 WHERE c.id IS NULL OR e.id IS NULL
 ```
 
