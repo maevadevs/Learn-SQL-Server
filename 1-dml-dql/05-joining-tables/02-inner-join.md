@@ -9,7 +9,7 @@
 ```sql
 SELECT select_list
 FROM T1 [INNER] JOIN T2 
-  ON join_predicate;
+    ON join_predicate;
 ```
 
 - Only rows that cause the join predicate to evaluate to `TRUE` are included in the result set
@@ -26,11 +26,11 @@ FROM T1 [INNER] JOIN T2
 
 ```sql
 SELECT
-  product_name,
-  category_name,
-  list_price
+    product_name,
+    category_name,
+    list_price
 FROM production.products AS p INNER JOIN production.categories AS c 
-  ON c.category_id = p.category_id
+    ON c.category_id = p.category_id
 ORDER BY product_name DESC;
 ```
 
@@ -38,13 +38,13 @@ We can run inner join on multiple tables at once
 
 ```sql
 SELECT
-  product_name,
-  category_name,
-  brand_name,
-  list_price
+    product_name,
+    category_name,
+    brand_name,
+    list_price
 FROM production.products AS p 
-  JOIN production.categories AS c ON c.category_id = p.category_id
-  JOIN production.brands AS b ON b.brand_id = p.brand_id
+    JOIN production.categories AS c ON c.category_id = p.category_id
+    JOIN production.brands AS b ON b.brand_id = p.brand_id
 ORDER BY product_name DESC;
 ```
 
@@ -52,16 +52,16 @@ ORDER BY product_name DESC;
 
 - Normally, filtering is processed in the `WHERE` clause once the two tables have already been joined
 - It is possible though that you might want to filter one or both of the tables before joining them
-  - The `WHERE` clause applies to the whole result set
+  - The `WHERE` clause applies to the whole result set (after join)
   - The `ON` clause only applies to the join in question
-- For `INNER JOIN`, additional condition in `ON` is functionally equivalent if it is placed in the `WHERE` clause
+- **For `INNER JOIN`, additional condition in `ON` is functionally equivalent if it is placed in the `WHERE` clause**
 
 ```sql
 SELECT *
 FROM sales.customers AS c JOIN sales.orders AS o 
-  ON c.customer_Id = o.customer_Id
+    ON c.customer_Id = o.customer_Id
 WHERE c.customer_Id = 1
-  AND o.order_Id > 1000;
+    AND o.order_Id > 1000;
 ```
 
 Which is functionally equivalent to
@@ -69,7 +69,7 @@ Which is functionally equivalent to
 ```sql
 SELECT *
 FROM sales.customers AS c JOIN sales.orders AS o 
-  ON c.customer_Id = o.customer_Id
-  AND c.customer_Id = 1
-  AND o.order_Id > 1000;
+    ON c.customer_Id = o.customer_Id
+    AND c.customer_Id = 1
+    AND o.order_Id > 1000;
 ```
