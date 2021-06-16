@@ -11,9 +11,9 @@ Find the sales orders of the customers who are located in New York
 
 ```sql
 SELECT
+	customer_id,
     order_id,
-    order_date,
-    customer_id
+    order_date
 FROM sales.orders
 WHERE customer_id IN (
     -- This is a subquery
