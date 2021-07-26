@@ -6,13 +6,13 @@ Sort the result set of a query by the order of one or more columns
 
 - **With `SELECT` alone, SQL Server returns a result set in an unspecified order of rows**
 - To guarantee that the rows in the result set are sorted, use `ORDER BY`
-- If you specify multiple columns, the result set is sorted by the first column and then that sorted result set is sorted by the second column, and so on
+- If you specify multiple columns, the result set is sorted by priority: First, by the first column and then that sorted result set is sorted by the second column, and so on
 - The columns that appear in the `ORDER BY` clause must correspond to either:
   - A column in the select list
   - A column defined in the table specified in the `FROM` clause
 - `ASC` sorts the result from the lowest value to the highest value (Default)
 - `DESC` sorts the result set from the highest value to the lowest value
-- `NULL` is treated as lowest
+- `NULL` values are treated as lowest
 - When processing a `SELECT` statement with an `ORDER BY` clause, the `ORDER BY` clause is the last clause to be processed
 
 ```
@@ -30,13 +30,13 @@ Sort the result set of a query by the order of one or more columns
 
 ```sql
 SELECT 
-    col1, 
-    col2, 
-    col3
-FROM schema_name.table_name
+    Col_1, 
+    Col_2, 
+    Col_3
+FROM Schema_Name.Table_Name
 ORDER BY 
-    col1 [ASC|DESC], 
-    col2 [ASC|DESC];
+    Col_1 [ASC|DESC], 
+    Col_2 [ASC|DESC];
 ```
 
 ### Examples Basic `ORDER BY`
@@ -44,67 +44,69 @@ ORDER BY
 ```sql
 -- Basic ORDER BY
 SELECT 
-    first_name, 
-    last_name
-FROM sales.customers
-ORDER BY first_name;
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+ORDER BY Last_Name;
 ```
 
 ```sql
 -- ORDER BY Descending
 SELECT 
-    first_name, 
-    last_name
-FROM sales.customers
-ORDER BY 
-    last_name DESC;
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+ORDER BY Last_Name DESC;
 ```
 
 ```sql
 -- ORDER BY Multiple Columns
-SELECT 
-    city, 
-    first_name, 
-    last_name
-FROM sales.customers
+SELECT
+    City, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
 ORDER BY 
-    city, 
-    last_name;
+    City, 
+    Last_Name;
 ```
 
 ```sql
 -- ORDER BY Multiple Columns and Multiple Orders
-SELECT 
-    city, 
-    first_name, 
-    last_name
-FROM sales.customers
+SELECT
+    City, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
 ORDER BY 
-    city DESC, 
-    last_name ASC;
+    City DESC, 
+    Last_Name ASC;
 ```
 
 It is possible to sort the result set by a column that does not appear on the select list but exists on the table
 
 ```sql
 -- State is not in the select list but in the table
-SELECT 
-    city, 
-    first_name, 
-    last_name
-FROM sales.customers
-ORDER BY state;
+SELECT
+    City, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+ORDER BY 
+    State,
+    City,
+    Last_Name;
 ```
 
-It is also possible to sort by the result of function applied on a column
+It is also possible to sort by the result of functions applied on a column
 
 ```sql
 -- ORDER BY the result of a function applied on a column
 SELECT 
-    first_name, 
-    last_name
-FROM sales.customers
-ORDER BY LEN(first_name) DESC;
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+ORDER BY LEN(First_Name) DESC;
 ```
 
 ### Sorting By Ordinal Positions of Columns
@@ -118,9 +120,9 @@ ORDER BY LEN(first_name) DESC;
 
 ```sql
 SELECT 
-    first_name, -- Position 1
-    last_name   -- Position 2
-FROM sales.customers
+    First_Name, -- Position 1
+    Last_Name   -- Position 2
+FROM Sales.Customers
 ORDER BY 
     1 DESC, -- first_name DESC
     2;      -- last_name ASC

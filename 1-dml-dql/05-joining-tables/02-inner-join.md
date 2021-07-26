@@ -8,7 +8,8 @@
 
 ```sql
 SELECT select_list
-FROM T1 [INNER] JOIN T2 
+FROM T1 
+[INNER] JOIN T2 
     ON join_predicate;
 ```
 
@@ -26,26 +27,29 @@ FROM T1 [INNER] JOIN T2
 
 ```sql
 SELECT
-    product_name,
-    category_name,
-    list_price
-FROM production.products AS p INNER JOIN production.categories AS c 
-    ON c.category_id = p.category_id
-ORDER BY product_name DESC;
+    Product_Name,
+    Category_Name,
+    List_Price
+FROM Production.Products AS P 
+INNER JOIN Production.Categories AS C 
+    ON C.Category_Id = P.Category_Id
+ORDER BY Product_Name DESC;
 ```
 
 We can run inner join on multiple tables at once
 
 ```sql
 SELECT
-    product_name,
-    category_name,
-    brand_name,
-    list_price
-FROM production.products AS p 
-    JOIN production.categories AS c ON c.category_id = p.category_id
-    JOIN production.brands AS b ON b.brand_id = p.brand_id
-ORDER BY product_name DESC;
+    Product_Name,
+    Category_Name,
+    List_Price,
+    Brand_Name
+FROM Production.Products AS P 
+INNER JOIN Production.Categories AS C 
+    ON C.Category_Id = P.Category_Id
+INNER JOIN Production.Brands AS B 
+    ON B.Brand_Id = P.Brand_Id
+ORDER BY Product_Name DESC;
 ```
 
 ## Conditions in `WHERE` vs in `ON` clause
@@ -58,18 +62,20 @@ ORDER BY product_name DESC;
 
 ```sql
 SELECT *
-FROM sales.customers AS c JOIN sales.orders AS o 
-    ON c.customer_Id = o.customer_Id
-WHERE c.customer_Id = 1
-    AND o.order_Id > 1000;
+FROM Sales.Customers AS C
+JOIN Sales.Orders AS O
+    ON C.Customer_Id = O.Customer_Id
+WHERE C.Customer_Id = 1
+    AND O.Order_Id > 1000;
 ```
 
 Which is functionally equivalent to
 
 ```sql
 SELECT *
-FROM sales.customers AS c JOIN sales.orders AS o 
-    ON c.customer_Id = o.customer_Id
-    AND c.customer_Id = 1
-    AND o.order_Id > 1000;
+FROM Sales.Customers AS C
+JOIN Sales.Orders AS O
+    ON C.Customer_Id = O.Customer_Id
+    AND C.Customer_Id = 1
+    AND O.Order_Id > 1000;
 ```

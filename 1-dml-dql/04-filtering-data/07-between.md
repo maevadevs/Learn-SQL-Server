@@ -30,11 +30,11 @@ Returns the complement of the result set from `BETWEEN`
 column|expression NOT BETWEEN start_expression AND end_expresion
 ```
 
-The following is an equivalent of `NOT BETWEEN` using `AND`
+The following is an equivalent of `NOT BETWEEN` using `OR`
 
 ```sql
 (column|expression < start_expression)
-AND 
+OR 
 (column|expression > end_expression)
 ```
 
@@ -44,37 +44,40 @@ AND
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    list_price
-FROM production.products
-WHERE list_price BETWEEN 149.99 AND 199.99
-ORDER BY list_price;
+    Product_Id, 
+    Product_Name, 
+    List_Price
+FROM Production.Products
+WHERE List_Price BETWEEN 149.99 AND 199.99
+ORDER BY List_Price;
 ```
 
 We use `NOT BETWEEN` to get the complement
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    list_price
-FROM production.products
-WHERE list_price NOT BETWEEN 149.99 AND 199.99
-ORDER BY list_price;
+    Product_Id, 
+    Product_Name, 
+    List_Price
+FROM Production.Products
+WHERE List_Price NOT BETWEEN 149.99 AND 199.99
+ORDER BY List_Price;
 ```
 
 - We can use dates with `BETWEEN`
 - Remember that `BETWEEN` is inclusive on both end
-- **To specify a date constant, you use the format `'YYYYMMDD'`, `'YYYY-MM-DD'`, or `'YYYY/MM/DD'`**
+- **To specify a date constant, you use the formats:** 
+  - `'YYYYMMDD'`
+  - `'YYYY-MM-DD'`
+  - `'YYYY/MM/DD'`
 
 ```sql
 SELECT 
-    order_id, 
-    customer_id, 
-    order_date, 
-    order_status
-FROM sales.orders
-WHERE order_date BETWEEN '2017-01-15' AND '2017-01-17'
-ORDER BY order_date;
+    Order_Id, 
+    Customer_Id, 
+    Order_Date, 
+    Order_Status
+FROM Sales.Orders
+WHERE Order_Date BETWEEN '2017-01-15' AND '2017-01-17'
+ORDER BY Order_Date;
 ```

@@ -36,82 +36,82 @@ Using the `%` wildcard
 
 ```sql
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name
-FROM sales.customers
-WHERE last_name LIKE 't%s'
-ORDER BY first_name;
+    Customer_Id, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+WHERE Last_Name LIKE 't%s'
+ORDER BY First_Name;
 ```
 
 Using the `_` wildcard
 
 ```sql
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name
-FROM sales.customers
-WHERE last_name LIKE '_u%'
-ORDER BY first_name;
+    Customer_Id, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+WHERE Last_Name LIKE '_u%'
+ORDER BY First_Name;
 ```
 
 Using a list of characters
 
 ```sql
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name
-FROM sales.customers
-WHERE last_name LIKE '[YZ]%' -- Last name starts with Y or Z
-ORDER BY last_name;
+    Customer_Id, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+WHERE Last_Name LIKE '[YZ]%' -- Last name starts with Y or Z
+ORDER BY Last_Name;
 ```
 
 Using a range of characters
 
 ```sql
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name
-FROM sales.customers
-WHERE last_name LIKE '[A-C]%' -- Last name starts with A, B, or C
-ORDER BY first_name;
+    Customer_Id, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+WHERE Last_Name LIKE '[A-C]%' -- Last name starts with A, B, or C
+ORDER BY First_Name;
 ```
 
 Using the NOT wildcard (`^`)
 
 ```sql
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name
-FROM sales.customers
-WHERE last_name LIKE '[^A-X]%' -- Last name not starting with A-X
-ORDER BY last_name;
+    Customer_Id, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+WHERE Last_Name LIKE '[^A-X]%' -- Last name not starting with A-X
+ORDER BY Last_Name;
 ```
 
-Using the `NOT LIKE` operator for getting the complement set
+Using the `NOT LIKE` operator for getting the equivalent set
 
 ```sql
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name
-FROM sales.customers
-WHERE first_name NOT LIKE 'A%' -- Last name not starting with A
-ORDER BY first_name;
+    Customer_Id, 
+    First_Name, 
+    Last_Name
+FROM Sales.Customers
+WHERE Last_Name NOT LIKE '[A-X]%' -- Last name not starting with A
+ORDER BY Last_Name;
 ```
 
 Using escape characters
 
 ```sql
 SELECT 
-    feedback_id, 
-    comment
-FROM sales.feedbacks
-WHERE comment LIKE '%30\%%' ESCAPE '\';
+    Feedback_Id, 
+    Comment
+FROM Sales.Feedbacks
+WHERE Comment LIKE '%30\%%' ESCAPE '\';
 ```
 
 - Specified that the character `\` is the escape character

@@ -2,6 +2,7 @@
 
 - Join two or more tables on a column
 - Returns all rows from the left table and matching rows or `NULL` values from the right table
+- **Left-Priority**
 
 ## Format
 
@@ -24,25 +25,28 @@ FROM T1 LEFT JOIN T2
 
 ```sql
 SELECT
-    product_name,
-    order_id
-FROM production.products p LEFT JOIN sales.order_items o 
-    ON o.product_id = p.product_id
-ORDER BY order_id;
+    Product_Name,
+    Order_Id
+FROM Production.Products AS P 
+LEFT JOIN Sales.Order_Items OI 
+    ON OI.Product_Id = P.Product_Id
+ORDER BY Order_Id;
 ```
 
 We can run left join on multiple tables at once
 
 ```sql
 SELECT
-    p.product_name,
-    o.order_id,
-    i.item_id,
-    o.order_date
-FROM production.products p 
-    LEFT JOIN sales.order_items i ON i.product_id = p.product_id
-    LEFT JOIN sales.orders o ON o.order_id = i.order_id
-ORDER BY order_id;
+    P.Product_Name,
+    O.Order_Id,
+    OI.Item_Id,
+    O.Order_Date
+FROM Production.Products AS P 
+LEFT JOIN Sales.Order_Items AS OI 
+    ON OI.Product_Id = P.Product_Id
+LEFT JOIN Sales.Orders AS O 
+    ON O.Order_Id = OI.Order_Id
+ORDER BY Order_Id;
 ```
 
 ## Conditions in `WHERE` vs in `ON` clause
@@ -56,31 +60,34 @@ ORDER BY order_id;
 
 ### Case in `WHERE`: Finds the `products` that belong to the `order` id 100
 
-Strict Condition: Excluded all orders where the `order_id` does not match
+Strict Condition: Excluded all orders where the `order_id` does not match the condition given value
 
 ```sql
 SELECT
-    product_name,
-    order_id
-FROM production.products p LEFT JOIN sales.order_items o 
-    ON o.product_id = p.product_id
-WHERE order_id = 100
-ORDER BY order_id DESC;
+    P.Product_Id,
+    Product_Name,
+    Order_Id
+FROM Production.Products AS P 
+LEFT JOIN Sales.Order_Items AS OI 
+    ON OI.Product_Id = P.Product_Id
+WHERE Order_Id = 100
+ORDER BY Order_Id DESC;
 ```
 
 ### Case in `ON`: Return all `products` but only the `order` with id 100 has the associated order information
 
-Flexible Condition: Substitute with `NULL` where `order_id` does not match the condition
+Flexible Condition: Substitute with `NULL` where `order_id` does not match the condition given value
 
 ```sql
 SELECT
-    p.product_id,
-    product_name,
-    order_id
-FROM production.products p LEFT JOIN sales.order_items o 
-    ON o.product_id = p.product_id 
-    AND o.order_id = 100
-ORDER BY order_id DESC;
+    P.Product_Id,
+    Product_Name,
+    Order_Id
+FROM Production.Products AS P 
+LEFT JOIN Sales.Order_Items AS OI 
+    ON OI.Product_Id = P.Product_Id
+    AND OI.Order_Id = 100
+ORDER BY Order_Id DESC;
 ```
 
 ### Exclusive Left Join
@@ -90,12 +97,14 @@ ORDER BY order_id DESC;
 
 ```sql
 SELECT
-    product_name,
-    order_id
-FROM production.products p LEFT JOIN sales.order_items o 
-    ON o.product_id = p.product_id
-WHERE order_id IS NULL
-ORDER BY order_id;
+    P.Product_Id,
+    Product_Name,
+    Order_Id
+FROM Production.Products AS P 
+LEFT JOIN Sales.Order_Items AS OI 
+    ON OI.Product_Id = P.Product_Id
+WHERE Order_Id IS NULL
+ORDER BY Order_Id;
 ```
 
 - **SQL Server processes the `WHERE` clause after the `LEFT JOIN` clause**

@@ -1,6 +1,6 @@
 # `AND`
 
-Combine two Boolean expressions and return `TRUE` if and only if **all** expressions are `TRUE`, otherwise return `FALSE`
+Combine two Boolean expressions and return `TRUE` *if and only if* **all** expressions are `TRUE`, otherwise return `FALSE`
 
 - If any expression is `FALSE`, always return `FALSE`
   - `FALSE AND UNKNOWN -> FALSE`
@@ -15,21 +15,21 @@ boolean_expression AND boolean_expression
 
 ```sql
 SELECT *
-FROM production.products
-WHERE category_id = 1
-    AND list_price > 400
-ORDER BY list_price DESC;
+FROM Production.Products
+WHERE Category_Id = 1
+    AND List_Price > 400
+ORDER BY List_Price DESC;
 ```
 
 We can use multiple conditions with `AND`
 
 ```sql
 SELECT *
-FROM production.products
-WHERE category_id = 1
-    AND list_price > 400
-    AND brand_id = 1
-ORDER BY list_price DESC;
+FROM Production.Products
+WHERE Category_Id = 1
+    AND List_Price > 400
+    AND Brand_Id = 1
+ORDER BY List_Price DESC;
 ```
 
 - We can also combine with other logical operators
@@ -38,11 +38,11 @@ ORDER BY list_price DESC;
 
 ```sql
 SELECT *
-FROM production.products
+FROM Production.Products
 WHERE (
-    brand_id = 1 
-    OR brand_id = 2
+    Brand_Id = 1 
+    OR Brand_Id = 2
 )
-    AND list_price > 1000
-ORDER BY brand_id DESC;
+    AND List_Price > 1000
+ORDER BY Brand_Id DESC;
 ```

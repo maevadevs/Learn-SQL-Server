@@ -17,14 +17,17 @@ column_name|expression column_alias
 Using column alias with column transformations
 
 ```sql
-SELECT first_name + ' ' + last_name AS full_name
-FROM sales.customers
-ORDER BY full_name;
+SELECT 
+  First_Name,
+  Last_Name,
+  First_Name + ' ' + Last_Name AS Full_Name
+FROM Sales.Customers
+ORDER BY Full_Name;
 ```
 
 ```sql
-SELECT category_name AS 'Product Category'
-FROM production.categories;
+SELECT Category_Name AS 'Product Category'
+FROM Production.Categories;
 ```
 
 - We can use column aliases in `ORDER BY`
@@ -43,14 +46,14 @@ FROM -> ON -> OUTER -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDE
 ```sql
 -- This does not work well and is not supported
 SELECT 
-    col1 + 10 AS temp, 
-    temp + 20 AS final;
+    Col_1 + 10 AS Temp, 
+    Temp + 20 AS Final;
 GO
 
 -- Instead, do the following
 SELECT 
-    col1 + 10 AS temp, 
-    col1 + 10 + 20 AS final;
+    Col_1 + 10 AS Temp, 
+    Col_1 + 10 + 20 AS Final;
 GO
 ```
 
@@ -64,8 +67,8 @@ GO
 - **NOTE: `FROM` is executed before `SELECT` so we can use the table aliases in `SELECT`**
 
 ```sql
-table_name AS table_alias
-table_name table_alias
+Table_Name AS Table_Alias
+Table_Name Table_Alias
 ```
 
 ## Examples Tables Aliases
@@ -73,12 +76,13 @@ table_name table_alias
 ```sql
 -- Join without Aliases
 SELECT 
-    sales.customers.customer_id AS cid, 
-    first_name, 
-    last_name, 
-    order_id
-FROM sales.customers 
-    INNER JOIN sales.orders ON sales.orders.customer_id = cid;
+    Sales.Customers.Customer_Id AS CID, 
+    First_Name, 
+    Last_Name, 
+    Order_Id
+FROM Sales.Customers
+INNER JOIN Sales.Orders 
+    ON Sales.Orders.Customer_Id = CID;
 ```
 
 We can re-write in the following way
@@ -86,11 +90,12 @@ We can re-write in the following way
 ```sql
 -- We can use table aliases in SELECT
 SELECT 
-    c.customer_id AS cid, 
-    o.customer_id AS order_cid,
-    first_name, 
-    last_name, 
-    order_id
-FROM sales.customers AS c 
-    INNER JOIN sales.orders AS o ON o.customer_id = c.customer_id;
+    C.Customer_Id AS CID, 
+    o.Customer_Id AS Order_CID,
+    First_Name, 
+    Last_Name, 
+    Order_Id
+FROM Sales.Customers AS c
+INNER JOIN Sales.Orders AS o
+    ON o.Customer_Id = c.Customer_Id;
 ```

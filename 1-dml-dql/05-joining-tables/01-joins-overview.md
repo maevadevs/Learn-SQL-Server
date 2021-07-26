@@ -14,7 +14,8 @@ SELECT
     t1.col2, 
     t2.col1, 
     t2.col2
-FROM table1 AS t1 INNER JOIN table2 AS t2 
+FROM table1 AS t1 
+INNER JOIN table2 AS t2 
     ON t1.col1 = t2.col2;
 ```
 
@@ -22,12 +23,13 @@ FROM table1 AS t1 INNER JOIN table2 AS t2
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
-FROM hr.candidates c INNER JOIN hr.employees e 
-    ON e.fullname = c.fullname;
+    C.Id AS Candidate_Id, 
+    C.FullName AS Candidate_Name,
+    E.Id AS Employee_Id,
+    E.FullName AS Employee_Name
+FROM hr.Candidates AS C
+INNER JOIN hr.Employees AS E 
+    ON E.FullName = C.FullName;
 ```
 
 ### Inner Join Example Venn Diagram
@@ -47,7 +49,8 @@ SELECT
     t1.col2, 
     t2.col1,
     t2.col2
-FROM table1 AS t1 LEFT JOIN table2 AS t2 
+FROM table1 AS t1 
+LEFT JOIN table2 AS t2 
     ON t1.col1 = t2.col2;
 ```
 
@@ -55,12 +58,13 @@ FROM table1 AS t1 LEFT JOIN table2 AS t2
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
-FROM hr.candidates AS c LEFT JOIN hr.employees AS e 
-    ON e.fullname = c.fullname;
+    C.Id AS Candidate_Id, 
+    C.FullName AS Candidate_Name,
+    E.Id AS Employee_Id,
+    E.FullName AS Employee_Name
+FROM hr.Candidates AS C 
+LEFT JOIN hr.Employees AS E 
+    ON E.FullName = C.FullName;
 ```
 
 ### Left Join Example Venn Diagram
@@ -73,13 +77,14 @@ FROM hr.candidates AS c LEFT JOIN hr.employees AS e
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
-FROM hr.candidates AS c LEFT JOIN hr.employees AS e 
-    ON e.fullname = c.fullname
-WHERE e.id IS NULL;
+    C.Id AS Candidate_Id, 
+    C.FullName AS Candidate_Name,
+    E.Id AS Employee_Id,
+    E.FullName AS Employee_Name
+FROM hr.Candidates AS C 
+LEFT JOIN hr.Employees AS E 
+    ON E.FullName = C.FullName
+WHERE E.Id IS NULL;
 ```
 
 ### Exclusive Left Join Example Venn Diagram
@@ -98,9 +103,10 @@ WHERE e.id IS NULL;
 SELECT 
     t1.col1, 
     t1.col2, 
-    t2.col1, 
+    t2.col1,
     t2.col2
-FROM table1 AS t1 RIGHT JOIN table2 AS t2 
+FROM table1 AS t1 
+RIGHT JOIN table2 AS t2 
     ON t1.col1 = t2.col2;
 ```
 
@@ -108,12 +114,13 @@ FROM table1 AS t1 RIGHT JOIN table2 AS t2
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
-FROM hr.candidates AS c RIGHT JOIN hr.employees AS e 
-    ON e.fullname = c.fullname;
+    C.Id AS Candidate_Id, 
+    C.FullName AS Candidate_Name,
+    E.Id AS Employee_Id,
+    E.FullName AS Employee_Name
+FROM hr.Candidates AS C 
+RIGHT JOIN hr.Employees AS E 
+    ON E.FullName = C.FullName;
 ```
 
 ### Right Join Example Venn Diagram
@@ -126,13 +133,14 @@ FROM hr.candidates AS c RIGHT JOIN hr.employees AS e
 
 ```sql
 SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
-FROM hr.candidates AS c RIGHT JOIN hr.employees AS e 
-    ON e.fullname = c.fullname
-WHERE c.id IS NULL;
+    C.Id AS Candidate_Id, 
+    C.FullName AS Candidate_Name,
+    E.Id AS Employee_Id,
+    E.FullName AS Employee_Name
+FROM hr.Candidates AS C 
+RIGHT JOIN hr.Employees AS E 
+    ON E.FullName = C.FullName
+WHERE C.Id IS NULL;
 ```
 
 ### Exclusive Right Join Example Venn Diagram
@@ -152,20 +160,22 @@ SELECT
     t1.col2, 
     t2.col1, 
     t2.col2
-FROM table1 AS t1 FULL JOIN table2 AS t2 
+FROM table1 AS t1 
+FULL JOIN table2 AS t2 
     ON t1.col1 = t2.col2;
 ```
 
 ### Full Join Example
 
 ```sql
-SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
-FROM hr.candidates AS c FULL JOIN hr.employees AS e 
-    ON e.fullname = c.fullname;
+SELECT
+    C.Id AS Candidate_Id, 
+    C.FullName AS Candidate_Name,
+    E.Id AS Employee_Id,
+    E.FullName AS Employee_Name
+FROM hr.Candidates AS C 
+FULL JOIN hr.Employees AS E 
+    ON E.FullName = C.FullName;
 ```
 
 ### Full Join Example Venn Diagram
@@ -177,15 +187,16 @@ FROM hr.candidates AS c FULL JOIN hr.employees AS e
 - We can get rows only in either the Left or Right table but not in the intersection by applying a `WHERE` condition with `NULL`
 
 ```sql
-SELECT  
-    c.id AS candidate_id, 
-    c.fullname AS candidate_name,
-    e.id AS employee_id,
-    e.fullname AS employee_name
-FROM hr.candidates AS c FULL JOIN hr.employees AS e 
-    ON e.fullname = c.fullname
-WHERE c.id IS NULL 
-    OR e.id IS NULL
+SELECT
+    C.Id AS Candidate_Id, 
+    C.FullName AS Candidate_Name,
+    E.Id AS Employee_Id,
+    E.FullName AS Employee_Name
+FROM hr.Candidates AS C 
+FULL JOIN hr.Employees AS E 
+    ON E.FullName = C.FullName
+WHERE C.Id IS NULL 
+    OR E.Id IS NULL;
 ```
 
 ### Exclusive Full Join Example Venn Diagram

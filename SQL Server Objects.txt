@@ -1,0 +1,64 @@
+- Table
+- View
+- Function
+- Stored Procedure
+- Contraints
+- Rule
+- Synonym
+- Triggers
+
+List of All Object Types in `sys.objects`:
+
+- AF 	= Aggregate function (CLR)			Function
+- C 	= CHECK constraint				Constraint
+- D 	= DEFAULT (constraint or stand-alone)		Constraint
+- F 	= FOREIGN KEY constraint			Constraint
+- FN 	= SQL scalar function				Function
+- FS 	= Assembly (CLR) scalar-function		Function
+- FT 	= Assembly (CLR) table-valued function		Function
+- IF 	= SQL inline table-valued function		Function
+- IT 	= Internal table				Table
+- P 	= SQL Stored Procedure				Stored Procedure
+- PC 	= Assembly (CLR) stored-procedure		Stored Procedure
+- PG 	= Plan guide
+- PK 	= PRIMARY KEY constraint			Constraint
+- R 	= Rule (old-style, stand-alone)			Rule
+- RF 	= Replication-filter-procedure
+- S 	= System base table				Table
+- SN 	= Synonym					Synonym
+- SO 	= Sequence object				Sequence
+- U 	= Table (user-defined)				Table
+- V 	= View						View
+- EC 	= Edge constraint				Constraint
+
+Applies to: SQL Server 2012 (11.x) and later.
+
+- SQ 	= Service queue
+- TA 	= Assembly (CLR) DML trigger			Trigger
+- TF 	= SQL table-valued-function			Function
+- TR 	= SQL DML trigger				Trigger
+- TT 	= Table type
+- UQ 	= UNIQUE constraint				Constraint
+- X 	= Extended stored procedure			Stored Procedure
+
+Applies to: SQL Server 2014 (12.x) and later, Azure SQL Database, Azure Synapse Analytics, Parallel Data Warehouse.
+
+- ST 	= STATS_TREE
+
+Applies to: SQL Server 2016 (13.x) and later, Azure SQL Database, Azure Synapse Analytics, Parallel Data Warehouse.
+
+- ET 	= External Table				Table
+
+To view all objects in a SQL Database, use `sys.objects` system catalog
+
+-- List User-Defined tables
+USE [AdventureWorks]
+GO
+SELECT 
+	name AS [Name], 
+	SCHEMA_NAME(schema_id) AS schema_name, 
+       	type_desc, 
+       	create_date, 
+       	modify_date
+FROM sys.objects
+WHERE type ='u'

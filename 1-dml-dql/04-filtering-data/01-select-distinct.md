@@ -5,9 +5,9 @@
 
 ```sql
 SELECT DISTINCT 
-    col1, 
-    col2
-FROM table_name;
+    Col_1, 
+    Col_2
+FROM Table_Name;
 ```
 
 - If multiple columns are specified, it uses the combination of values in all specified columns in the `SELECT` list to evaluate the uniqueness
@@ -19,29 +19,29 @@ FROM table_name;
 Select only the unique cities
 
 ```sql
-SELECT DISTINCT city
-FROM sales.customers
-ORDER BY city;
+SELECT DISTINCT City
+FROM Sales.Customers
+ORDER BY City;
 ```
 
 Select only the *unique combinations* of city and state
 
 ```sql
 SELECT DISTINCT 
-    city, 
-    state
-FROM sales.customers
+    City, 
+    State
+FROM Sales.Customers
 ORDER BY 
-    state, 
-    city;
+    State, 
+    City;
 ```
 
-Select `NULL` only once
+When applied to a column that contains `NULL` values, select `NULL` only once
 
 ```sql
-SELECT DISTINCT phone
-FROM sales.customers
-ORDER BY phone;
+SELECT DISTINCT Phone
+FROM Sales.Customers
+ORDER BY Phone;
 ```
 
 ## Equivalent `GROUP BY`
@@ -51,30 +51,30 @@ ORDER BY phone;
 
 ```sql
 SELECT 
-    city, 
-    state, 
-    zip_code
-FROM sales.customers
+    City, 
+    State, 
+    Zip_Code
+FROM Sales.Customers
 GROUP BY 
-    city, 
-    state, 
-    zip_code
+    City, 
+    State, 
+    Zip_Code
 ORDER BY 
-    state, 
-    city;
+    State, 
+    City;
 ```
 
 This is equivalent to the following `SELECT DISTINCT`
 
 ```sql
 SELECT DISTINCT 
-    city, 
-    state, 
-    zip_code
-FROM sales.customers
+    City, 
+    State, 
+    Zip_Code
+FROM Sales.Customers
 ORDER BY 
-    state, 
-    city;
+    State, 
+    City;
 ```
 
 - Both `DISTINCT` and `GROUP BY` reduces the number of returned rows in the result set by removing the duplicates

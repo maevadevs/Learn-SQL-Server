@@ -26,29 +26,29 @@ NULL = NULL --> UNKNOWN
 ```sql
 --This does not work: Return an empty set
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name, 
-    phone
-FROM sales.customers
-WHERE phone = NULL --> UNKNWON: Return an empty set
+    Customer_Id, 
+    First_Name, 
+    Last_Name, 
+    Phone
+FROM Sales.Customers
+WHERE Phone = NULL --> UNKNWON: Return an empty set
 ORDER BY 
-    first_name, 
-    last_name;
+    First_Name, 
+    Last_Name;
 ```
 
 ```sql
 --This works
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name, 
-    phone
-FROM sales.customers
-WHERE phone IS NULL --> Correct
+    Customer_Id, 
+    First_Name, 
+    Last_Name, 
+    Phone
+FROM Sales.Customers
+WHERE Phone IS NULL --> CORRECT
 ORDER BY 
-    first_name, 
-    last_name;
+    First_Name, 
+    Last_Name;
 ```
 
 ## `IS NOT NULL`
@@ -57,15 +57,15 @@ Returns the complement set of `IS NULL`
 
 ```sql
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name, 
-    phone
-FROM sales.customers
-WHERE phone IS NOT NULL
-ORDER BY
-    first_name, 
-    last_name;
+    Customer_Id, 
+    First_Name, 
+    Last_Name, 
+    Phone
+FROM Sales.Customers
+WHERE Phone IS NOT NULL
+ORDER BY 
+    First_Name, 
+    Last_Name;
 ```
 
 This is equivalent to the following, using negative sub-query for the complement set
@@ -73,17 +73,17 @@ This is equivalent to the following, using negative sub-query for the complement
 ```sql
 -- The complement set of IS NULL
 SELECT 
-    customer_id, 
-    first_name, 
-    last_name, 
-    phone
-FROM sales.customers
-WHERE customer_id NOT IN (
-    SELECT customer_id
-    FROM sales.customers
-    WHERE phone IS NULL
+    Customer_Id, 
+    First_Name, 
+    Last_Name, 
+    Phone
+FROM Sales.Customers
+WHERE Customer_Id NOT IN (
+    SELECT Customer_Id
+    FROM Sales.Customers
+    WHERE Phone IS NULL
 )
 ORDER BY 
-    first_name, 
-    last_name;
+    First_Name, 
+    Last_Name;
 ```

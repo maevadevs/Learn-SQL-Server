@@ -1,15 +1,15 @@
 # `WHERE`
 
 - Filter rows in the output of a query based on one or more Search Conditions
-- Only returns the rows that cause the Search Condition to evaluate to `TRUE`
+- Only returns the rows that causes the Search Condition to evaluate to `TRUE`
 
 ```sql
 SELECT 
-    col1, 
-    col2, 
-    col3
-FROM table_name
-WHERE search_condition;
+    Col_1, 
+    Col_2, 
+    Col_3
+FROM Table_Name
+WHERE Search_Condition;
 ```
 
 - `search_condition` is a logical expression or a combination of multiple logical expressions, often called a **Predicate**
@@ -25,57 +25,57 @@ We can use a simple equality
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    category_id, 
-    model_year, 
-    list_price
-FROM production.products
-WHERE category_id = 1
-ORDER BY list_price DESC;
+    Product_Id, 
+    Product_Name, 
+    Category_Id, 
+    Model_Year, 
+    List_Price
+FROM Production.Products
+WHERE Category_Id = 1
+ORDER BY List_Price DESC;
 ```
 
 We can use mutliple conditions, which can be *must be true* or *either be true*
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    category_id, 
-    model_year, 
-    list_price
-FROM production.products
-WHERE category_id = 1 
-    AND model_year = 2018
-ORDER BY list_price DESC;
+    Product_Id, 
+    Product_Name, 
+    Category_Id, 
+    Model_Year, 
+    List_Price
+FROM Production.Products
+WHERE Category_Id = 1
+    AND Model_Year = 2018
+ORDER BY List_Price DESC;
 ```
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    category_id, 
-    model_year, 
-    list_price
-FROM production.products
-WHERE list_price > 3000 
-    OR model_year = 2018
-ORDER BY list_price DESC;
+    Product_Id, 
+    Product_Name, 
+    Category_Id, 
+    Model_Year, 
+    List_Price
+FROM Production.Products
+WHERE Category_Id = 1
+    OR Model_Year = 2018
+ORDER BY List_Price DESC;
 ```
 
 We can use comparison operators
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    category_id, 
-    model_year, 
-    list_price
-FROM production.products
-WHERE list_price >= 300 
-    AND model_year <= 2018
-ORDER BY list_price DESC;
+    Product_Id, 
+    Product_Name, 
+    Category_Id, 
+    Model_Year, 
+    List_Price
+FROM Production.Products
+WHERE List_Price >= 300 
+    AND Model_Year <= 2018
+ORDER BY List_Price DESC;
 ```
 
 - We can use `BETWEEN` for a range of value
@@ -83,29 +83,29 @@ ORDER BY list_price DESC;
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    category_id, 
-    model_year, 
-    list_price
-FROM production.products
-WHERE list_price BETWEEN 1899.00 AND 1999.99
-ORDER BY list_price DESC;
+    Product_Id, 
+    Product_Name, 
+    Category_Id, 
+    Model_Year, 
+    List_Price
+FROM Production.Products
+WHERE List_Price BETWEEN 1899.00 AND 1999.99
+ORDER BY List_Price DESC;
 ```
 
 This is equivalent to the following
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    category_id, 
-    model_year, 
-    list_price
-FROM production.products
-WHERE list_price >= 1899.00 
-    AND list_price <= 1999.99
-ORDER BY list_price DESC;
+    Product_Id, 
+    Product_Name, 
+    Category_Id, 
+    Model_Year, 
+    List_Price
+FROM Production.Products
+WHERE List_Price >= 1899.00 
+    AND List_Price <= 1999.99
+ORDER BY List_Price DESC;
 ```
 
 - We can use the `IN` operator for values within a specific list or subquery
@@ -113,18 +113,18 @@ ORDER BY list_price DESC;
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    category_id, 
-    model_year, 
-    list_price
-FROM production.products
-WHERE list_price IN (
+    Product_Id, 
+    Product_Name, 
+    Category_Id, 
+    Model_Year, 
+    List_Price
+FROM Production.Products
+WHERE List_Price IN (
     299.99, 
     369.99, 
     489.99
 )
-ORDER BY list_price DESC;
+ORDER BY List_Price DESC;
 ```
 
 - We can use the `LIKE` operator for finding specific strings
@@ -139,12 +139,12 @@ ORDER BY list_price DESC;
 
 ```sql
 SELECT 
-    product_id, 
-    product_name, 
-    category_id, 
-    model_year, 
-    list_price
-FROM production.products
-WHERE product_name LIKE '%Cruiser%'
-ORDER BY list_price;
+    Product_Id, 
+    Product_Name, 
+    Category_Id, 
+    Model_Year, 
+    List_Price
+FROM Production.Products
+WHERE Product_Name LIKE '%Cruiser%'
+ORDER BY List_Price;
 ```
