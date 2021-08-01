@@ -1,7 +1,7 @@
 # `CROSS JOIN`
 
 - Returns a Cartesian product of rows from both tables
-- Join every row from the first table with every row from the second table
+- Join every single row from the first table with every single row from the second table
 - Does not establish a relationship between the joined tables
 
 ## Format
@@ -21,42 +21,47 @@ Combinations of all products and stores
 
 ```sql
 SELECT
-    product_id,
-    product_name,
-    store_id,
-    0 AS quantity -- Giving a default value
-FROM production.products CROSS JOIN sales.stores
+    Product_Id,
+    Product_Name,
+    Store_Id,
+    0 AS Quantity -- Giving a default value
+FROM Production.Products 
+CROSS JOIN Sales.Stores
 ORDER BY
-    product_name,
-    store_id;
+    Product_Name,
+    Store_Id;
 ```
 
 Find products that have no sales across the stores
 
 ```sql
+WITH SPS AS ( -- Store | Product | Sales
+    SELECT
+        S.Store_Id,
+        P.Product_Id,
+        SUM (Quantity * OI.List_Price) AS Sales
+    FROM Sales.Orders AS O
+    INNER JOIN Sales.Order_Items AS OI
+        ON OI.Order_Id = O.Order_Id
+    INNER JOIN Sales.Stores AS S 
+        ON S.Store_Id = O.Store_Id
+    INNER JOIN Production.Products AS P 
+        ON P.Product_Id = OI.Product_Id
+    GROUP BY
+        S.Store_Id,
+        P.Product_Id
+)
 SELECT
-    s.store_id,
-    p.product_id,
-    ISNULL(sales, 0) AS sales
-FROM sales.stores AS s 
-    CROSS JOIN production.products AS p
-    LEFT JOIN (
-        SELECT
-            s.store_id,
-            p.product_id,
-            SUM (quantity * i.list_price) AS sales
-        FROM sales.orders AS o
-        INNER JOIN sales.order_items AS i ON i.order_id = o.order_id
-        INNER JOIN sales.stores AS s ON s.store_id = o.store_id
-        INNER JOIN production.products AS p ON p.product_id = i.product_id
-        GROUP BY
-            s.store_id,
-            p.product_id
-    ) AS c 
-        ON c.store_id = s.store_id
-        AND c.product_id = p.product_id
-WHERE sales IS NULL
+    S.Store_Id,
+    P.Product_Id,
+    ISNULL(Sales, 0) AS Sales
+FROM Sales.Stores AS S
+CROSS JOIN Production.Products AS P
+LEFT JOIN SPS
+    ON SPS.Store_Id = S.Store_Id
+    AND SPS.Product_Id = P.Product_Id
+WHERE Sales IS NULL
 ORDER BY
-    product_id,
-    store_id;
+    Product_Id,
+    Store_Id;
 ```

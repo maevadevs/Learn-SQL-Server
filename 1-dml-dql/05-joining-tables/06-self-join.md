@@ -4,7 +4,7 @@
 - Allows to join a table to itself
 - Uses the any of the 4 main join clauses
 - Table alias is used to assign different names to the same table within the query
-  - **Referencing the same table name more than one in a query without using table aliases will result in an error**
+  - **Referencing the same table name more than once in a query without using table aliases will result in an error**
 
 ## Format
 
@@ -22,22 +22,29 @@ We can query on an `Employees` table that has `manager` column that contains emp
 
 ```sql
 SELECT
-    emp.last_name + ', ' + emp.first_name AS employee,
-    mgr.Last_name + ', ' + mgr.first_name AS manager
-FROM sales.staffs AS emp INNER JOIN sales.staffs AS mgr 
-    ON mgr.staff_id = emp.manager_id
-ORDER BY manager;
+    Emp.Last_Name + ', ' + Emp.First_Name AS Employee,
+    Mgr.Last_name + ', ' + Mgr.First_Name AS Manager
+FROM Sales.Staffs AS Emp 
+INNER JOIN Sales.Staffs AS Mgr 
+    ON Mgr.Staff_Id = Emp.Manager_Id
+ORDER BY Manager;
 ```
 
-We can use either `INNER JOIN`, `LEFT JOIN`, `RIGHT JOIN`, or `FULL JOIN`
+We can use either:
+
+- `INNER JOIN`, 
+- `LEFT JOIN`, 
+- `RIGHT JOIN`,
+- `FULL JOIN`
 
 ```sql
 SELECT
-    emp.last_name + ', ' + emp.first_name AS employee,
-    mgr.Last_name + ', ' + mgr.first_name AS manager
-FROM sales.staffs AS emp FULL JOIN sales.staffs AS mgr
-    ON mgr.staff_id = emp.manager_id
-ORDER BY manager;
+    Emp.Last_Name + ', ' + Emp.First_Name AS Employee,
+    Mgr.Last_name + ', ' + Mgr.First_Name AS Manager
+FROM Sales.Staffs AS Emp 
+FULL JOIN Sales.Staffs AS Mgr 
+    ON Mgr.Staff_Id = Emp.Manager_Id
+ORDER BY Manager;
 ```
 
 ### Comparing Rows Within Table
@@ -46,18 +53,19 @@ Find the customers who live in the same city
 
 ```sql
 SELECT
-    c1.city,
-    c1.state,
-    c1.zip_code,
-    c1.first_name + ' ' + c1.last_name AS customer_1,
-    c2.first_name + ' ' + c2.last_name AS customer_2
-FROM sales.customers AS c1 INNER JOIN sales.customers AS c2 
-    ON c1.customer_id <> c2.customer_id -- don't compare the same customer: Or use > for less duplicates
-    AND c1.city = c2.city
-    AND c1.state = c2.state
-    AND c1.zip_code = c2.zip_code
+    C1.City,
+    C1.State,
+    C1.Zip_Code,
+    C1.First_Name + ' ' + C1.Last_Name AS Customer_1,
+    C2.First_Name + ' ' + C2.Last_Name AS Customer_2
+FROM Sales.Customers AS C1 
+INNER JOIN Sales.Customers AS C2
+    ON C1.Customer_Id <> C2.Customer_Id -- don't compare the same customer: Or use > for less duplicates
+    AND C1.City = C2.City
+    AND C1.State = C2.State
+    AND C1.Zip_Code = C2.Zip_Code
 ORDER BY
-    city,
-    customer_1,
-    customer_2;
+    City,
+    Customer_1,
+    Customer_2;
 ```

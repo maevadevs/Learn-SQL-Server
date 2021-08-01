@@ -25,11 +25,12 @@ FROM T1 FULL JOIN T2
 
 ```sql
 SELECT
-    product_name,
-    order_id
-FROM production.products p FULL JOIN sales.order_items o 
-    ON o.product_id = p.product_id
-ORDER BY order_id;
+    Product_Name,
+    Order_Id
+FROM Production.Products AS P 
+FULL JOIN Sales.Order_Items AS OI 
+    ON OI.Product_Id = P.Product_Id
+ORDER BY Order_Id;
 ```
 
 ### Exclusive Full Join
@@ -39,35 +40,38 @@ ORDER BY order_id;
 
 ```sql
 SELECT
-    product_name,
-    order_id
-FROM production.products p FULL JOIN sales.order_items o 
-    ON o.product_id = p.product_id
-WHERE o.order_id IS NULL
-    OR p.product_name IS NULL
-ORDER BY order_id;
+    Product_Name,
+    Order_Id
+FROM Production.Products AS P 
+FULL JOIN Sales.Order_Items AS OI 
+    ON OI.Product_Id = P.Product_Id
+WHERE OI.Order_Id IS NULL
+    OR P.Product_Name IS NULL
+ORDER BY Order_Id;
 ```
 
 If we apply `IS NOT NULL` instead, we get the same result as `INNER JOIN`
 
 ```sql
 SELECT
-    product_name,
-    order_id
-FROM production.products p FULL JOIN sales.order_items o 
-    ON o.product_id = p.product_id
-WHERE o.order_id IS NOT NULL
-    AND p.product_name IS NOT NULL
-ORDER BY order_id;
+    Product_Name,
+    Order_Id
+FROM Production.Products AS P 
+FULL JOIN Sales.Order_Items AS OI 
+    ON OI.Product_Id = P.Product_Id
+WHERE OI.Order_Id IS NOT NULL
+    AND P.Product_Name IS NOT NULL
+ORDER BY Order_Id;
 ```
 
 This is the same as
 
 ```sql
 SELECT
-    product_name,
-    order_id
-FROM production.products p INNER JOIN sales.order_items o 
-    ON o.product_id = p.product_id
-ORDER BY order_id;
+    Product_Name,
+    Order_Id
+FROM Production.Products AS P 
+INNER JOIN Sales.Order_Items AS OI 
+    ON OI.Product_Id = P.Product_Id
+ORDER BY Order_Id;
 ```
