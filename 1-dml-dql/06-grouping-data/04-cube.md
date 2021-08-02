@@ -73,7 +73,7 @@ SELECT
     Category,
     SUM(Sales) AS Total_Sales
 FROM Sales.Sales_Summary
-GROUP BY CUBE(Brand, Category);
+GROUP BY CUBE (Brand, Category);
 ```
 
 - 2 dimension columns specified in the `CUBE` clause
@@ -89,5 +89,5 @@ SELECT
 FROM Sales.Sales_Summary
 GROUP BY
     Brand,
-    CUBE(Category);
+    CUBE (Category);
 ```

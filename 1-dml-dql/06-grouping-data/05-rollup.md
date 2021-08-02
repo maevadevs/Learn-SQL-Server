@@ -78,7 +78,7 @@ SELECT
     Category,
     SUM(Sales) AS Sales
 FROM Sales.Sales_Summary
-GROUP BY ROLLUP(Brand, Category);
+GROUP BY ROLLUP (Brand, Category);
 ```
 
 If we change the order of `brand` and `category`, the result will be different:
@@ -90,18 +90,18 @@ SELECT
     Category,
     SUM(Sales) AS Sales
 FROM Sales.Sales_Summary
-GROUP BY ROLLUP(Category, Brand);
+GROUP BY ROLLUP (Category, Brand);
 ```
 
 We can also just run partial rollups
 
 ```sql
 SELECT
-    brand,
-    category,
-    SUM (sales) sales
-FROM sales.sales_summary
+    Brand,
+    Category,
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
 GROUP BY
-    brand,
-    ROLLUP (category);
+    Brand,
+    ROLLUP (Category);
 ```
