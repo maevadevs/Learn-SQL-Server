@@ -1,8 +1,8 @@
 # `GROUP BY`
 
 - Arrange rows in groups by one or more columns
-- Groups are determined by the columns that specified in the `GROUP BY` clause
-- `GROUP BY` produce a group for each combination of the values in the columns listed in the `GROUP BY` clause
+- Groups are determined by the columns that are specified in the `GROUP BY` clause
+- `GROUP BY` produces a group for each combination of the values in the columns listed in the `GROUP BY` clause
 - `GROUP BY` can also be used to get unique values, similar to `SELECT DISTINCT`
 
 ## Format
@@ -20,34 +20,36 @@ GROUP BY
 
 ```sql
 SELECT
-    o.customer_id,
-	  c.first_name,
-	  c.last_name,
-    YEAR (o.order_date) AS order_year,
-    COUNT (o.order_id) AS order_count
-FROM sales.orders AS o JOIN sales.customers AS c 
-	  ON o.customer_id = c.customer_id
-WHERE o.customer_id IN (1, 2)
+    O.Customer_Id,
+	C.First_Name,
+	C.Last_Name,
+    YEAR(O.Order_Date) AS Order_Year,
+    COUNT(O.Order_Id) AS Order_Count
+FROM Sales.Orders AS O 
+JOIN Sales.Customers AS C 
+    ON O.Customer_Id = C.Customer_Id
+WHERE O.Customer_Id IN (1, 2)
 GROUP BY 
-    o.customer_id,
-	  c.first_name,
-	  c.last_name,
-    YEAR (o.order_date)
-ORDER BY o.customer_id;
+    O.Customer_Id,
+	C.First_Name,
+	C.Last_Name,
+    YEAR(O.Order_Date)
+ORDER BY O.Customer_Id;
 ```
 
 We can get the same result set using `SELECT DISTINCT`, minus the aggregation (aggregation requires the use of `GROUP BY`)
 
 ```sql
 SELECT DISTINCT
-    o.customer_id,
-    c.first_name,
-    c.last_name,
-    YEAR (o.order_date) AS order_year
-FROM sales.orders o JOIN sales.customers c 
-	  ON o.customer_id = c.customer_id
-WHERE o.customer_id IN (1, 2)
-ORDER BY o.customer_id;
+    O.Customer_Id,
+	C.First_Name,
+	C.Last_Name,
+    YEAR(O.Order_Date) AS Order_Year
+FROM Sales.Orders AS O 
+JOIN Sales.Customers AS C 
+    ON O.Customer_Id = C.Customer_Id
+WHERE O.Customer_Id IN (1, 2)
+ORDER BY O.Customer_Id;
 ```
 
 ## Using Aggregate Functions
@@ -62,68 +64,70 @@ ORDER BY o.customer_id;
 
 ```sql
 SELECT
-    state,
-    city,
-    COUNT (customer_id) AS customer_count
-FROM sales.customers
+    State,
+    City,
+    COUNT(Customer_Id) AS Customer_Count
+FROM Sales.Customers
 GROUP BY 
-    state,
-    city
+    State,
+    City
 ORDER BY 
-    state, 
-    city;
+    State,
+    City;
 ```
 
 ### Using `GROUP BY` with `MIN()` and `MAX()` example
 
 ```sql
 SELECT
-    brand_name,
-    MIN (list_price) AS min_price,
-    MAX (list_price) AS max_price
-FROM production.products p INNER JOIN production.brands b 
-    ON b.brand_id = p.brand_id
-WHERE model_year = 2018
-GROUP BY brand_name
-ORDER BY brand_name;
+    Brand_Name,
+    MIN(List_Price) AS Min_Price,
+    MAX(List_Price) AS Max_Price
+FROM Production.Products AS P 
+INNER JOIN Production.Brands AS B 
+    ON B.Brand_Id =P.Brand_Id
+WHERE Model_Year = 2018
+GROUP BY Brand_Name
+ORDER BY Brand_Name;
 ```
 
 ### Using `GROUP BY` with `AVG()` example
 
 ```sql
 SELECT
-    brand_name,
-    AVG (list_price) AS avg_price
-FROM production.products p INNER JOIN production.brands b 
-    ON b.brand_id = p.brand_id
-WHERE model_year = 2018
-GROUP BY brand_name
-ORDER BY brand_name;
+    Brand_Name,
+    AVG(List_Price) AS Avg_Price
+FROM Production.Products AS P 
+INNER JOIN Production.Brands AS B 
+    ON B.Brand_Id =P.Brand_Id
+WHERE Model_Year = 2018
+GROUP BY Brand_Name
+ORDER BY Brand_Name;
 ```
 
 ### Using `GROUP BY` with `SUM()` example
 
 ```sql
 SELECT
-    order_id,
-    SUM (quantity * list_price * (1 - discount)) AS net_value
-FROM sales.order_items
-GROUP BY order_id;
+    Order_Id,
+    SUM(Quantity * List_Price * (1 - Discount)) AS Net_Value
+FROM Sales.Order_Items
+GROUP BY Order_Id;
 ```
 
 ### Example Using Multiple Aggregate Functions
 
 ```sql
 SELECT
-    customer_id,
-    YEAR (order_date) AS order_year,
-    COUNT (order_id) AS order_placed,
-FROM sales.orders
-WHERE customer_id IN (1, 2)
+    Customer_Id,
+    YEAR(Order_Date) AS Order_Year,
+    COUNT(Order_Id) AS Count_Orders
+FROM Sales.Orders
+WHERE Customer_Id IN (1, 2)
 GROUP BY
-    customer_id,
-    YEAR (order_date)
-ORDER BY customer_id;
+    Customer_Id,
+    YEAR(Order_Date)
+ORDER BY Customer_Id;
 ```
 
 ### List of T-SQL Aggregate Functions

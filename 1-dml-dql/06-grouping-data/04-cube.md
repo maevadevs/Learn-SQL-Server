@@ -1,40 +1,50 @@
 # `CUBE`
 
-- To quickly generate multiple grouping sets
-- Grouping sets specify groupings of data in a single query
+- To quickly generate multiple Grouping Sets
+- Grouping Sets specify groupings of data in a single query
 - `CUBE` is a subclause of the `GROUP BY` clause 
-- **`CUBE` generates all possible grouping sets based on the specified dimension columns**
+- **`CUBE` generates all possible Grouping Sets combinations based on the specified dimension columns**
   - With `N` dimension columns specified in the `CUBE`, we will have `2^N-dim` grouping sets
 
 ## Format
 
 ```sql
 SELECT
-    d1,
-    d2,
-    d3,
-    aggregate_function (c4)
+    dim_1,
+    dim_2,
+    dim_3,
+    dim_4,
+    aggregate_function(c5)
 FROM table_name
-GROUP BY CUBE (d1, d2, d3);
+GROUP BY CUBE (dim_1, dim_2, dim_3, dim_4);
 ```
 
 This is equivalent to:
 
 ```sql
-SELECT -- N=3 columns
-    d1,
-    d2,
-    d3,
-    aggregate_function (c4)
+SELECT -- N=4 columns
+    dim_1,
+    dim_2,
+    dim_3,
+    dim_4,
+    aggregate_function(c5)
 FROM table_name
-GROUP BY GROUPING SETS ( -- 2^N=8 grouping sets
-    (d1, d2, d3), 
-    (d1, d2),
-    (d1, d3),
-    (d2, d3),
-    (d1),
-    (d2),
-    (d3), 
+GROUP BY GROUPING SETS ( -- 2^N=16 Grouping Sets
+    (dim_1, dim_2, dim_3, dim_4), 
+    (dim_1, dim_2, dim_3),
+    (dim_1, dim_2, dim_4),
+    (dim_1, dim_3, dim_4),
+    (dim_2, dim_3, dim_4),
+    (dim_1, dim_2),
+    (dim_1, dim_3),
+    (dim_1, dim_4),
+    (dim_2, dim_3),
+    (dim_2, dim_4),
+    (dim_3, dim_4),
+    (dim_1),
+    (dim_2),
+    (dim_3), 
+    (dim_4),
     ()
 );
 ```
@@ -43,25 +53,27 @@ It is possible to reduce the number of grouping sets by using the CUBE partially
 
 ```sql
 SELECT
-    d1,
-    d2,
-    d3,
-    aggregate_function (c4)
+    dim_1,
+    dim_2,
+    dim_3,
+    dim_4,
+    aggregate_function(c5)
 FROM table_name
 GROUP BY
-    d1,
-    CUBE (d2, d3);
+    dim_1,
+    dim_2,
+    CUBE (dim_3, dim_4);
 ```
 
 ## `CUBE` Examples
 
 ```sql
 SELECT
-    brand,
-    category,
-    SUM (sales) AS total_sales
-FROM sales.sales_summary
-GROUP BY CUBE(brand, category);
+    Brand,
+    Category,
+    SUM(Sales) AS Total_Sales
+FROM Sales.Sales_Summary
+GROUP BY CUBE(Brand, Category);
 ```
 
 - 2 dimension columns specified in the `CUBE` clause
@@ -71,11 +83,11 @@ We can have a partial `CUBE`
 
 ```sql
 SELECT
-    brand,
-    category,
-    SUM (sales) sales
-FROM sales.sales_summary
+    Brand,
+    Category,
+    SUM(Sales) AS Total_Sales
+FROM Sales.Sales_Summary
 GROUP BY
-    brand,
-    CUBE(category);
+    Brand,
+    CUBE(Category);
 ```

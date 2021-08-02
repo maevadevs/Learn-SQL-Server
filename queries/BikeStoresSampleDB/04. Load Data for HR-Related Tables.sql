@@ -6,7 +6,7 @@
 USE BikeStoresSampleDB;
 
 -- Values for candidates
-INSERT INTO hr.candidates(fullname)
+INSERT INTO Hr.Candidates(Full_Name)
 VALUES
     ('John Doe'),
     ('Lily Bush'),
@@ -15,7 +15,7 @@ VALUES
 GO
 
 -- Values for employees
-INSERT INTO hr.employees(fullname)
+INSERT INTO Hr.Employees(Full_Name)
 VALUES
     ('John Doe'),
     ('Jane Doe'),

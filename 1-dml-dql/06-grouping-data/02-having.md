@@ -39,7 +39,7 @@ The following will fail:
 SELECT
     column_name1,
     column_name2,
-    aggregate_function (column_name3) AS column_alias
+    aggregate_function(column_name3) AS column_alias
 FROM table_name
 GROUP BY
     column_name1,
@@ -53,12 +53,12 @@ Instead, we have to refer to the actual aggregate function in `HAVING`
 SELECT
     column_name1,
     column_name2,
-    aggregate_function (column_name3) AS column_alias
+    aggregate_function(column_name3) AS column_alias
 FROM table_name
 GROUP BY
     column_name1,
     column_name2
-HAVING aggregate_function (column_name3) > value;
+HAVING aggregate_function(column_name3) > value;
 ```
 
 ## `HAVING` Examples
@@ -69,15 +69,15 @@ Find the customers who placed at least two orders per year
 
 ```sql
 SELECT
-    customer_id,
-    YEAR (order_date) AS order_year,
-    COUNT (order_id) AS order_count
-FROM sales.orders
+    Customer_Id,
+    YEAR(Order_Date) AS Order_Year,
+    COUNT(Order_Id) AS Order_Count
+FROM Sales.Orders
 GROUP BY
-    customer_id,
-    YEAR (order_date)
-HAVING COUNT (order_id) >= 2
-ORDER BY customer_id;
+    Customer_Id,
+    YEAR(Order_Date)
+HAVING COUNT(Order_Id) >= 2
+ORDER BY Customer_Id;
 ```
 
 ## `HAVING` with `SUM()`
@@ -86,26 +86,26 @@ Find the sales orders whose net values are greater than 20,000
 
 ```sql
 SELECT
-    order_id,
-    SUM (quantity * list_price * (1 - discount)) AS net_value
-FROM sales.order_items
-GROUP BY order_id
+    Order_Id,
+    SUM (Quantity * List_Price * (1 - Discount)) AS Net_Value
+FROM Sales.Order_Items
+GROUP BY Order_Id
 HAVING
-    SUM (quantity * list_price * (1 - discount)) > 20000
-ORDER BY net_value;
+    SUM (Quantity * List_Price * (1 - Discount)) > 20000
+ORDER BY Net_Value DESC;
 ```
 
 ## `HAVING` with `MAX()` and `MIN()`
 
 ```sql
 SELECT
-    category_id,
-    MAX (list_price) AS max_list_price,
-    MIN (list_price) AS min_list_price
-FROM production.products
-GROUP BY category_id
-HAVING MAX (list_price) > 4000 
-    OR MIN (list_price) < 500;
+    Category_Id,
+    MAX(List_Price) AS Max_List_Price,
+    MIN(List_Price) AS Min_List_Price
+FROM Production.Products
+GROUP BY Category_Id
+HAVING MAX(List_Price) > 4000 
+    OR MIN(List_Price) < 500;
 ```
 
 ## `HAVING` with `AVG()`
@@ -114,9 +114,9 @@ Find product categories whose average list prices are between 500 and 1,000
 
 ```sql
 SELECT
-    category_id,
-    AVG (list_price) AS avg_list_price
-FROM production.products
-GROUP BY category_id
-HAVING AVG (list_price) BETWEEN 500 AND 1000;
+    Category_Id,
+    AVG(List_Price) AS Avg_List_Price
+FROM Production.Products
+GROUP BY Category_Id
+HAVING AVG(List_Price) BETWEEN 500 AND 1000;
 ```

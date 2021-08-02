@@ -2,139 +2,138 @@
 
 - Generates multiple grouping sets in one query
 - Think of it as a way to generate in one single result set:
-  - subtotals by subgroups
-  - subtotals by groups
-  - grand-total
+  - aggregates/subtotals by subgroups
+  - aggregates/subtotals by groups
+  - aggregates/grand-total
 
 ## Creating a New Table for Example
 
-Retrieve the sales amount data by brand and category and populate it into the `sales.sales_summary` table
+Retrieve the sales amount data by brand and category and populate it into the `Sales.Sales_Summary` table
 
 ```sql
 SELECT
-    b.brand_name AS brand,
-    c.category_name AS category,
-    p.model_year,
-    round(
-        SUM (quantity * i.list_price * (1 - discount)),
+    B.Brand_Name AS Brand,
+    C.Category_Name AS Category,
+    P.Model_Year,
+    ROUND(
+        SUM(Quantity * OI.List_Price * (1 - Discount)),
         0
-    ) AS sales 
-INTO sales.sales_summary -- Create into a new table
-FROM sales.order_items i
-INNER JOIN production.products p ON p.product_id = i.product_id
-INNER JOIN production.brands b ON b.brand_id = p.brand_id
-INNER JOIN production.categories c ON c.category_id = p.category_id
+    ) AS Sales 
+INTO Sales.Sales_Summary -- Create into a new table
+FROM Sales.Order_Items AS OI
+INNER JOIN Production.Products AS P
+    ON P.Product_Id = OI.Product_Id
+INNER JOIN Production.Brands AS B 
+    ON B.Brand_Id = P.Brand_Id
+INNER JOIN Production.Categories AS C 
+    ON C.Category_Id = P.Category_Id
 GROUP BY
-    b.brand_name,
-    c.category_name,
-    p.model_year
+    B.Brand_Name,
+    C.Category_Name,
+    P.Model_Year
 ORDER BY
-    b.brand_name,
-    c.category_name,
-    p.model_year;
+    B.Brand_Name,
+    C.Category_Name,
+    P.Model_Year;
 ```
 
 - A *Grouping Set* is a group of columns by which you group
-  - A single query with an aggregate function defines a single grouping set
+  - A single `GROUP BY` query with an aggregate function defines a single grouping set
 
-The following query defines a grouping set that includes `brand` and `category` which is denoted as `(brand, category)`
+The following query defines a grouping set that includes `Brand` and `Category` which is denoted as `(Brand, Category)`
 
 ```sql
 SELECT
-    brand,
-    category,
-    SUM (sales) AS sales
-FROM sales.sales_summary
-GROUP BY -- 1 Grouping set (brand, category)
-    brand,
-    category
+    Brand,
+    Category,
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
+GROUP BY -- 1 Grouping Set (Brand, Category)
+    Brand,
+    Category
 ORDER BY
-    brand,
-    category;
+    Brand,
+    Category;
 ```
 
-The following query returns the sales amount by `brand`: It defines a grouping set `(brand)`
+The following query returns the sales amount by `Brand`: It defines a grouping set `(Brand)`
 
 ```sql
 SELECT
-    brand,
-    SUM (sales) AS sales
-FROM sales.sales_summary
-GROUP BY brand -- 1 Grouping Set (brand)
-ORDER BY brand;
+    Brand,
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
+GROUP BY Brand -- 1 Grouping Set (Brand)
+ORDER BY Brand;
 ```
 
-The following query defines an *empty* grouping set `()`: It returns the sales amount for *all* brands and categories
-  - There is no grouping: This is the grand total
+The following query defines an *Empty* grouping set `()`: It returns the sales amount for *All* brands and categories
+  - There is no grouping: This is the **Grand-Total**
 
 ```sql
-SELECT SUM (sales) AS sales
-FROM sales.sales_summary;
+SELECT SUM(Sales) AS Sales
+FROM Sales.Sales_Summary;
 ```
 
 So we can have multiple queries with different grouping sets
 
 ```
-(brand, category)
-(brand)
-(category)
+(Brand, Category)
+(Brand)
+(Category)
 ()
 ```
 
 ## `UNION ALL`
 
-- To get a unified result set with the aggregated data for all grouping sets, you can use `UNION ALL`
+- To get a unified result set with the aggregated data for all those grouping sets, we could use `UNION ALL`
 - **`UNION ALL` operator requires all result set to have the same number of columns**
   - We need to add `NULL` to the select list to the queries
 
 ```sql
--- For Grouping Set: (brand, category)
+-- For Grouping Set: (Brand, Category)
 SELECT
-    brand,
-    category,
-    SUM (sales) AS sales
-FROM sales.sales_summary
+    Brand,
+    Category,
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
 GROUP BY
-    brand,
-    category
-
+    Brand,
+    Category
 UNION ALL
-
--- For Grouping Set: (brand)
+-- For Grouping Set: (Brand)
 SELECT
-    brand,
+    Brand,
     NULL,
-    SUM (sales) AS sales
-FROM sales.sales_summary
-GROUP BY brand
-
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
+GROUP BY Brand
 UNION ALL
-
--- For Grouping Set: (category)
+-- For Grouping Set: (Category)
 SELECT
     NULL,
-    category,
-    SUM (sales) AS sales
-FROM sales.sales_summary
-GROUP BY category
-
+    Category,
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
+GROUP BY Category
 UNION ALL
-
 -- For Grouping Set: ()
 SELECT
     NULL,
     NULL,
-    SUM (sales)
-FROM sales.sales_summary
-ORDER BY brand, category;
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
+ORDER BY 
+    Brand,
+    Category;
 ```
 
-- The query generated a single result with the aggregates for all grouping sets as we expected
+- The query generated a single result set with the aggregates for all grouping sets as we expected
 - But it has two major problems:
   - The query is quite lengthy
   - The query is slow: 
     - Execute four subqueries
-    - Combine the result sets into a single one
+    - Combine the result sets into a single one with `UNION ALL`
 
 To fix this, SQL Server provides a subclause of the `GROUP BY` clause called `GROUPING SETS`
 
@@ -148,7 +147,7 @@ To fix this, SQL Server provides a subclause of the `GROUP BY` clause called `GR
 SELECT
     column1,
     column2,
-    aggregate_function (column3) AS alias
+    aggregate_function(column3) AS alias
 FROM table_name
 GROUP BY GROUPING SETS (
     (column1, column2),
@@ -173,19 +172,19 @@ The previous query with `UNION ALL` can be re-written as follow
 
 ```sql
 SELECT
-    brand,
-    category,
-    SUM (sales) AS sales
-FROM sales.sales_summary
+    Brand,
+    Category,
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
 GROUP BY GROUPING SETS (
-    (brand, category),
-    (brand),
-    (category),
+    (Brand, Category),
+    (Brand),
+    (Category),
     ()
 )
 ORDER BY
-    brand,
-    category;
+    Brand DESC,
+    Category DESC;
 ```
 
 ## `GROUPING()`
@@ -199,19 +198,19 @@ Indicates whether a specified column in a `GROUP BY` clause is aggregated on or 
 
 ```sql
 SELECT
-    GROUPING (brand) AS grouping_brand,
-    GROUPING (category) AS grouping_category,
-    brand,
-    category,
-    SUM (sales) sales
-FROM sales.sales_summary
+    GROUPING(Brand) AS Is_Grouping_Brand,
+    GROUPING(Category) AS Is_Grouping_Category,
+    Brand,
+    Category,
+    SUM(Sales) AS Sales
+FROM Sales.Sales_Summary
 GROUP BY GROUPING SETS (
-    (brand, category),
-    (brand),
-    (category),
+    (Brand, Category),
+    (Brand),
+    (Category),
     ()
 )
 ORDER BY
-    brand,
-    category;
+    Brand,
+    Category;
 ```
