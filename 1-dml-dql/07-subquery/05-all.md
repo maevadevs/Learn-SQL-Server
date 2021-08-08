@@ -16,28 +16,28 @@ Finds the products whose list prices are bigger than the average list price of p
 
 ```sql
 SELECT
-  product_name,
-  list_price
-FROM production.products
-WHERE list_price > ALL (
-  SELECT AVG(list_price) avg_list_price
-  FROM production.products
-  GROUP BY brand_id
+    Product_Name,
+    List_Price
+FROM Production.Products
+WHERE List_Price > ALL (
+    SELECT AVG(List_Price) Avg_List_Price
+    FROM Production.Products
+    GROUP BY Brand_Id
 )
-ORDER BY list_price
+ORDER BY List_Price;
 ```
 
 Find the products whose list price is less than the smallest price in the average price list by brand
 
 ```sql
 SELECT
-  product_name,
-  list_price
-FROM production.products
-WHERE list_price < ALL (
-  SELECT AVG(list_price) AS avg_list_price
-  FROM production.products
-  GROUP BY brand_id
+    Product_Name,
+    List_Price
+FROM Production.Products
+WHERE List_Price < ALL (
+    SELECT AVG(List_Price) Avg_List_Price
+    FROM Production.Products
+    GROUP BY Brand_Id
 )
-ORDER BY list_price DESC
+ORDER BY List_Price;
 ```

@@ -14,24 +14,24 @@
 
 Finds the products whose list price is equal to the highest list price of the products within the same category
 
-A key here is to use table aliases 
+**The key here is to use table aliases**
 
 ```sql
 SELECT
-    product_name,
-    list_price,
-    category_id
-FROM production.products AS p1
-WHERE list_price IN (
+    Product_Name,
+    List_Price,
+    Category_Id
+FROM Production.Products AS p1
+WHERE List_Price IN (
     -- List of max_prices per product category
-    SELECT MAX (p2.list_price)
-    FROM production.products AS p2
-    WHERE p2.category_id = p1.category_id
-    GROUP BY p2.category_id
+    SELECT MAX(p2.List_Price)
+    FROM Production.Products AS p2
+    WHERE p2.Category_Id = p1.Category_Id
+    GROUP BY p2.Category_Id
 )
 ORDER BY 
-    category_id,
-    product_name;
+    Category_Id,
+    Product_Name;
 ```
 
 For each product evaluated by the outer query:
@@ -45,6 +45,6 @@ For each product evaluated by the outer query:
 
 ```python
 for product_details in production.products:
-  if list_price in max_price_per_product_category:
-    result_set.append(product_details)
+    if list_price in max_price_per_product_category:
+        result_set.append(product_details)
 ```

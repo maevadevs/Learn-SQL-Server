@@ -16,15 +16,15 @@ Find the products that were sold with more than two units in a sales order
 
 ```sql
 SELECT
-  product_name,
-  list_price
-FROM production.products
-WHERE product_id = ANY (
-  SELECT product_id
-  FROM sales.order_items
-  WHERE quantity >= 2
+    Product_Name,
+    List_Price
+FROM Production.Products
+WHERE Product_Id = ANY (
+    SELECT Product_Id
+    FROM Sales.Order_Items
+    WHERE Quantity >= 2
 )
-ORDER BY product_name
+ORDER BY Product_Name;
 ```
 
 - `ANY` is similar to `IN` when using the `=` operator
@@ -34,13 +34,13 @@ So the previous query is equivalent to the following:
 
 ```sql
 SELECT
-  product_name,
-  list_price
-FROM production.products
-WHERE product_id IN (
-  SELECT product_id
-  FROM sales.order_items
-  WHERE quantity >= 2
+    Product_Name,
+    List_Price
+FROM Production.Products
+WHERE Product_Id IN (
+    SELECT Product_Id
+    FROM Sales.Order_Items
+    WHERE Quantity >= 2
 )
-ORDER BY product_name
+ORDER BY Product_Name;
 ```

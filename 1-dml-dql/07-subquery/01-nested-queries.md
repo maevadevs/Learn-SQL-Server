@@ -1,7 +1,7 @@
 # Subquery
 
 - A Subquery is a query nested within another statement such as `SELECT`, `INSERT`, `UPDATE` or `DELETE`
-- Also known as an *inner query* or *inner select*
+- Also known as an *Inner Query* or *Inner Select*
 - **Always enclose the `SELECT` query of a subquery in parentheses**
 - The query automatically adjusts whenever the data changes
 
@@ -11,24 +11,24 @@ Find the sales orders of the customers who are located in New York
 
 ```sql
 SELECT
-	customer_id,
-    order_id,
-    order_date
-FROM sales.orders
-WHERE customer_id IN (
+	Customer_Id,
+    Order_Id,
+    Order_Date
+FROM Sales.Orders
+WHERE Customer_Id IN (
     -- This is a subquery
-    SELECT customer_id
-    FROM sales.customers
-    WHERE city = 'New York'
+    SELECT Customer_Id
+    FROM Sales.Customers
+    WHERE City = 'New York'
 )
-ORDER BY order_date DESC;
+ORDER BY Order_Date DESC;
 ```
 
 ## Order of Execution
 
 - **The inner-most subquery is executed first**
   - Substitute the result of the subquery where the subquery is
-- Execute outer-level query until all parent queries are executed
+- Execute next outer-level query until all parent queries are executed
 
 ## Nesting Query
 
@@ -39,22 +39,22 @@ ORDER BY order_date DESC;
 ```sql
 -- This is executed 3rd
 SELECT
-    product_name,
-    list_price
-FROM production.products
-WHERE list_price > (
+    Product_Name,
+    List_Price
+FROM Production.Products
+WHERE List_Price > (
     -- This is executed 2nd
-    SELECT AVG (list_price)
-    FROM production.products
-    WHERE brand_id IN (
+    SELECT AVG(List_Price)
+    FROM Production.Products
+    WHERE Brand_Id IN (
         -- This is executed 1st
-        SELECT brand_id
-        FROM production.brands
-        WHERE brand_name = 'Strider'
-            OR brand_name = 'Trek'
+        SELECT Brand_Id
+        FROM Production.Brands
+        WHERE Brand_Name = 'Strider'
+            OR Brand_Name = 'Trek'
     )
 )
-ORDER BY list_price DESC;
+ORDER BY List_Price DESC;
 ```
 
 ## SQL Server Subquery Use-Cases
@@ -69,38 +69,40 @@ ORDER BY list_price DESC;
 ### Use In Place of an Expression
 
 - If a subquery returns a single value, it can be used anywhere an expression is used
+- **This can be used to create *Calculated Columns***
 
 ```sql
 SELECT
-    order_id,
-    order_date,
+    Order_Id,
+    Order_Date,
     (
-        SELECT MAX (list_price)
-        FROM sales.order_items i
-        WHERE i.order_id = o.order_id
-    ) 
-    AS max_list_price
-FROM sales.orders o
-ORDER BY order_date DESC;
+        SELECT MAX(List_Price)
+        FROM Sales.Order_Items AS OI
+        WHERE OI.Order_Id = O.Order_Id
+    ) AS Max_List_Price
+FROM Sales.Orders AS O
+ORDER BY Order_Date DESC;
 ```
 
 ### Use With `IN` or `NOT IN`
 
 - Returns a set of zero or more values
 - After the subquery returns values, the outer query makes use of them
+- **This can be used for *Filtering***
+
 
 Find the names of all mountain bikes and road bikes products that the Bike Stores sell
 
 ```sql
 SELECT
-    product_id,
-    product_name
-FROM production.products
-WHERE category_id IN (
-    SELECT category_id
-    FROM production.categories
-    WHERE category_name = 'Mountain Bikes'
-        OR category_name = 'Road Bikes'
+    Product_Id,
+    Product_Name
+FROM Production.Products
+WHERE Category_Id IN (
+    SELECT Category_Id
+    FROM Production.Categories
+    WHERE Category_Name = 'Mountain Bikes'
+        OR Category_Name = 'Road Bikes'
 );
 ```
 
@@ -122,27 +124,27 @@ Find the products whose list prices are greater than or equal to the average lis
 
 ```sql
 SELECT
-    product_name,
-    list_price
-FROM production.products
-WHERE list_price >= ANY (
-    SELECT AVG (list_price)
-    FROM production.products
-    GROUP BY brand_id
+    Product_Name,
+    List_Price
+FROM Production.Products
+WHERE List_Price >= ANY (
+    SELECT AVG(List_Price)
+    FROM Production.Products
+    GROUP BY Brand_Id
 );
 ```
 
-Finds the products whose list price is greater than or equal to the average list price returned by the subquery
+Finds the products whose list price is greater than or equal to all the average list prices returned by the subquery
 
 ```sql
 SELECT
-    product_name,
-    list_price
-FROM production.products
-WHERE list_price >= ALL (
-    SELECT AVG (list_price)
-    FROM production.products
-    GROUP BY brand_id
+    Product_Name,
+    List_Price
+FROM Production.Products
+WHERE List_Price >= ALL (
+    SELECT AVG(List_Price)
+    FROM Production.Products
+    GROUP BY Brand_Id
 );
 ```
 
@@ -154,54 +156,54 @@ Follows the syntax
 WHERE [NOT] EXISTS (subquery)
 ```
 
-- **The condition evaluates to `TRUE` right away if the subquery returns any result**
+- **The condition evaluates to `TRUE` *right away* if the subquery returns any result (subquery contains any row)**
   - Otherwise, the condition evaluates to `FALSE`
   - Using `NOT` flips this
+  - This is faster and better than using `IN` and `NOT IN`
 
 Finds the customers who bought products in 2017
 
 ```sql
 SELECT
-    customer_id,
-    first_name,
-    last_name,
-    city
-FROM sales.customers c
+    Customer_Id,
+    First_Name,
+    Last_Name,
+    City
+FROM Sales.Customers AS C
 WHERE EXISTS (
-    SELECT customer_id
-    FROM sales.orders o
-    WHERE o.customer_id = c.customer_id
-    AND YEAR (order_date) = 2017
+    SELECT Customer_Id
+    FROM Sales.Orders AS O
+    WHERE O.Customer_Id = C.Customer_Id
+    AND YEAR(Order_Date) = 2017
 )
 ORDER BY
-    first_name,
-    last_name;
+    First_Name,
+    Last_Name;
 ```
 
 Find the customers who did not buy any products in 2017
 
 ```sql
 SELECT
-    customer_id,
-    first_name,
-    last_name,
-    city
-FROM sales.customers c
+    Customer_Id,
+    First_Name,
+    Last_Name,
+    City
+FROM Sales.Customers AS C
 WHERE NOT EXISTS (
-    SELECT customer_id
-    FROM sales.orders o
-    WHERE o.customer_id = c.customer_id
-    AND YEAR (order_date) = 2017
+    SELECT Customer_Id
+    FROM Sales.Orders AS O
+    WHERE O.Customer_Id = C.Customer_Id
+    AND YEAR(Order_Date) = 2017
 )
 ORDER BY
-    first_name,
-    last_name;
+    First_Name,
+    Last_Name;
 ```
 
 ### Use with `FROM`
 
-This is useful to use the result set as a temporary table
-
+- ***This is useful to use the result set as a temporary table***
 - The query in the `FROM` clause **must have a table alias**
 
 ```sql
@@ -210,14 +212,12 @@ FROM subquery;
 ```
 
 ```sql
-SELECT AVG(temp_table.order_count) AS avg_order_count_by_staff
-FROM
-(
+SELECT AVG(Temp_Table.Order_Count) AS Avg_Order_Count_By_Staff
+FROM (
     SELECT 
-        staff_id, 
-        COUNT(order_id) AS order_count
-    FROM sales.orders
-    GROUP BY staff_id
-) 
-AS temp_table;
+        Staff_Id, 
+        COUNT(Order_Id) AS Order_Count
+    FROM Sales.Orders
+    GROUP BY Staff_Id
+) AS Temp_Table;
 ```

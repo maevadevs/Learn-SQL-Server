@@ -21,14 +21,14 @@ This returns all rows from the `customers` table
 
 ```sql
 SELECT
-  customer_id,
-  first_name,
-  last_name
-FROM sales.customers
+    Customer_Id,
+    First_Name,
+    Last_Name
+FROM Sales.Customers
 WHERE EXISTS (SELECT NULL) -- This is always TRUE
 ORDER BY
-  first_name,
-  last_name
+    First_Name,
+    Last_Name;
 ```
 
 ### Using `EXISTS` with a correlated subquery example
@@ -37,20 +37,20 @@ If the number of orders placed by the customer is less than or equal to two, the
 
 ```sql
 SELECT
-  customer_id,
-  first_name,
-  last_name
-FROM sales.customers c
+    Customer_Id,
+    First_Name,
+    Last_Name
+FROM Sales.Customers AS C
 WHERE EXISTS (
-  SELECT COUNT (*)
-  FROM sales.orders o
-  WHERE o.customer_id = c.customer_id
-  GROUP BY customer_id
-  HAVING COUNT (*) > 2
+    SELECT COUNT(*)
+    FROM Sales.Orders AS O
+    WHERE O.Customer_Id = C.Customer_Id
+    GROUP BY Customer_Id
+    HAVING COUNT(*) > 2
 )
 ORDER BY
-  first_name,
-  last_name
+    First_Name,
+    Last_Name;j
 ```
 
 - Based on the result of the `EXISTS` operator, the customer will be included in the result set
@@ -64,29 +64,29 @@ ORDER BY
 
 ```sql
 SELECT *
-FROM sales.orders
-WHERE customer_id IN (
-  SELECT customer_id
-  FROM sales.customers
-  WHERE city = 'San Jose'
+FROM Sales.Orders
+WHERE Customer_Id IN (
+    SELECT Customer_Id
+    FROM Sales.Customers
+    WHERE City = 'San Jose'
 )
 ORDER BY
-  customer_id,
-  order_date
+    Customer_Id,
+    Order_Date;
 ```
 
 ```sql
 SELECT *
-FROM sales.orders o
+FROM Sales.Orders AS O
 WHERE EXISTS (
-  SELECT customer_id
-  FROM sales.customers c
-  WHERE o.customer_id = c.customer_id
-  AND city = 'San Jose'
+    SELECT Customer_Id
+    FROM Sales.Customers AS C
+    WHERE O.Customer_Id = C.Customer_Id
+    AND City = 'San Jose'
 )
 ORDER BY
-  o.customer_id,
-  order_date
+    O.Customer_Id,
+    Order_Date;
 ```
 
 ### `EXISTS` vs `JOIN`
@@ -100,20 +100,20 @@ ORDER BY
 
 ```sql
 SELECT
-  customer_id,
-  first_name,
-  last_name
-FROM sales.customers c
+    Customer_Id,
+    First_Name,
+    Last_Name
+FROM Sales.Customers AS C
 WHERE EXISTS (
-  SELECT COUNT (*)
-  FROM sales.orders o
-  WHERE o.customer_id = c.customer_id
-  GROUP BY customer_id
-  HAVING COUNT (*) > 2
+    SELECT COUNT (*)
+    FROM Sales.Orders AS O
+    WHERE O.Customer_Id = C.Customer_Id
+    GROUP BY Customer_Id
+    HAVING COUNT (*) > 2
 )
 ORDER BY
-  first_name,
-  last_name
+    First_Name,
+    Last_Name;
 ```
 
 - Based on the result of the `EXISTS` operator, the customer will be included in the result set
@@ -121,18 +121,19 @@ ORDER BY
 
 ```sql
 SELECT
-  c.customer_id,
-  c.first_name,
-  c.last_name,
-  COUNT(o.customer_id) AS order_counts
-FROM sales.customers c INNER JOIN sales.orders o
-ON o.customer_id = c.customer_id
+    C.Customer_Id,
+    C.First_Name,
+    C.Last_Name,
+    COUNT(O.Customer_Id) AS Order_Counts
+FROM Sales.Customers AS C 
+INNER JOIN Sales.Orders AS O 
+    ON O.Customer_Id = C.Customer_Id
 GROUP BY 
-  c.customer_id, 
-  c.first_name,
-  c.last_name
-HAVING COUNT(o.customer_id) > 2
+    C.Customer_Id,
+    C.First_Name,
+    C.Last_Name
+HAVING COUNT(O.Customer_Id) > 2
 ORDER BY
-  c.first_name,
-  c.last_name
+    C.First_Name,
+    C.Last_Name;
 ```
