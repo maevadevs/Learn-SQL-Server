@@ -68,4 +68,6 @@ Here is the folder organization of this reference:
 - [`ANY`/`SOME`](1-dml-dql/07-subquery/04-any-some.md)
 - [`ALL`](1-dml-dql/07-subquery/05-all.md)
 
-#### 
+#### Set
+
+- [`UNION` and `UNION ALL`](1-dml-dql/08-set/01-union-union-all.md)
