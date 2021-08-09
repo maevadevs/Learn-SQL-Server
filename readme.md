@@ -71,3 +71,4 @@ Here is the folder organization of this reference:
 #### Set
 
 - [`UNION` and `UNION ALL`](1-dml-dql/08-set/01-union-union-all.md)
+- [`INTERSECT`](1-dml-dql/08-set/02-intersect.md)
