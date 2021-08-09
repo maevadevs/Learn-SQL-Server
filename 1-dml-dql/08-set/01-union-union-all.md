@@ -16,7 +16,7 @@ SELECT Columns from Table2
 
 ## Figure Explanations
 
-<img src="../../figures/venn-diagram-union.png" width=80%>
+<img src="../../figures/venn-diagram-union.png">
 
 ## `UNION ALL` 
 
@@ -36,7 +36,7 @@ SELECT Columns from Table2
 - Joins append the result sets horizontally
 - Unions append result sets vertically
 
-<img src="../../figures/union-vs-join.png" width=80%>
+<img src="../../figures/union-vs-join.png">
 
 ## Examples of `UNION` and `UNION ALL`
 
