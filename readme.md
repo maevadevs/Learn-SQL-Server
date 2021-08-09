@@ -72,3 +72,9 @@ Here is the folder organization of this reference:
 
 - [`UNION` and `UNION ALL`](1-dml-dql/08-set/01-union-union-all.md)
 - [`INTERSECT`](1-dml-dql/08-set/02-intersect.md)
+- [`EXCEPT`](1-dml-dql/08-set/03-except.md)
+
+#### CTE
+
+- [Common Table Expressions](1-dml-dql/09-cte/01-common-table-expressions.md)
+- [Recursive CTE](1-dml-dql/09-cte/02-recursive-cte.md)
