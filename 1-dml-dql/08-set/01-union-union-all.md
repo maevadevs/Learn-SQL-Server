@@ -46,15 +46,13 @@ Combine names of `Staffs` and `Customers` into a single list
 SELECT
     First_Name,
     Last_Name
-FROM
-    Sales.Staffs
+FROM Sales.Staffs
 --Returns 10 rows
 UNION
 SELECT
     First_Name,
     Last_Name
-FROM
-    Sales.Customers;
+FROM Sales.Customers;
 --Returns 1454 rows
 ```
 
@@ -64,15 +62,13 @@ Combine names of `Staffs` and `Customers` into a single list, including all dupl
 SELECT
     First_Name,
     Last_Name
-FROM
-    Sales.Staffs
+FROM Sales.Staffs
 --Returns 10 rows
 UNION ALL
 SELECT
     First_Name,
     Last_Name
-FROM
-    Sales.Customers;
+FROM Sales.Customers;
 --Returns 1454 rows
 ```
 
@@ -84,15 +80,13 @@ FROM
 SELECT
     First_Name,
     Last_Name
-FROM
-    Sales.Staffs
+FROM Sales.Staffs
 --Returns 10 rows
 UNION ALL
 SELECT
     First_Name,
     Last_Name
-FROM
-    Sales.Customers
+FROM Sales.Customers
 --Returns 1454 rows
 ORDER BY
     First_Name,
