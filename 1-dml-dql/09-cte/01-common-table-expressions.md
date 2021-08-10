@@ -6,7 +6,7 @@
 ## Format
 
 ```sql
-WITH expression_name [(column_name [,...])] AS(
+WITH expression_name [(column_name [,...])] AS (
     CTE_Definition
 )
 SQL_Statement;
@@ -14,6 +14,7 @@ SQL_Statement;
 
 - Specify the `expression_name` to which we can refer later in a query
 - Specify a list of comma-separated columns after `expression_name` (Optional)
+  - This can be used to give aliases to the columns
   - The number of columns must be the same as the number of columns defined in the `CTE_Definition`
 - Use the `AS` keyword after the expression name or column list
 - Define a `SELECT` statement whose result set populates the CTE
@@ -24,7 +25,7 @@ SQL_Statement;
 Return the sales amounts by sales staffs in 2018
 
 ```sql
-WITH Cte_Sales_Amounts (Staff, Sales, Year) AS (
+WITH Cte_Sales_Amounts (Staff_Name, Sales, Year) AS (
     SELECT    
         First_Name + ' ' + Last_Name, 
         SUM(Quantity * List_Price * (1 - Discount)),
@@ -39,7 +40,7 @@ WITH Cte_Sales_Amounts (Staff, Sales, Year) AS (
         YEAR(Order_Date)
 )
 SELECT
-    Staff, 
+    Staff_Name, 
     Sales
 FROM Cte_Sales_Amounts
 WHERE Year = 2018;

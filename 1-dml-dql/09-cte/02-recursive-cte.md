@@ -7,9 +7,10 @@
 ## Format
 
 - In general, it has 3 parts:
-  1. *Initial Query/Anchor Member* - Returns the base result set of the CTE
-  1. *Recursive Query/Recursive Member* - References the CTE. The Recursive Member is union-ed with the Anchor Member using the `UNION ALL` operator
-  1. *Termination Condition* - Specified in the recursive member that terminates the execution of the recursive member
+
+1. *Initial Query/Anchor Member* - Returns the base result set of the CTE
+1. *Recursive Query/Recursive Member* - References the CTE. The Recursive Member is union-ed with the Anchor Member using the `UNION ALL` operator
+1. *Termination Condition* - Specified in the recursive member that terminates the execution of the recursive member
 
 ```sql
 WITH expression_name (column_list) AS (
@@ -24,10 +25,8 @@ FROM expression_name
 
 ## Execution Order
 
-1. Execute the *Anchor Member* to form the base result set `R0`
-  - Use this result for the next iteration
-2. Execute the *Recursive Member* with the input result set from the previous iteration `Ri-1`
-  - Return a sub-result set `Ri` until the termination condition is met
+1. Execute the *Anchor Member* to form the base result set `R0`: Use this result for the next iteration
+2. Execute the *Recursive Member* with the input result set from the previous iteration `Ri-1`: Return a sub-result set `Ri` until the termination condition is met
 3. Combine all result sets `R0`, `R1`,... `Rn` using `UNION ALL` operator to produce the final result set
 
 ### Figure Explanations
