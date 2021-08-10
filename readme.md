@@ -78,3 +78,7 @@ Here is the folder organization of this reference:
 
 - [Common Table Expressions](1-dml-dql/09-cte/01-common-table-expressions.md)
 - [Recursive CTE](1-dml-dql/09-cte/02-recursive-cte.md)
+
+#### Pivot
+
+- [Pivot](1-dml-dql/10-pivot/01-pivot.md)
