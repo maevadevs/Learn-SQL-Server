@@ -144,3 +144,90 @@ VALUES (
 -- Turn off explicit identity insert
 SET IDENTITY_INSERT Sales.Promotions OFF;
 ```
+
+## Inserting Multiple Rows
+
+- Previously, we looked at inserting one row at a time
+- To insert multiple rows at once, we use multiple comma-separated lists of values
+
+```sql
+INSERT INTO Schema_Name.Table_Name (Column_List)
+VALUES
+    (Value_List_1),
+    (Value_List_2),
+    ...
+    (Value_List_n);
+```
+
+- **This is only supported on SQL Server 2008 and later**
+- But there is a limit of 1000 rows at a time
+  - To insert more rows, use multiple `INSERT`
+  - Or we can also use `BULK INSERT` or a derived table
+- To insert multiple rows from a `SELECT`, we can use `INSERT INTO SELECT`
+
+### Inserting Multiple Rows Example
+
+```sql
+INSERT INTO Sales.Promotions (
+    Promotion_Name,
+    Discount,
+    Start_Date,
+    Expired_Date
+)
+VALUES
+    (
+        '2019 Summer Promotion',
+        0.15,
+        '20190601',
+        '20190901'
+    ),
+    (
+        '2019 Fall Promotion',
+        0.20,
+        '20191001',
+        '20191101'
+    ),
+    (
+        '2019 Winter Promotion',
+        0.25,
+        '20191201',
+        '20200101'
+    );
+```
+
+Similar to previous, we can also use `OUTPUT` to return the inserted value
+
+```sql
+INSERT INTO Sales.Promotions ( 
+    Promotion_Name, 
+    Discount, 
+    Start_Date, 
+    Expired_Date
+)
+OUTPUT Inserted.Promotion_Id
+VALUES
+	('2020 Summer Promotion',0.25,'20200601','20200901'),
+	('2020 Fall Promotion',0.10,'20201001','20201101'),
+	('2020 Winter Promotion', 0.25,'20201201','20210101');
+```
+
+- We can also specify multiple columns that we want to show
+
+```sql
+INSERT INTO Sales.Promotions (
+    Promotion_Name,
+    Discount,
+    Start_Date,
+    Expired_Date
+) 
+OUTPUT 
+    Inserted.Promotion_Id,
+    Inserted.Promotion_Name,
+    Inserted.Discount,
+    Inserted.Start_Date,
+    Inserted.Expired_Date
+VALUES
+	('2020 Summer Promotion',0.25,'20200601','20200901'),
+	('2020 Fall Promotion',0.10,'20201001','20201101'),
+	('2020 Winter Promotion', 0.25,'20201201','20210101');
+```

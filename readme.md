@@ -81,8 +81,9 @@ Here is the folder organization of this reference:
 
 #### Pivot
 
-- [Pivot](1-dml-dql/10-pivot/01-pivot.md)
+- [`PIVOT`](1-dml-dql/10-pivot/01-pivot.md)
 
 #### Modifying Data
 
-- [Insert](1-dml-dql/11-modifying-data/01-insert.md)
+- [`INSERT`](1-dml-dql/11-modifying-data/01-insert.md)
+- [`INSERT INTO`](1-dml-dql/11-modifying-data/02-insert-into.md)
