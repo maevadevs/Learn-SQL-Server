@@ -89,3 +89,4 @@ Here is the folder organization of this reference:
 - [`INSERT INTO SELECT`](1-dml-dql/11-modifying-data/02-insert-into-select.md)
 - [`UPDATE`](1-dml-dql/11-modifying-data/03-update.md)
 - [`UPDATE JOIN`](1-dml-dql/11-modifying-data/04-update-join.md)
+- [`DELETE`](1-dml-dql/11-modifying-data/05-delete.md)

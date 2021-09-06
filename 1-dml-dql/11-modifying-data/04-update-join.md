@@ -52,7 +52,7 @@ CREATE TABLE Sales.Commissions
     Staff_Id INT PRIMARY KEY, 
     Target_Id INT, 
     Base_Amount DECIMAL(10, 2) NOT NULL DEFAULT 0, 
-    Commission  DECIMAL(10, 2) NOT NULL DEFAULT 0, 
+    Commission DECIMAL(10, 2) NOT NULL DEFAULT 0, 
     FOREIGN KEY(Target_Id) REFERENCES Sales.Targets(Target_Id), 
     FOREIGN KEY(Staff_Id) REFERENCES Sales.Staffs(Staff_Id),
 );
@@ -104,7 +104,7 @@ We assume that the commission for the new sales staffs is 0.1 or 10%
 ```sql
 UPDATE Sales.Commissions
 SET  
-    Sales.Commissions.Commission = C.Base_Amount  * COALESCE(T.Percentage, 0.1)
+    Sales.Commissions.Commission = C.Base_Amount * COALESCE(T.Percentage, 0.1)
 FROM Sales.Commissions AS C
 LEFT JOIN Sales.Targets AS T 
     ON C.Target_Id = T.Target_Id;
