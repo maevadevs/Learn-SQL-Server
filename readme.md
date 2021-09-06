@@ -86,4 +86,4 @@ Here is the folder organization of this reference:
 #### Modifying Data
 
 - [`INSERT`](1-dml-dql/11-modifying-data/01-insert.md)
-- [`INSERT INTO`](1-dml-dql/11-modifying-data/02-insert-into.md)
+- [`INSERT INTO SELECT`](1-dml-dql/11-modifying-data/02-insert-into-select.md)

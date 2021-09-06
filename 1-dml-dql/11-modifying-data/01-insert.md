@@ -231,3 +231,9 @@ VALUES
 	('2020 Fall Promotion',0.10,'20201001','20201101'),
 	('2020 Winter Promotion', 0.25,'20201201','20210101');
 ```
+
+**Note: To delete all entries in a tables, we can use the following:**
+
+```sql
+TRUNCATE TABLE Schema_Name.Table_Name;
+```
