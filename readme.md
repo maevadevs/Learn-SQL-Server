@@ -1,6 +1,6 @@
-# SQL Server References
+# SQL Server and T-SQL References
 
-This is a collection of references for SQL Server.
+This is a collection of references for Microsoft SQL Server and Transact-SQL.
 
 ## Folder Organization
 
@@ -87,3 +87,4 @@ Here is the folder organization of this reference:
 
 - [`INSERT`](1-dml-dql/11-modifying-data/01-insert.md)
 - [`INSERT INTO SELECT`](1-dml-dql/11-modifying-data/02-insert-into-select.md)
+- [`UPDATE`](1-dml-dql/11-modifying-data/03-update.md)
