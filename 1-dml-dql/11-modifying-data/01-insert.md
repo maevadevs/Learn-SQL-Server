@@ -24,7 +24,8 @@ Computed column | Calculated value
 Let's create a new table for demonstration
 
 ```sql
-CREATE TABLE Sales.Promotions (
+CREATE TABLE Sales.Promotions 
+(
     Promotion_Id INT PRIMARY KEY IDENTITY (1, 1),
     Promotion_Name VARCHAR (255) NOT NULL,
     Discount NUMERIC (3, 2) DEFAULT 0,
@@ -42,13 +43,15 @@ CREATE TABLE Sales.Promotions (
 Insert a new row into the `Promotions` table
 
 ```sql
-INSERT INTO Sales.Promotions (
+INSERT INTO Sales.Promotions 
+(
     Promotion_Name,
     Discount,
     Start_Date,
     Expired_Date
 )
-VALUES (
+VALUES 
+(
     '2018 Summer Promotion',
     0.15,
     '20180601',
@@ -65,14 +68,16 @@ We did not specify a value for the `Promotion_Id` because SQL Server provides th
 `OUTPUT` allows to capture the inserted values and return it right away in the Results of SSMS
 
 ```sql
-INSERT INTO Sales.Promotions (
+INSERT INTO Sales.Promotions 
+(
     Promotion_Name,
     Discount,
     Start_Date,
     Expired_Date
 ) 
 OUTPUT Inserted.Promotion_Id
-VALUES (
+VALUES 
+(
     '2018 Fall Promotion',
     0.15,
     '20181001',
@@ -83,7 +88,8 @@ VALUES (
 We can also specify multiple columns that we want to show
 
 ```sql
-INSERT INTO Sales.Promotions (
+INSERT INTO Sales.Promotions 
+(
     Promotion_Name,
     Discount,
     Start_Date,
@@ -95,7 +101,8 @@ OUTPUT
     Inserted.Discount,
     Inserted.Start_Date,
     Inserted.Expired_Date
-VALUES (
+VALUES 
+(
     '2018 Winter Promotion',
     0.2,
     '20181201',
@@ -126,14 +133,16 @@ So we can execute the following snippet
 -- Turn on explicit identity insert
 SET IDENTITY_INSERT Sales.Promotions ON;
 
-INSERT INTO Sales.Promotions (
+INSERT INTO Sales.Promotions 
+(
     Promotion_Id,
     Promotion_Name,
     Discount,
     Start_Date,
     Expired_Date
 )
-VALUES (
+VALUES 
+(
     4,
     '2019 Spring Promotion',
     0.25,
@@ -168,37 +177,24 @@ VALUES
 ### Inserting Multiple Rows Example
 
 ```sql
-INSERT INTO Sales.Promotions (
+INSERT INTO Sales.Promotions 
+(
     Promotion_Name,
     Discount,
     Start_Date,
     Expired_Date
 )
 VALUES
-    (
-        '2019 Summer Promotion',
-        0.15,
-        '20190601',
-        '20190901'
-    ),
-    (
-        '2019 Fall Promotion',
-        0.20,
-        '20191001',
-        '20191101'
-    ),
-    (
-        '2019 Winter Promotion',
-        0.25,
-        '20191201',
-        '20200101'
-    );
+    ('2019 Summer Promotion',0.15,'20190601','20190901'),
+    ('2019 Fall Promotion',0.20,'20191001','20191101'),
+    ('2019 Winter Promotion',0.25,'20191201','20200101');
 ```
 
 Similar to previous, we can also use `OUTPUT` to return the inserted value
 
 ```sql
-INSERT INTO Sales.Promotions ( 
+INSERT INTO Sales.Promotions 
+( 
     Promotion_Name, 
     Discount, 
     Start_Date, 
@@ -214,7 +210,8 @@ VALUES
 - We can also specify multiple columns that we want to show
 
 ```sql
-INSERT INTO Sales.Promotions (
+INSERT INTO Sales.Promotions 
+(
     Promotion_Name,
     Discount,
     Start_Date,

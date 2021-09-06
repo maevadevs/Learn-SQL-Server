@@ -18,7 +18,8 @@ select_query ...;
 Let's create a new table for demonstration
 
 ```sql
-CREATE TABLE Sales.Addresses (
+CREATE TABLE Sales.Addresses 
+(
     Address_Id INT IDENTITY PRIMARY KEY,
     Street VARCHAR (255) NOT NULL,
     City VARCHAR (50),
@@ -30,7 +31,8 @@ CREATE TABLE Sales.Addresses (
 ### Insert All Rows From Another Table
 
 ```sql
-INSERT INTO Sales.Addresses (
+INSERT INTO Sales.Addresses 
+(
     Street, 
     City, 
     State, 
@@ -52,7 +54,8 @@ ORDER BY
 - We can limit the number of rows returned from the query by using conditions
 
 ```sql
-INSERT INTO Sales.Addresses (
+INSERT INTO Sales.Addresses 
+(
     Street, 
     City, 
     State, 
@@ -71,7 +74,8 @@ WHERE City IN ('Santa Cruz', 'Baldwin');
 
 ```sql
 INSERT TOP (10) 
-INTO Sales.Addresses (
+INTO Sales.Addresses 
+(
     Street, 
     City, 
     State, 
@@ -92,7 +96,8 @@ ORDER BY
 
 ```sql
 INSERT TOP (10) PERCENT
-INTO Sales.Addresses (
+INTO Sales.Addresses 
+(
     Street, 
     City, 
     State, 

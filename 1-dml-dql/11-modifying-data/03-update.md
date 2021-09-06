@@ -23,7 +23,8 @@ SET
 Let's create a new table for demonstration
 
 ```sql
-CREATE TABLE Sales.Taxes (
+CREATE TABLE Sales.Taxes 
+(
 	Tax_Id INT PRIMARY KEY IDENTITY (1, 1),
 	State VARCHAR (50) NOT NULL UNIQUE,
 	State_Tax_Rate DEC (3, 2),
