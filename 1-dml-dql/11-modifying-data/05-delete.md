@@ -40,7 +40,7 @@ DELETE TOP 10 PERCENT FROM Target_Table;
 - `DELETE` without `WHERE` will delete all the data but will keep the table structure and its properties in place (empty table)
 - `DROP TABLE` is faster than `DELETE` without `WHERE`
   - `DROP TABLE` happens at the table-level
-  - `DELETE` happens at the record-level and will apply like a foreach-loop for each entry in the tablej
+  - `DELETE` happens at the record-level and will apply like a foreach-loop for each entry in the table
 - `TRUNCATE TABLE` is similar to `DELETE` without `WHERE` but is faster
   - `TRUNCATE TABLE` removes the data by deallocating the data pages used to store the table data and records only the page deallocations in the transaction log: One single transaction
 

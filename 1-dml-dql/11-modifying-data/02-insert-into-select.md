@@ -1,6 +1,7 @@
 # `INSERT INTO SELECT`
 
-Allows to add data from other tables into a table: The statement inserts rows returned by the `query` into the `Target_Table_Name`
+- Allows to add data from other tables into a table
+- The statement inserts rows returned by the `query` into the `Target_Table_Name`
 
 ```sql
 INSERT [ TOP ( expression ) [ PERCENT ] ] 

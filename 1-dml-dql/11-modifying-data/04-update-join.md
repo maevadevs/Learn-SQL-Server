@@ -103,8 +103,7 @@ We assume that the commission for the new sales staffs is 0.1 or 10%
 
 ```sql
 UPDATE Sales.Commissions
-SET  
-    Sales.Commissions.Commission = C.Base_Amount * COALESCE(T.Percentage, 0.1)
+SET Sales.Commissions.Commission = C.Base_Amount * COALESCE(T.Percentage, 0.1)
 FROM Sales.Commissions AS C
 LEFT JOIN Sales.Targets AS T 
     ON C.Target_Id = T.Target_Id;
