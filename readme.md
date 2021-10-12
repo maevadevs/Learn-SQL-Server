@@ -108,3 +108,5 @@ Here is the folder organization of this reference:
 - [`ALTER SCHEMA`](2-ddl/02-schema/03-alter-schema.md)
 
 #### For Tables
+
+- [`CREATE TABLE`](2-ddl/03-table/01-create-table.md)
