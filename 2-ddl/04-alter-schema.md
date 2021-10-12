@@ -1,6 +1,6 @@
 # `ALTER SCHEMA`
 
-- Allows to transfer a securable from one schema to another within the same database
+- Allows to transfer a securable from one schema to another **within the same database**
 - **Securable** - A resource to which the *DB Engine Authorization System* controls the access (E.g. A table)
 
 ```sql
