@@ -94,6 +94,7 @@ Here is the folder organization of this reference:
 
 ### Data Definition Language (DDL)
 
+- [About DDL](2-ddl/about.md)
 - [`CREATE DATABASE`](2-ddl/01-create-database.md)
 - [`DROP DATABASE`](2-ddl/02-drop-database.md)
 - [`CREATE SCHEMA`](2-ddl/03-create-schema.md)
