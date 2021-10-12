@@ -91,3 +91,9 @@ Here is the folder organization of this reference:
 - [`UPDATE JOIN`](1-dml-dql/11-modifying-data/04-update-join.md)
 - [`DELETE`](1-dml-dql/11-modifying-data/05-delete.md)
 - [`MERGE`](1-dml-dql/11-modifying-data/06-merge.md)
+
+### Data Definition Language (DDL)
+
+- [`CREATE DATABASE`](02-ddl/01-create-database.md)
+- [`DROP DATABASE`](02-ddl/02-drop-database.md)
+- [`CREATE SCHEMA`](02-ddl/03-create-schema.md)
