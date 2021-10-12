@@ -104,5 +104,5 @@ Here is the folder organization of this reference:
 #### For Schemas
 
 - [`CREATE SCHEMA`](2-ddl/02-schema/01-create-schema.md)
-- [`ALTER SCHEMA`](2-ddl/02-schema/02-alter-schema.md)
-- [`DROP SCHEMA`](2-ddl/02-schema/03-drop-schema.md)
+- [`DROP SCHEMA`](2-ddl/02-schema/02-drop-schema.md)
+- [`ALTER SCHEMA`](2-ddl/02-schema/03-alter-schema.md)
