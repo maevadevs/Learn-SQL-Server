@@ -111,5 +111,3 @@ CREATE TABLE Customer_Services.Jobs (
     Created_At DATETIME2 NOT NULL
 );
 ```
-
-```
