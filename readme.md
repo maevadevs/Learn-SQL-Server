@@ -110,3 +110,7 @@ Here is the folder organization of this reference:
 #### For Tables
 
 - [`CREATE TABLE`](2-ddl/03-table/01-create-table.md)
+
+#### For Columns
+
+- [`IDENTITY`](2-ddl/04-column/01-identity-column.md)
