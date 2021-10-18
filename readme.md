@@ -114,3 +114,7 @@ Here is the folder organization of this reference:
 #### For Columns
 
 - [`IDENTITY`](2-ddl/04-column/01-identity-column.md)
+
+#### For Sequences
+
+- [`SEQUENCE`](2-ddl/05-sequence/01-sequence.md)

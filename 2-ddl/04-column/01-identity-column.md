@@ -27,7 +27,11 @@ CREATE TABLE Hr.Person (
 Now, we can test with inserting rows
 
 ```sql
-INSERT INTO Hr.Person(First_Name, Last_Name, Gender)
+INSERT INTO Hr.Person (
+  First_Name, 
+  Last_Name, 
+  Gender
+)
 OUTPUT Inserted.Person_Id
 VALUES('John','Doe','M');
 ```
@@ -37,7 +41,11 @@ VALUES('John','Doe','M');
 Now, let's add another entry
 
 ```sql
-INSERT INTO Hr.Person(First_Name, Last_Name, Gender)
+INSERT INTO Hr.Person (
+  First_Name, 
+  Last_Name, 
+  Gender
+)
 OUTPUT Inserted.Person_Id
 VALUES('Jane','Doe','F');
 ```
