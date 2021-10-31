@@ -22,13 +22,13 @@ CREATE DATABASE Database_Name;
 CREATE DATABASE Test_DB;
 ```
 
-## List all Existing Database in the Current Instance
+## List all Existing Databases in the Current Instance
 
 ```sql
 --List all existing DB Names in the current instance
-SELECT Name
-FROM master.sys.databases
-ORDER BY Name;
+SELECT      Name
+FROM        master.sys.databases
+ORDER BY    Name;
 ```
 
 Or we can also execute a Stored Procedure

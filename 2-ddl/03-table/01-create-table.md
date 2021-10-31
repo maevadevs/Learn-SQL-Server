@@ -10,12 +10,13 @@ Allows to create a new table
 - A column may have one or more column constraints such as `NOT NULL` and `UNIQUE`
 
 ```sql
-CREATE TABLE [Database_Name.][Schema_Name.]Table_Name (
-    PK_Column data_type PRIMARY KEY,
-    Column_1 data_type NOT NULL,
-    Column_2 data_type,
-    ...,
-    table_constraints
+CREATE TABLE [Database_Name.][Schema_Name.]Table_Name 
+(
+     PK_Column   data_type    PRIMARY KEY
+    ,Column_1    data_type    NOT NULL
+    ,Column_2    data_type
+    ,...
+    ,table_constraints
 );
 ```
 
@@ -34,15 +35,18 @@ CREATE TABLE [Database_Name.][Schema_Name.]Table_Name (
 ## Example of `CREATE TABLE`
 
 ```sql
-CREATE TABLE Sales.Visits (
-    Visit_Id INT PRIMARY KEY IDENTITY (1, 1),
-    First_Name VARCHAR(50) NOT NULL,
-    Last_Name VARCHAR(50) NOT NULL,
-    Visited_At DATETIME,
-    Phone VARCHAR(20),
-    Store_Id INT NOT NULL,
+CREATE TABLE     Sales.Visits 
+(
+     Visit_Id    INT            PRIMARY KEY 
+                                IDENTITY (1, 1)
+    ,First_Name  VARCHAR(50)    NOT NULL
+    ,Last_Name   VARCHAR(50)    NOT NULL
+    ,Visited_At  DATETIME
+    ,Phone       VARCHAR(20)
+    ,Store_Id    INT            NOT NULL
     --Table Constraints
-    FOREIGN KEY (Store_Id) REFERENCES Sales.Stores (Store_Id)
+    ,FOREIGN KEY (Store_Id) 
+                 REFERENCES      Sales.Stores (Store_Id)
 );
 ```
 
@@ -57,14 +61,16 @@ CREATE TABLE Sales.Visits (
 
 ```sql
 --Schema not defined: Default to dbo
-CREATE TABLE Persons (
+CREATE TABLE    Persons 
+(
     --Columns
-    ID INT NOT NULL,
-    Last_Name VARCHAR(255) NOT NULL,
-    First_Name VARCHAR(255),
-    Age INT,
-    --Table Constraints: We want to use (ID,Last_Name) as Composite Primary Key
-    CONSTRAINT PK_Person PRIMARY KEY (ID,Last_Name)
+     ID         INT             NOT NULL
+    ,Last_Name  VARCHAR(255)    NOT NULL
+    ,First_Name VARCHAR(255)
+    ,Age        INT
+    --Table Constraints: We want to use (ID, Last_Name) as Composite Primary Key
+    ,CONSTRAINT PK_Person 
+                PRIMARY KEY (ID, Last_Name)
 );
 ```
 

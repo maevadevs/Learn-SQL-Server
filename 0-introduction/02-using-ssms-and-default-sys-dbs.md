@@ -85,7 +85,8 @@ If you install the *Polybase* feature (for querying external *Hadoop* data and d
 
 ```sql
 -- Test SQL Query
-SELECT @@version AS SqlServerVersion;
+SELECT  @@version 
+AS      SqlServerVersion;
 ```
 
 - Click the *Execute* button (Or F5)

@@ -16,24 +16,27 @@ Column_Name TYPE [CONSTRAINTS] IDENTITY [(seed,increment)]
 ## Example `IDENTITY` Column
 
 ```sql
-CREATE TABLE Hr.Person (
-    Person_Id INT IDENTITY(1,1) PRIMARY KEY,
-    First_Name VARCHAR(50) NOT NULL,
-    Last_Name VARCHAR(50) NOT NULL,
-    Gender CHAR(1) NOT NULL
+CREATE TABLE     Hr.Person 
+(
+     Person_Id   INT          IDENTITY(1, 1) 
+                              PRIMARY KEY
+    ,First_Name  VARCHAR(50)  NOT NULL
+    ,Last_Name   VARCHAR(50)  NOT NULL
+    ,Gender      CHAR(1)      NOT NULL
 );
 ```
 
 Now, we can test with inserting rows
 
 ```sql
-INSERT INTO Hr.Person (
-  First_Name, 
-  Last_Name, 
-  Gender
+INSERT INTO   Hr.Person 
+(
+     First_Name
+    ,Last_Name 
+    ,Gender
 )
-OUTPUT Inserted.Person_Id
-VALUES('John','Doe','M');
+OUTPUT        Inserted.Person_Id
+VALUES        ('John','Doe','M');
 ```
 
 - `Inserted.Person_Id` shows `1`
@@ -41,13 +44,14 @@ VALUES('John','Doe','M');
 Now, let's add another entry
 
 ```sql
-INSERT INTO Hr.Person (
-  First_Name, 
-  Last_Name, 
-  Gender
+INSERT INTO   Hr.Person 
+(
+     First_Name
+    ,Last_Name 
+    ,Gender
 )
-OUTPUT Inserted.Person_Id
-VALUES('Jane','Doe','F');
+OUTPUT        Inserted.Person_Id
+VALUES        ('Jane','Doe','F');
 ```
 
 - `Inserted.Person_Id` is incremented to `2`

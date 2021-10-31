@@ -25,10 +25,11 @@ GO
 And add a test table to the schema as well
 
 ```sql
-CREATE TABLE Logistics.Deliveries (
-    Order_Id INT PRIMARY KEY, 
-    Delivery_Date DATE NOT NULL, 
-    Delivery_Status TINYINT NOT NULL
+CREATE TABLE          Logistics.Deliveries 
+(
+     Order_Id         INT         PRIMARY KEY
+    ,Delivery_Date    DATE        NOT NULL
+    ,Delivery_Status  TINYINT     NOT NULL
 );
 ```
 

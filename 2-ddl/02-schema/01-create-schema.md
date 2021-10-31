@@ -7,17 +7,17 @@
   - Stored Procedures
   - Indexes
 - A Schema is associated with a username (*Schema Owner*)
-  - Owner of the logically related database objects
+  - Owner of the logically-related database objects
 - One-to-Many Relationship
   - A Schema always belongs to *One Database*
   - A Database may have *one or multiple Schemas*
 - Every SQL Server schema must have:
   - A Database user
   - A Schema owner
-- The schema is a database-scoped entity
-  - Can have the same schema in different databases of a SQL Server instance
+- **The schema is a database-scoped entity**
+  - It is posible to have the same schema in different databases of a SQL Server instance
 
-<img src="../figures/employees-schema.png" width=70%>
+<img src="../../figures/employees-schema.png" width=70%>
 
 ## Benefits of Schemas
 
@@ -29,7 +29,7 @@
 
 ## Schema Example
 
-In the *BikeStoresSampleDB*, there are 3 Schemas:
+In the `BikeStoresSampleDB`, there are 3 Schemas:
 
 - `Hr`
 - `Production`
@@ -39,7 +39,7 @@ An object within a schema is qualified as `Schema_Name.Object_Name`
 
 - It is possible for 2 tables in different schemas to share the same name
 - In those cases, use the qualified name to distinguish the tables from each other
-- `Hr.Employees` vs `Sales.Employees`
+- Example: `Hr.Employees` vs `Sales.Employees`
 
 ## Listing All Schemas and Schema Owners in Current Database
 
@@ -47,12 +47,12 @@ An object within a schema is qualified as `Schema_Name.Object_Name`
 - Alternatively, we can run the following query on `Sys.Schemas`:
 
 ```sql
-SELECT 
-    S.Name AS Schema_Name,
-    U.Name AS Schema_Owner
-FROM Sys.Schemas S 
-INNER JOIN Sys.Sysusers U ON U.Uid = S.Principal_Id
-ORDER BY S.Name;
+SELECT       S.Name               AS Schema_Name
+            ,U.Name               AS Schema_Owner
+FROM        Sys.Schemas           AS S 
+INNER JOIN  Sys.Sysusers          AS U 
+  ON        U.Uid = S.Principal_Id
+ORDER BY    S.Name;
 ```
 
 ## Built-In Schemas for SQL Server
@@ -89,8 +89,8 @@ SELECT Schema_Name() AS DefaultSchema;
 To create a new schema in the current database
 
 ```sql
-CREATE SCHEMA Schema_Name
-[AUTHORIZATION Owner_Name];
+CREATE SCHEMA   Schema_Name
+[AUTHORIZATION  Owner_Name];
 ```
 
 ## Example of `CREATE SCHEMA`
@@ -104,10 +104,12 @@ After creating a schema, we can start populating it with objects
 
 ```sql
 --Create a "Jobs" table in the "Customer_Services" schema
-CREATE TABLE Customer_Services.Jobs (
-    Job_Id INT PRIMARY KEY IDENTITY,
-    Customer_Id INT NOT NULL,
-    Description VARCHAR(200),
-    Created_At DATETIME2 NOT NULL
+CREATE TABLE      Customer_Services.Jobs 
+(
+     Job_Id       INT             PRIMARY KEY 
+                                  IDENTITY
+    ,Customer_Id  INT             NOT NULL
+    ,Description  VARCHAR(200)
+    ,Created_At   DATETIME2       NOT NULL
 );
 ```
