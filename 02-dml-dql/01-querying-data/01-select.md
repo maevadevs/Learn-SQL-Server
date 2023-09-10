@@ -13,7 +13,6 @@
   - [Example `SELECT GROUP BY`](#example-select-group-by)
 - [`SELECT` with Group Conditions `HAVING`](#select-with-group-conditions-having)
   - [Example `SELECT HAVING`](#example-select-having)
-- [Availability in Other RDBMS](#availability-in-other-rdbms)
 
 ---
 
@@ -87,9 +86,9 @@ FROM    Sales.Customers;
 ## `SELECT WHERE`
 
 - To filter rows based on one or more conditions
-- When the `WHERE` clause is available, SQL Server processes the clauses of the query in the following sequence
+- When the `WHERE` clause is available, SQL Server processes the clauses of the query in the following sequence:
 
-```
+```sql
 - FROM
 - WHERE
 - SELECT
@@ -98,25 +97,26 @@ FROM    Sales.Customers;
 ### Example `SELECT WHERE`
 
 ```sql
-SELECT      TOP 10 *
-FROM        Sales.Customers
-WHERE       State = 'CA';
+SELECT  TOP 10 *
+FROM    Sales.Customers
+WHERE   State = 'CA';
 ```
 
 ## `SELECT` with `ORDER BY`
 
 - The order of the result set from `SELECT` by itself is not assured
 - Use `ORDER BY` to sort the result set based on one or more columns
-- SQL Server processes the clauses of the query in the following sequence
+- SQL Server processes the clauses of the query in the following sequence:
 
-```
+```sql
 - FROM
 - WHERE
 - SELECT
 - ORDER BY
 ```
 
-- By default, `ORDER BY` will return in an ascending order: Specify `DESC` otherwise
+- By default, `ORDER BY` will return in an ascending order
+  - Specify `DESC` to invert the order
 
 ### Example `SELECT ORDER BY`
 
@@ -130,10 +130,11 @@ ORDER BY    Last_Name DESC;
 ## `SELECT` with `GROUP BY`
 
 - To group rows into groups
-- **Requires the use of an aggregate function**
+- **Requires the use of aggregate functions**
+- Can also be used to get distinct values
 - SQL Server processes the clauses in the following sequence:
 
-```
+```sql
 - FROM
 - WHERE
 - GROUP BY
@@ -145,7 +146,7 @@ ORDER BY    Last_Name DESC;
 
 ```sql
 SELECT       City
-            ,COUNT(*)               AS City_Count
+            ,COUNT(*) AS City_Count
 FROM        Sales.Customers
 WHERE       State = 'CA'
 GROUP BY    City
@@ -154,12 +155,13 @@ ORDER BY    City_Count DESC;
 
 ## `SELECT` with Group Conditions `HAVING`
 
-- To filter groups based on one or more conditions
-- The `WHERE` clause applies on individual rows while the `HAVING` clause applies on aggregations (i.e. applies on the results set after `GROUP BY`)
+- To filter resulting groups based on one or more conditions
+  - The `WHERE` clause applies on individual rows before aggregation happens (i.e. applies on the result set before `GROUP BY`)
+  - The `HAVING` clause applies on aggregated values after aggregation happened (i.e. applies on the result set after `GROUP BY`)
 - **NOTE: You cannot use column aliases in `HAVING` clause**
 - SQL Server processes the clauses in the following sequence:
 
-```
+```sql
 - FROM
 - WHERE
 - GROUP BY
@@ -172,17 +174,10 @@ ORDER BY    City_Count DESC;
 
 ```sql
 SELECT       City
-            ,COUNT(*)               AS City_Count
+            ,COUNT(*) AS City_Count
 FROM        Sales.Customers
 WHERE       State = 'CA'
 GROUP BY    City
 HAVING      COUNT(*) > 10 -- No column aliases here
 ORDER BY    City_Count DESC;
 ```
-
-## Availability in Other RDBMS
-
-||IsAvailable
---|:-:
-PostgreSQL|Yes
-Teradata|Yes
