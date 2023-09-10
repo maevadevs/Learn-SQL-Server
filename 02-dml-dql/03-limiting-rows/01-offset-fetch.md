@@ -13,12 +13,12 @@
 - *`OFFSET` and `FETCH` have been available since SQL Server 2012 and in Azure SQL Database*
 
 ```sql
-SELECT       Col_1
-            ,Col_2
-            ,Col_3
+SELECT      Col_1,
+            Col_2,
+            Col_3
 FROM        Schema_Name.Table_Name
-ORDER BY     Col_1 [ASC|DESC]
-            ,Col_2 [ASC|DESC]
+ORDER BY    Col_1 [ASC|DESC],
+            Col_2 [ASC|DESC]
 OFFSET      n [ROW|ROWS]
 FETCH       [FIRST|NEXT] m [ROW|ROWS] ONLY;
 ```
@@ -41,54 +41,55 @@ FETCH       [FIRST|NEXT] m [ROW|ROWS] ONLY;
 - Let's say we start with the following basic `ORDER BY` query for `Products`
 
 ```sql
-SELECT       Product_Name
-            ,List_Price
-FROM         Production.Products
-ORDER BY     List_Price DESC
-            ,Product_Name;
+SELECT      Product_Name,
+            List_Price
+FROM        Production.Products
+ORDER BY    List_Price DESC,
+            Product_Name;
 ```
 
 - We can skip the first 10 products and return the rest
 
 ```sql
-SELECT       Product_Name
-            ,List_Price
-FROM         Production.Products
-ORDER BY     List_Price DESC
-            ,Product_Name
-OFFSET       10 ROWS;
+SELECT      Product_Name,
+            List_Price
+FROM        Production.Products
+ORDER BY    List_Price DESC,
+            Product_Name
+OFFSET      10 ROWS;
 ```
 
 - We can skip the first 10 products and select only the next 20 products
 
 ```sql
-SELECT       Product_Name
-            ,List_Price
-FROM         Production.Products
-ORDER BY     List_Price DESC
-            ,Product_Name
-OFFSET       10 ROWS
-FETCH        NEXT 20 ROWS ONLY;
+SELECT      Product_Name,
+            List_Price
+FROM        Production.Products
+ORDER BY    List_Price DESC,
+            Product_Name
+OFFSET      10 ROWS
+FETCH       NEXT 20 ROWS ONLY;
 ```
 
 - We can use this to get the top 10 most expensive products
 
 ```sql
-SELECT       Product_Name
-            ,List_Price
-FROM         Production.Products
-ORDER BY     List_Price DESC
-            ,Product_Name
-OFFSET       0 ROWS
-FETCH        FIRST 10 ROWS ONLY;
+SELECT      Product_Name,
+            List_Price
+FROM        Production.Products
+ORDER BY    List_Price DESC,
+            Product_Name
+OFFSET      0 ROWS
+FETCH       FIRST 10 ROWS ONLY;
 ```
 
 - This is equivalent to using `SELECT TOP`
 
 ```sql
-SELECT TOP 10    Product_Name
-                ,List_Price
-FROM             Production.Products
-ORDER BY         List_Price DESC
-                ,Product_Name;
+SELECT TOP 10
+            Product_Name,
+            List_Price
+FROM        Production.Products
+ORDER BY    List_Price DESC,
+            Product_Name;
 ```

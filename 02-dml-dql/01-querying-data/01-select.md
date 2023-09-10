@@ -29,9 +29,9 @@
 - The return of the query is called a `Result Set`
 
 ```sql
-SELECT   Col_1
-        ,Col_2
-        ,Col_3
+SELECT  Col_1,
+        Col_2,
+        Col_3
 FROM    Schema_Name.Table_Name;
 ```
 
@@ -72,9 +72,9 @@ FROM    Schema_Name.Table_Name;
 ### Examples `SELECT`
 
 ```sql
-SELECT   First_Name
-        ,Last_Name
-        ,Email
+SELECT  First_Name,
+        Last_Name,
+        Email
 FROM    Sales.Customers;
 ```
 
@@ -145,8 +145,8 @@ ORDER BY    Last_Name DESC;
 ### Example `SELECT GROUP BY`
 
 ```sql
-SELECT       City
-            ,COUNT(*) AS City_Count
+SELECT      City,
+            COUNT(*) AS City_Count
 FROM        Sales.Customers
 WHERE       State = 'CA'
 GROUP BY    City
@@ -173,8 +173,8 @@ ORDER BY    City_Count DESC;
 ### Example `SELECT HAVING`
 
 ```sql
-SELECT       City
-            ,COUNT(*) AS City_Count
+SELECT      City,
+            COUNT(*) AS City_Count
 FROM        Sales.Customers
 WHERE       State = 'CA'
 GROUP BY    City

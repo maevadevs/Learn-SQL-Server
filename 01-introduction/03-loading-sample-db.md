@@ -292,7 +292,7 @@ CREATE TABLE Production.Stocks
 ```sql
 CREATE TABLE Production.Brands
 (
-    Brand_Id        INT             IDENTITY (1, 1)
+     Brand_Id        INT             IDENTITY (1, 1)
                                     PRIMARY KEY
     ,Brand_Name     VARCHAR (255)   NOT NULL
 );
