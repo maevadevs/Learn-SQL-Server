@@ -20,7 +20,7 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 
 ## 2. Data Manipulation Language (DML) / Data Querying Language (DQL)
 
-- [About DML/DQL](02-dml-dql/about.md)
+- [About DML/DQL](02-dml-dql/readme.md)
 
 ### Querying Data
 
