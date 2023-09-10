@@ -2,8 +2,8 @@
  * Get Object Details
  */
 
--- Replace DB_Name with the Database you want to query
-USE [DB_Name] 
+-- Replace this with the database you want to use
+USE [<Your Database Name Here>];
 
 -- Replace with the Namespace and Object you want to query
 EXEC sp_help '[Namespace].[Object_Name]';

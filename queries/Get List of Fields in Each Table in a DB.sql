@@ -3,7 +3,7 @@
  */
 
 -- Replace this with the database you want to use
-USE [DB_Name];
+USE [<Your Database Name Here>];
 
 DECLARE @tableType NVARCHAR(100);
 
@@ -21,7 +21,7 @@ SELECT DB_Name = c.table_catalog,
        Precision = numeric_precision,
        Char_Set = character_set_name,
        Collation = collation_name
-FROM information_schema.columns c 
+FROM information_schema.columns c
 INNER JOIN information_schema.tables t
    ON c.table_name = t.table_name
    AND c.table_schema = t.table_schema

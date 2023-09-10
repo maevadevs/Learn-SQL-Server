@@ -1,9 +1,10 @@
+USE BikeStores;
+GO
+
 /**
  * Create or Restore BikeStores Database
  * - Load data for hr-related Tables
  */
-
-USE BikeStoresSampleDB;
 
 -- Values for candidates
 INSERT INTO Hr.Candidates(Full_Name)

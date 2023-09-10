@@ -1,3 +1,6 @@
+-- Replace this with the database you want to use
+USE [<Your Database Name Here>];
+
 SELECT *
-FROM Database_Name.INFORMATION_SCHEMA.TABLES; -- Replace Database_Name with the DB you want to use
+FROM [<Your Database Name Here>].INFORMATION_SCHEMA.TABLES;
 GO

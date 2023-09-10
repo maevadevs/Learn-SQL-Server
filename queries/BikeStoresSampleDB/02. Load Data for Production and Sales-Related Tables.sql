@@ -1,12 +1,13 @@
+USE BikeStores;
+GO
+
 /**
  * Create or Restore BikeStores Database
  * - Load data for production-related Tables
  * - Load data for sales-related Tables
  */
 
-USE BikeStoresSampleDB;
-
-SET IDENTITY_INSERT Production.Brands ON;  
+SET IDENTITY_INSERT Production.Brands ON;
 
 INSERT INTO Production.Brands(Brand_Id,Brand_Name) VALUES(1,'Electra')
 INSERT INTO Production.Brands(Brand_Id,Brand_Name) VALUES(2,'Haro')
@@ -18,9 +19,9 @@ INSERT INTO Production.Brands(Brand_Id,Brand_Name) VALUES(7,'Sun Bicycles')
 INSERT INTO Production.Brands(Brand_Id,Brand_Name) VALUES(8,'Surly')
 INSERT INTO Production.Brands(Brand_Id,Brand_Name) VALUES(9,'Trek')
 
-SET IDENTITY_INSERT Production.Brands OFF;  
+SET IDENTITY_INSERT Production.Brands OFF;
 
-SET IDENTITY_INSERT Production.Categories ON;  
+SET IDENTITY_INSERT Production.Categories ON;
 INSERT INTO Production.Categories(Category_Id,Category_Name) VALUES(1,'Children Bicycles')
 INSERT INTO Production.Categories(Category_Id,Category_Name) VALUES(2,'Comfort Bicycles')
 INSERT INTO Production.Categories(Category_Id,Category_Name) VALUES(3,'Cruisers Bicycles')
@@ -29,7 +30,7 @@ INSERT INTO Production.Categories(Category_Id,Category_Name) VALUES(5,'Electric 
 INSERT INTO Production.Categories(Category_Id,Category_Name) VALUES(6,'Mountain Bikes')
 INSERT INTO Production.Categories(Category_Id,Category_Name) VALUES(7,'Road Bikes')
 
-SET IDENTITY_INSERT Production.Categories OFF;  
+SET IDENTITY_INSERT Production.Categories OFF;
 
 SET IDENTITY_INSERT Production.Products ON;
 INSERT INTO Production.Products(Product_Id, Product_Name, Brand_Id, Category_Id, Model_Year, List_Price) VALUES(1,'Trek 820 - 2016',9,6,2016,379.99)
@@ -1811,7 +1812,7 @@ VALUES('Santa Cruz Bikes','(831) 476-4321','santacruz@bikes.shop','3700 Portola 
       ('Rowlett Bikes','(972) 530-5555','rowlett@bikes.shop','8000 Fairway Avenue', 'Rowlett','TX',75088);
 
 
--- Production.Stocks 
+-- Production.Stocks
 INSERT INTO Production.Stocks(Store_Id, Product_Id, Quantity) VALUES(1,1,27);
 INSERT INTO Production.Stocks(Store_Id, Product_Id, Quantity) VALUES(1,2,5);
 INSERT INTO Production.Stocks(Store_Id, Product_Id, Quantity) VALUES(1,3,6);
@@ -2752,7 +2753,7 @@ INSERT INTO Production.Stocks(Store_Id, Product_Id, Quantity) VALUES(3,311,23);
 INSERT INTO Production.Stocks(Store_Id, Product_Id, Quantity) VALUES(3,312,18);
 INSERT INTO Production.Stocks(Store_Id, Product_Id, Quantity) VALUES(3,313,0);
 
-SET IDENTITY_INSERT Sales.Staffs ON;  
+SET IDENTITY_INSERT Sales.Staffs ON;
 
 INSERT INTO Sales.Staffs(Staff_Id, First_Name, Last_Name, Email, Phone, Active, Store_Id, Manager_Id) VALUES(1,'Fabiola','Jackson','fabiola.jackson@bikes.shop','(831) 555-5554',1,1,NULL);
 INSERT INTO Sales.Staffs(Staff_Id, First_Name, Last_Name, Email, Phone, Active, Store_Id, Manager_Id) VALUES(2,'Mireya','Copeland','mireya.copeland@bikes.shop','(831) 555-5555',1,1,1);
@@ -2765,9 +2766,9 @@ INSERT INTO Sales.Staffs(Staff_Id, First_Name, Last_Name, Email, Phone, Active, 
 INSERT INTO Sales.Staffs(Staff_Id, First_Name, Last_Name, Email, Phone, Active, Store_Id, Manager_Id) VALUES(9,'Layla','Terrell','layla.terrell@bikes.shop','(972) 530-5556',1,3,7);
 INSERT INTO Sales.Staffs(Staff_Id, First_Name, Last_Name, Email, Phone, Active, Store_Id, Manager_Id) VALUES(10,'Bernardine','Houston','bernardine.houston@bikes.shop','(972) 530-5557',1,3,7);
 
-SET IDENTITY_INSERT Sales.Staffs OFF;  
+SET IDENTITY_INSERT Sales.Staffs OFF;
 
-SET IDENTITY_INSERT Sales.Orders ON;  
+SET IDENTITY_INSERT Sales.Orders ON;
 INSERT INTO Sales.Orders(Order_Id, Customer_Id, Order_Status, Order_Date, Required_Date, Shipped_Date, Store_Id,Staff_Id) VALUES(1,259,4,'20160101','20160103','20160103',1,2);
 INSERT INTO Sales.Orders(Order_Id, Customer_Id, Order_Status, Order_Date, Required_Date, Shipped_Date, Store_Id,Staff_Id) VALUES(2,1212,4,'20160101','20160104','20160103',2,6);
 INSERT INTO Sales.Orders(Order_Id, Customer_Id, Order_Status, Order_Date, Required_Date, Shipped_Date, Store_Id,Staff_Id) VALUES(3,523,4,'20160102','20160105','20160103',2,7);
@@ -4384,7 +4385,7 @@ INSERT INTO Sales.Orders(Order_Id, Customer_Id, Order_Status, Order_Date, Requir
 INSERT INTO Sales.Orders(Order_Id, Customer_Id, Order_Status, Order_Date, Required_Date, Shipped_Date, Store_Id,Staff_Id) VALUES(1614,135,3,'20181128','20181128',NULL,3,8);
 INSERT INTO Sales.Orders(Order_Id, Customer_Id, Order_Status, Order_Date, Required_Date, Shipped_Date, Store_Id,Staff_Id) VALUES(1615,136,3,'20181228','20181228',NULL,3,8);
 
-SET IDENTITY_INSERT Sales.Orders OFF;  
+SET IDENTITY_INSERT Sales.Orders OFF;
 
 INSERT INTO Sales.Order_Items(Order_Id, Item_Id, Product_Id, Quantity, List_Price,Discount) VALUES(1,1,20,1,599.99,0.2);
 INSERT INTO Sales.Order_Items(Order_Id, Item_Id, Product_Id, Quantity, List_Price,Discount) VALUES(1,2,8,2,1799.99,0.07);

@@ -1,3 +1,6 @@
+USE BikeStores;
+GO
+
 /**
  * Drop all objects in BikeStores Database
  * This can be used to restore the Database from a fresh state

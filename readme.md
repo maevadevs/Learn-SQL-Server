@@ -1,120 +1,127 @@
 # SQL Server and T-SQL References
 
-This is a collection of references for Microsoft SQL Server and Transact-SQL.
+---
 
-## Folder Organization
+This is a collection of references for Microsoft SQL Server and Transact-SQL
 
-Here is the folder organization of this reference:
+- RDBMS developed and marketed by Microsoft
+- Store and retrieve data used by other applications
 
-### Introduction
+---
 
-- [SQL Server Structure](0-introduction/00-sqlserver-structure.md)
-- [Installation](0-introduction/01-installation.md)
-- [Using SSMS and Default System Databases](0-introduction/02-using-ssms-and-default-sys-dbs.md)
-- [Loading a Sample Database](0-introduction/03-loading-sample-db.md)
+## 1. Introduction
 
-### Data Manipulation Language (DML) / Data Querying Language (DQL)
+- [SQL Server Structure](01-introduction/00-sqlserver-structure.md)
+- [Installation](01-introduction/01-installation.md)
+- [Using SSMS and Default System Databases](01-introduction/02-using-ssms-and-default-sys-dbs.md)
+- [Loading a Sample Database](01-introduction/03-loading-sample-db.md)
 
-- [About DML/DQL](1-dml-dql/about.md)
+---
 
-#### Querying Data
+## 2. Data Manipulation Language (DML) / Data Querying Language (DQL)
 
-- [`SELECT`](1-dml-dql/01-querying-data/01-select.md)
-  
-#### Sorting Data
+- [About DML/DQL](02-dml-dql/about.md)
 
-- [`ORDER BY`](1-dml-dql/02-sorting-data/01-order-by.md)
+### Querying Data
 
-#### Limiting Rows
+- [`SELECT`](02-dml-dql/01-querying-data/01-select.md)
 
-- [`OFFSET FETCH`](1-dml-dql/03-limiting-rows/01-offset-fetch.md)
-- [`SELECT TOP`](1-dml-dql/03-limiting-rows/02-select-top.md)
+### Sorting Data
 
-#### Filtering Data
+- [`ORDER BY`](02-dml-dql/02-sorting-data/01-order-by.md)
 
-- [`SELECT DISTINCT`](1-dml-dql/04-filtering-data/01-select-distinct.md)
-- [`WHERE`](1-dml-dql/04-filtering-data/02-where.md)
-- [`NULL`](1-dml-dql/04-filtering-data/03-null.md)
-- [`AND`](1-dml-dql/04-filtering-data/04-and.md)
-- [`OR`](1-dml-dql/04-filtering-data/05-or.md)
-- [`IN`](1-dml-dql/04-filtering-data/06-in.md)
-- [`BETWEEN`](1-dml-dql/04-filtering-data/07-between.md)
-- [`LIKE`](1-dml-dql/04-filtering-data/08-like.md)
-- [`ALIASES`](1-dml-dql/04-filtering-data/09-aliases.md)
+### Limiting Rows
 
-#### Joining Tables
+- [`OFFSET FETCH`](02-dml-dql/03-limiting-rows/01-offset-fetch.md)
+- [`SELECT TOP`](02-dml-dql/03-limiting-rows/02-select-top.md)
 
-- [Joins Overview](1-dml-dql/05-joining-tables/01-joins-overview.md)
-- [`INNER JOIN`](1-dml-dql/05-joining-tables/02-inner-join.md)
-- [`LEFT JOIN`](1-dml-dql/05-joining-tables/03-left-join.md)
-- [`RIGHT JOIN`](1-dml-dql/05-joining-tables/04-right-join.md)
-- [`FULL JOIN`](1-dml-dql/05-joining-tables/05-full-join.md)
-- [`SELF JOIN`](1-dml-dql/05-joining-tables/06-self-join.md)
-- [`CROSS JOIN`](1-dml-dql/05-joining-tables/07-cross-join.md)
+### Filtering Data
 
-#### Grouping Data
+- [`SELECT DISTINCT`](02-dml-dql/04-filtering-data/01-select-distinct.md)
+- [`WHERE`](02-dml-dql/04-filtering-data/02-where.md)
+- [`NULL`](02-dml-dql/04-filtering-data/03-null.md)
+- [`AND`](02-dml-dql/04-filtering-data/04-and.md)
+- [`OR`](02-dml-dql/04-filtering-data/05-or.md)
+- [`IN`](02-dml-dql/04-filtering-data/06-in.md)
+- [`BETWEEN`](02-dml-dql/04-filtering-data/07-between.md)
+- [`LIKE`](02-dml-dql/04-filtering-data/08-like.md)
+- [`ALIASES`](02-dml-dql/04-filtering-data/09-aliases.md)
 
-- [`GROUP BY`](1-dml-dql/06-grouping-data/01-group-by.md)
-- [`HAVING`](1-dml-dql/06-grouping-data/02-having.md)
-- [`UNION ALL` and `GROUPING SET`](1-dml-dql/06-grouping-data/03-union-all-and-grouping-sets.md)
-- [`CUBE`](1-dml-dql/06-grouping-data/04-cube.md)
-- [`ROLLUP`](1-dml-dql/06-grouping-data/05-rollup.md)
+### Joining Tables
 
-#### Subquery
+- [Joins Overview](02-dml-dql/05-joining-tables/01-joins-overview.md)
+- [`INNER JOIN`](02-dml-dql/05-joining-tables/02-inner-join.md)
+- [`LEFT JOIN`](02-dml-dql/05-joining-tables/03-left-join.md)
+- [`RIGHT JOIN`](02-dml-dql/05-joining-tables/04-right-join.md)
+- [`FULL JOIN`](02-dml-dql/05-joining-tables/05-full-join.md)
+- [`SELF JOIN`](02-dml-dql/05-joining-tables/06-self-join.md)
+- [`CROSS JOIN`](02-dml-dql/05-joining-tables/07-cross-join.md)
 
-- [Nested Queries](1-dml-dql/07-subquery/01-nested-queries.md)
-- [Correlated Subquery](1-dml-dql/07-subquery/02-correlated-subquery.md)
-- [`EXISTS`](1-dml-dql/07-subquery/03-exists.md)
-- [`ANY`/`SOME`](1-dml-dql/07-subquery/04-any-some.md)
-- [`ALL`](1-dml-dql/07-subquery/05-all.md)
+### Grouping Data
 
-#### Set
+- [`GROUP BY`](02-dml-dql/06-grouping-data/01-group-by.md)
+- [`HAVING`](02-dml-dql/06-grouping-data/02-having.md)
+- [`UNION ALL` and `GROUPING SET`](02-dml-dql/06-grouping-data/03-union-all-and-grouping-sets.md)
+- [`CUBE`](02-dml-dql/06-grouping-data/04-cube.md)
+- [`ROLLUP`](02-dml-dql/06-grouping-data/05-rollup.md)
 
-- [`UNION` and `UNION ALL`](1-dml-dql/08-set/01-union-union-all.md)
-- [`INTERSECT`](1-dml-dql/08-set/02-intersect.md)
-- [`EXCEPT`](1-dml-dql/08-set/03-except.md)
+### Subquery
 
-#### CTE
+- [Nested Queries](02-dml-dql/07-subquery/01-nested-queries.md)
+- [Correlated Subquery](02-dml-dql/07-subquery/02-correlated-subquery.md)
+- [`EXISTS`](02-dml-dql/07-subquery/03-exists.md)
+- [`ANY`/`SOME`](02-dml-dql/07-subquery/04-any-some.md)
+- [`ALL`](02-dml-dql/07-subquery/05-all.md)
 
-- [Common Table Expressions](1-dml-dql/09-cte/01-common-table-expressions.md)
-- [Recursive CTE](1-dml-dql/09-cte/02-recursive-cte.md)
+### Set
 
-#### Pivot
+- [`UNION` and `UNION ALL`](02-dml-dql/08-set/01-union-union-all.md)
+- [`INTERSECT`](02-dml-dql/08-set/02-intersect.md)
+- [`EXCEPT`](02-dml-dql/08-set/03-except.md)
 
-- [`PIVOT`](1-dml-dql/10-pivot/01-pivot.md)
+### CTE
 
-#### Modifying Data
+- [Common Table Expressions](02-dml-dql/09-cte/01-common-table-expressions.md)
+- [Recursive CTE](02-dml-dql/09-cte/02-recursive-cte.md)
 
-- [`INSERT`](1-dml-dql/11-modifying-data/01-insert.md)
-- [`INSERT INTO SELECT`](1-dml-dql/11-modifying-data/02-insert-into-select.md)
-- [`UPDATE`](1-dml-dql/11-modifying-data/03-update.md)
-- [`UPDATE JOIN`](1-dml-dql/11-modifying-data/04-update-join.md)
-- [`DELETE`](1-dml-dql/11-modifying-data/05-delete.md)
-- [`MERGE`](1-dml-dql/11-modifying-data/06-merge.md)
+### Pivot
 
-### Data Definition Language (DDL)
+- [`PIVOT`](02-dml-dql/10-pivot/01-pivot.md)
 
-- [About DDL](2-ddl/about.md)
+### Modifying Data
 
-#### For Databases
+- [`INSERT`](02-dml-dql/11-modifying-data/01-insert.md)
+- [`INSERT INTO SELECT`](02-dml-dql/11-modifying-data/02-insert-into-select.md)
+- [`UPDATE`](02-dml-dql/11-modifying-data/03-update.md)
+- [`UPDATE JOIN`](02-dml-dql/11-modifying-data/04-update-join.md)
+- [`DELETE`](02-dml-dql/11-modifying-data/05-delete.md)
+- [`MERGE`](02-dml-dql/11-modifying-data/06-merge.md)
 
-- [`CREATE DATABASE`](2-ddl/01-database/01-create-database.md)
-- [`DROP DATABASE`](2-ddl/01-database/02-drop-database.md)
+---
 
-#### For Schemas
+## 3. Data Definition Language (DDL)
 
-- [`CREATE SCHEMA`](2-ddl/02-schema/01-create-schema.md)
-- [`DROP SCHEMA`](2-ddl/02-schema/02-drop-schema.md)
-- [`ALTER SCHEMA`](2-ddl/02-schema/03-alter-schema.md)
+- [About DDL](03-ddl/about.md)
 
-#### For Tables
+### For Databases
 
-- [`CREATE TABLE`](2-ddl/03-table/01-create-table.md)
+- [`CREATE DATABASE`](03-ddl/01-database/01-create-database.md)
+- [`DROP DATABASE`](03-ddl/01-database/02-drop-database.md)
 
-#### For Columns
+### For Schemas
 
-- [`IDENTITY`](2-ddl/04-column/01-identity-column.md)
+- [`CREATE SCHEMA`](03-ddl/02-schema/01-create-schema.md)
+- [`DROP SCHEMA`](03-ddl/02-schema/02-drop-schema.md)
+- [`ALTER SCHEMA`](03-ddl/02-schema/03-alter-schema.md)
 
-#### For Sequences
+### For Tables
 
-- [`SEQUENCE`](2-ddl/05-sequence/01-sequence.md)
+- [`CREATE TABLE`](03-ddl/03-table/01-create-table.md)
+
+### For Columns
+
+- [`IDENTITY`](03-ddl/04-column/01-identity-column.md)
+
+### For Sequences
+
+- [`SEQUENCE`](03-ddl/05-sequence/01-sequence.md)
