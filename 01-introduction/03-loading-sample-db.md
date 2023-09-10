@@ -20,7 +20,7 @@
   - 2 schemas
   - 9 tables
 
-<img src="../figures/bikeStore-db-schema.png" width=60%>
+<img src="../figures/bikestore-db-schema.png" width=60%>
 
 ## DB Tables
 
