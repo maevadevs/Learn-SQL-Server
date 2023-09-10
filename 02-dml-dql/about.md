@@ -1,5 +1,11 @@
 # Data Manipulation Language
 
+---
+
+- [Data Querying Language](#data-querying-language)
+
+---
+
 DML is made of the SQL commands that deals with the manipulation of data present in the database. This includes most of the SQL statements.
 
 Examples of DML:

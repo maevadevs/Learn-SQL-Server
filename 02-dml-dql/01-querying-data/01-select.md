@@ -1,29 +1,49 @@
 # `SELECT`
 
+---
+
+- [Basic `SELECT`](#basic-select)
+  - [Notes on `SELECT *`](#notes-on-select-)
+  - [Examples `SELECT`](#examples-select)
+- [`SELECT WHERE`](#select-where)
+  - [Example `SELECT WHERE`](#example-select-where)
+- [`SELECT` with `ORDER BY`](#select-with-order-by)
+  - [Example `SELECT ORDER BY`](#example-select-order-by)
+- [`SELECT` with `GROUP BY`](#select-with-group-by)
+  - [Example `SELECT GROUP BY`](#example-select-group-by)
+- [`SELECT` with Group Conditions `HAVING`](#select-with-group-conditions-having)
+  - [Example `SELECT HAVING`](#example-select-having)
+- [Availability in Other RDBMS](#availability-in-other-rdbms)
+
+---
+
 - Introduction to the basic of the SQL Server `SELECT` statement
 - Focusing on how to query against a single table
 
 ## Basic `SELECT`
 
-- SQL Server uses *schemas* to logically groups related tables and other database objects
+- Tables are objects that store all the data in a database
+  - Each row represents a unique record
+  - Each column represents a field
+- SQL Server uses *Schemas* to logically group related tables and other database objects
 - The most basic form of `SELECT`
-- The return of the query is called a `result set`
+- The return of the query is called a `Result Set`
 
 ```sql
-SELECT       Col_1 
-            ,Col_2 
-            ,Col_3
-FROM        Schema_Name.Table_Name;
+SELECT   Col_1
+        ,Col_2
+        ,Col_3
+FROM    Schema_Name.Table_Name;
 ```
 
-- Even though the `SELECT` clause appears first in the query, SQL Server processes:
+- Even though the `SELECT` clause appears first in the query, SQL Server processes in this order:
 
 1. The `FROM` clause first
-1. Then the `SELECT` clause 
+2. Then the `SELECT` clause
 
-**Overall, SQL Server processes the clauses in the following sequence:**
+- **Overall, SQL Server processes most-used clauses in the following sequence:**
 
-```
+```sql
 - FROM
 - ON
 - OUTER
@@ -36,6 +56,13 @@ FROM        Schema_Name.Table_Name;
 - TOP
 ```
 
+```sql
+SELECT  TOP 10 *
+FROM    Schema_Name.Table_Name;
+```
+
+### Notes on `SELECT *`
+
 - `SELECT *` is useful for examining the columns and data of a table that you are not familiar with
   - **However, do not use `SELECT *` in real production code**
   - It retrieves more data than your application needs to function
@@ -43,23 +70,18 @@ FROM        Schema_Name.Table_Name;
   - Affecting performance
   - When you use it for testing, it is better to use it with `TOP`
 
-```sql
-SELECT      TOP 10 *
-FROM        Schema_Name.Table_Name;
-```
-
 ### Examples `SELECT`
 
 ```sql
-SELECT       First_Name
-            ,Last_Name
-            ,Email
-FROM        Sales.Customers;
+SELECT   First_Name
+        ,Last_Name
+        ,Email
+FROM    Sales.Customers;
 ```
 
 ```sql
-SELECT      TOP 10 *
-FROM        Sales.Customers;
+SELECT  TOP 10 *
+FROM    Sales.Customers;
 ```
 
 ## `SELECT WHERE`
@@ -109,7 +131,7 @@ ORDER BY    Last_Name DESC;
 
 - To group rows into groups
 - **Requires the use of an aggregate function**
-- SQL Server processes the clauses in the following sequence: 
+- SQL Server processes the clauses in the following sequence:
 
 ```
 - FROM
@@ -135,7 +157,7 @@ ORDER BY    City_Count DESC;
 - To filter groups based on one or more conditions
 - The `WHERE` clause applies on individual rows while the `HAVING` clause applies on aggregations (i.e. applies on the results set after `GROUP BY`)
 - **NOTE: You cannot use column aliases in `HAVING` clause**
-- SQL Server processes the clauses in the following sequence: 
+- SQL Server processes the clauses in the following sequence:
 
 ```
 - FROM
