@@ -29,10 +29,10 @@
 - The return of the query is called a `Result Set`
 
 ```sql
-SELECT  Col_1,
-        Col_2,
-        Col_3
-FROM    Schema_Name.Table_Name;
+SELECT Col_1,
+       Col_2,
+       Col_3
+  FROM Schema_Name.Table_Name;
 ```
 
 - Even though the `SELECT` clause appears first in the query, SQL Server processes in this order:
@@ -56,8 +56,8 @@ FROM    Schema_Name.Table_Name;
 ```
 
 ```sql
-SELECT  TOP 10 *
-FROM    Schema_Name.Table_Name;
+SELECT TOP 10 *
+  FROM Schema_Name.Table_Name;
 ```
 
 ### Notes on `SELECT *`
@@ -72,15 +72,15 @@ FROM    Schema_Name.Table_Name;
 ### Examples `SELECT`
 
 ```sql
-SELECT  First_Name,
-        Last_Name,
-        Email
-FROM    Sales.Customers;
+SELECT First_Name,
+       Last_Name,
+       Email
+  FROM Sales.Customers;
 ```
 
 ```sql
-SELECT  TOP 10 *
-FROM    Sales.Customers;
+SELECT TOP 10 *
+  FROM Sales.Customers;
 ```
 
 ## `SELECT WHERE`
@@ -97,9 +97,9 @@ FROM    Sales.Customers;
 ### Example `SELECT WHERE`
 
 ```sql
-SELECT  TOP 10 *
-FROM    Sales.Customers
-WHERE   State = 'CA';
+SELECT TOP 10 *
+  FROM Sales.Customers
+ WHERE State = 'CA';
 ```
 
 ## `SELECT` with `ORDER BY`
@@ -121,10 +121,10 @@ WHERE   State = 'CA';
 ### Example `SELECT ORDER BY`
 
 ```sql
-SELECT      TOP 10 *
-FROM        Sales.Customers
-WHERE       State = 'CA'
-ORDER BY    Last_Name DESC;
+SELECT TOP 10 *
+  FROM Sales.Customers
+ WHERE State = 'CA'
+ ORDER BY Last_Name DESC;
 ```
 
 ## `SELECT` with `GROUP BY`
@@ -145,12 +145,12 @@ ORDER BY    Last_Name DESC;
 ### Example `SELECT GROUP BY`
 
 ```sql
-SELECT      City,
-            COUNT(*) AS City_Count
-FROM        Sales.Customers
-WHERE       State = 'CA'
-GROUP BY    City
-ORDER BY    City_Count DESC;
+SELECT City,
+       Count(*) AS City_Count
+  FROM Sales.Customers
+ WHERE State = 'CA'
+ GROUP BY City
+ ORDER BY City_Count DESC;
 ```
 
 ## `SELECT` with Group Conditions `HAVING`
@@ -173,11 +173,11 @@ ORDER BY    City_Count DESC;
 ### Example `SELECT HAVING`
 
 ```sql
-SELECT      City,
-            COUNT(*) AS City_Count
-FROM        Sales.Customers
-WHERE       State = 'CA'
-GROUP BY    City
-HAVING      COUNT(*) > 10 -- No column aliases here
-ORDER BY    City_Count DESC;
+SELECT City,
+       Count(*) AS City_Count
+  FROM Sales.Customers
+ WHERE State = 'CA'
+ GROUP BY City
+HAVING Count(*) > 10 -- No column aliases here
+ ORDER BY City_Count DESC;
 ```

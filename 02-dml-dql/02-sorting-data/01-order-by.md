@@ -39,74 +39,74 @@
 ```
 
 ```sql
-SELECT      Col_1,
-            Col_2,
-            Col_3
-FROM        Schema_Name.Table_Name
-ORDER BY    Col_1 [ASC|DESC],
-            Col_2 [ASC|DESC];
+SELECT Col_1,
+       Col_2,
+       Col_3
+  FROM Schema_Name.Table_Name
+ ORDER BY Col_1 [ASC|DESC],
+          Col_2 [ASC|DESC];
 ```
 
 ### Examples Basic `ORDER BY`
 
 ```sql
 -- Basic ORDER BY Ascending Last_Name
-SELECT      First_Name,
-            Last_Name
-FROM        Sales.Customers
-ORDER BY    Last_Name;
+SELECT First_Name,
+       Last_Name
+  FROM Sales.Customers
+ ORDER BY Last_Name;
 ```
 
 ```sql
 -- ORDER BY Descending Last_Name
-SELECT      First_Name,
-            Last_Name
-FROM        Sales.Customers
-ORDER BY    Last_Name DESC;
+SELECT First_Name,
+       Last_Name
+  FROM Sales.Customers
+ ORDER BY Last_Name DESC;
 ```
 
 ```sql
 -- ORDER BY Multiple Columns
-SELECT      City,
-            First_Name,
-            Last_Name
-FROM        Sales.Customers
-ORDER BY    City,
-            Last_Name;
+SELECT City,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ ORDER BY City,
+          Last_Name;
 ```
 
 ```sql
 -- ORDER BY Multiple Columns and Multiple Orders
-SELECT      City,
-            First_Name,
-            Last_Name
-FROM        Sales.Customers
-ORDER BY    City,
-            Last_Name ASC;
+SELECT City,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ ORDER BY City,
+          Last_Name ASC;
 ```
 
 - It is possible to sort the result set by a column that does not appear on the `SELECT` list but exists on the table
 
 ```sql
 -- State is not in the SELECT list but in the table
-SELECT      City,
-            First_Name,
-            Last_Name
-FROM        Sales.Customers
-ORDER BY    State,
-            City,
-            Last_Name;
+SELECT City,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ ORDER BY State,
+          City,
+          Last_Name;
 ```
 
 - It is also possible to sort by the result of functions applied on a column
 
 ```sql
 -- ORDER BY the result of a function applied on a column
-SELECT      First_Name,
-            Last_Name
-FROM        Sales.Customers
-ORDER BY    LEN(Last_Name) DESC,
-            LEN(First_Name) DESC;
+SELECT First_Name,
+       Last_Name
+  FROM Sales.Customers
+ ORDER BY Len(Last_Name) DESC,
+          Len(First_Name) DESC;
 ```
 
 ### Sorting By Ordinal Positions of Columns
@@ -119,9 +119,9 @@ ORDER BY    LEN(Last_Name) DESC,
 - **It is a good practice to always specify the column names explicitly in the `ORDER BY` clause**
 
 ```sql
-SELECT      Last_Name,  -- Position 1
-            First_Name  -- Position 2
-FROM        Sales.Customers
-ORDER BY    1 DESC,     -- last_name DESC
-            2;          -- first_name ASC
+SELECT Last_Name,   -- Position 1
+       First_Name   -- Position 2
+  FROM Sales.Customers
+ ORDER BY 1 DESC,   -- last_name DESC
+          2;        -- first_name ASC
 ```
