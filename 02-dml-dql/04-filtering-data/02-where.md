@@ -117,7 +117,7 @@ SELECT Product_Id,
        Model_Year,
        List_Price
   FROM Production.Products
- WHERE List_Price IN ( 299.99, 369.99, 489.99 )
+ WHERE List_Price IN (299.99, 369.99, 489.99)
  ORDER BY List_Price DESC;
 ```
 

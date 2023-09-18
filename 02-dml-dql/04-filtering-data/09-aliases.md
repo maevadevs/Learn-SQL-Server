@@ -1,5 +1,13 @@
 # Aliases
 
+---
+
+- [Example Column Alias](#example-column-alias)
+- [Table Aliases](#table-aliases)
+- [Examples Tables Aliases](#examples-tables-aliases)
+
+---
+
 - Use aliases to change the column heading of the query output and table alias
 - Improve readability of queries
 - We can use basic column transformations and assign the result to aliases
@@ -10,33 +18,34 @@
 ```sql
 column_name|expression AS column_alias
 column_name|expression column_alias
+column_name|expression AS "column alias"
 ```
 
 ## Example Column Alias
 
-Using column alias with column transformations
+- Using column alias with column transformations
 
 ```sql
-SELECT 
-  First_Name,
-  Last_Name,
-  First_Name + ' ' + Last_Name AS Full_Name
-FROM Sales.Customers
-ORDER BY Full_Name;
+SELECT First_Name,
+       Last_Name,
+       First_Name + ' ' + Last_Name AS Full_Name
+  FROM Sales.Customers
+ ORDER BY Full_Name;
 ```
 
 ```sql
-SELECT Category_Name AS 'Product Category'
-FROM Production.Categories;
+SELECT Category_Name AS "Product Category"
+  FROM Production.Categories;
 ```
 
 - We can use column aliases in `ORDER BY`
 - **We cannot use column aliases in `GROUP BY`, `WHERE`, and `HAVING` because of the logical order of processing**
   - **Aliases are defined at the level of `SELECT` clause**
   - `ORDER BY` is evaluated after `SELECT`
+  - `GROUP BY`, `WHERE`, and `HAVING` are evaluated before `SELECT`
   - SQL Server processes the clauses in the following sequence:
 
-```
+```sql
 FROM -> ON -> OUTER -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> TOP
 ```
 
@@ -45,15 +54,15 @@ FROM -> ON -> OUTER -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDE
 
 ```sql
 -- This does not work well and is not supported
-SELECT 
-    Col_1 + 10 AS Temp, 
-    Temp + 20 AS Final;
+SELECT Col_1 + 10 AS Temp,
+       Temp + 20  AS Final;
+
 GO
 
 -- Instead, do the following
-SELECT 
-    Col_1 + 10 AS Temp, 
-    Col_1 + 10 + 20 AS Final;
+SELECT Col_1 + 10      AS Temp,
+       Col_1 + 10 + 20 AS Final;
+
 GO
 ```
 
@@ -75,27 +84,25 @@ Table_Name Table_Alias
 
 ```sql
 -- Join without Aliases
-SELECT 
-    Sales.Customers.Customer_Id AS CID, 
-    First_Name, 
-    Last_Name, 
-    Order_Id
-FROM Sales.Customers
-INNER JOIN Sales.Orders 
-    ON Sales.Orders.Customer_Id = CID;
+SELECT Sales.Customers.Customer_Id AS CID,
+       First_Name,
+       Last_Name,
+       Order_Id
+  FROM Sales.Customers
+       JOIN Sales.Orders
+         ON Sales.Orders.Customer_Id = Sales.Customers.Customer_Id;
 ```
 
-We can re-write in the following way
+- We can re-write in the following way
 
 ```sql
 -- We can use table aliases in SELECT
-SELECT 
-    C.Customer_Id AS CID, 
-    o.Customer_Id AS Order_CID,
-    First_Name, 
-    Last_Name, 
-    Order_Id
-FROM Sales.Customers AS c
-INNER JOIN Sales.Orders AS o
-    ON o.Customer_Id = c.Customer_Id;
+SELECT C.Customer_Id AS CID,
+       O.Customer_Id AS Order_CID,
+       First_Name,
+       Last_Name,
+       Order_Id
+  FROM Sales.Customers AS C
+       JOIN Sales.Orders AS O
+         ON O.Customer_Id = C.Customer_Id;
 ```

@@ -59,7 +59,7 @@ SELECT Customer_Id,
 
 ## `IS NOT NULL`
 
-Returns the complement set of `IS NULL`
+- Returns the complement set of `IS NULL`
 
 ```sql
 SELECT Customer_Id,
@@ -72,7 +72,7 @@ SELECT Customer_Id,
           Last_Name;
 ```
 
-This is equivalent to the following, using negative sub-query for the complement set
+- This is equivalent to the following, using negative sub-query for the complement set
 
 ```sql
 -- The complement set of IS NULL
