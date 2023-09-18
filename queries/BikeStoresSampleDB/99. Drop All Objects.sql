@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS Production.Brands;
 DROP TABLE IF EXISTS Sales.Customers;
 DROP TABLE IF EXISTS Sales.Staffs;
 DROP TABLE IF EXISTS Sales.Stores;
+DROP TABLE IF EXISTS Sales.Feedback;
 DROP TABLE IF EXISTS Hr.Employees;
 DROP TABLE IF EXISTS Hr.Candidates;
 
