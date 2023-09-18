@@ -1,4 +1,5 @@
 USE BikeStores;
+
 GO
 
 /**
@@ -6,22 +7,26 @@ GO
  * - Create and load data for hr-related Tables
  */
 
--- New Schema for HR
+-- CREATE SCHEMAS --
+--------------------
+
 CREATE SCHEMA Hr;
+
 GO
 
--- Table: Candidates
-CREATE TABLE Hr.Candidates
-(
-    Id          INT             PRIMARY KEY IDENTITY,
-    Full_Name   VARCHAR(100)    NOT NULL
+-- CREATE TABLES --
+-------------------
+
+CREATE TABLE Hr.Candidates (
+           Id INT PRIMARY KEY IDENTITY,
+    Full_Name VARCHAR(100) NOT NULL
 );
+
 GO
 
--- Table: Employees
-CREATE TABLE Hr.Employees
-(
-    Id          INT             PRIMARY KEY IDENTITY,
-    Full_Name   VARCHAR(100)    NOT NULL
+CREATE TABLE Hr.Employees (
+           Id INT PRIMARY KEY IDENTITY,
+    Full_Name VARCHAR(100) NOT NULL
 );
+
 GO

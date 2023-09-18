@@ -11,9 +11,8 @@
 - It removes the duplicate values in the column from the result set
 
 ```sql
-SELECT DISTINCT
-       Col_1,
-       Col_2
+SELECT DISTINCT Col_1,
+                Col_2
   FROM Table_Name;
 ```
 
@@ -34,11 +33,10 @@ SELECT DISTINCT City
 - Select only the *unique combinations* of city and state
 
 ```sql
-SELECT DISTINCT
-       City,
-       State
+SELECT DISTINCT City,
+                "State"
   FROM Sales.Customers
- ORDER BY State,
+ ORDER BY "State",
           City;
 ```
 
@@ -57,25 +55,24 @@ SELECT DISTINCT Phone
 
 ```sql
 SELECT City,
-       State,
+       "State",
        Zip_Code
   FROM Sales.Customers
  GROUP BY City,
-          State,
+          "State",
           Zip_Code
- ORDER BY State,
+ ORDER BY "State",
           City;
 ```
 
 - This is equivalent to the following `SELECT DISTINCT`
 
 ```sql
-SELECT DISTINCT
-       City,
-       State,
-       Zip_Code
+SELECT DISTINCT City,
+                "State",
+                Zip_Code
   FROM Sales.Customers
- ORDER BY State,
+ ORDER BY "State",
           City;
 ```
 
