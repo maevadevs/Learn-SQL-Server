@@ -1,5 +1,13 @@
 # `LIKE`
 
+---
+
+- [Wildcard Characters](#wildcard-characters)
+- [Escape Characters](#escape-characters)
+- [Example `LIKE`](#example-like)
+
+---
+
 - A logical operator that determines if a character string matches a specified pattern
 - To filter rows with `WHERE` based on pattern matching
 - **SQL Server does not support RegEx but we can use `LIKE` for partial support instead**
@@ -13,11 +21,13 @@ column|expression LIKE pattern [ESCAPE escape_character]
 
 ## Wildcard Characters
 
-- `%` - A string of zero or more characters
-- `_` - A single characters
-- `[charRange]` - Any single character within a specified range. The characters within the square brackets are used for the matching process
-- `[^charRange]` - None of the single characters within the specified range
-- `[char-char]` - A range of characters
+Placeholder|Description
+:-|:-
+`%`|A string of zero or more characters
+`_`|A single characters
+`[charRange]`|Any single character within a specified range. The characters within the square brackets are used for the matching process
+`[^charRange]`|None of the single characters within the specified range
+`[char-char]`|A specific range of characters
 
 ## Escape Characters
 
@@ -32,86 +42,79 @@ LIKE '%30\%%' ESCAPE '\' -- Specifying wildcards around "30%"
 
 ## Example `LIKE`
 
-Using the `%` wildcard
+- Using the `%` wildcard
 
 ```sql
-SELECT 
-    Customer_Id, 
-    First_Name, 
-    Last_Name
-FROM Sales.Customers
-WHERE Last_Name LIKE 't%s'
-ORDER BY First_Name;
+SELECT Customer_Id,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ WHERE Last_Name LIKE 't%s'
+ ORDER BY First_Name;
 ```
 
-Using the `_` wildcard
+- Using the `_` wildcard
 
 ```sql
-SELECT 
-    Customer_Id, 
-    First_Name, 
-    Last_Name
-FROM Sales.Customers
-WHERE Last_Name LIKE '_u%'
-ORDER BY First_Name;
+SELECT Customer_Id,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ WHERE Last_Name LIKE '_u%'
+ ORDER BY First_Name;
 ```
 
-Using a list of characters
+- Using a list of characters
 
 ```sql
-SELECT 
-    Customer_Id, 
-    First_Name, 
-    Last_Name
-FROM Sales.Customers
-WHERE Last_Name LIKE '[YZ]%' -- Last name starts with Y or Z
-ORDER BY Last_Name;
+SELECT Customer_Id,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ WHERE Last_Name LIKE '[YZ]%' -- Last name starts with Y or Z
+ ORDER BY Last_Name;
 ```
 
-Using a range of characters
+- Using a range of characters
 
 ```sql
-SELECT 
-    Customer_Id, 
-    First_Name, 
-    Last_Name
-FROM Sales.Customers
-WHERE Last_Name LIKE '[A-C]%' -- Last name starts with A, B, or C
-ORDER BY First_Name;
+SELECT Customer_Id,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ WHERE Last_Name LIKE '[A-C]%' -- Last name starts with A, B, or C
+ ORDER BY First_Name;
 ```
 
-Using the NOT wildcard (`^`)
+- Using the NOT wildcard (`^`)
 
 ```sql
-SELECT 
-    Customer_Id, 
-    First_Name, 
-    Last_Name
-FROM Sales.Customers
-WHERE Last_Name LIKE '[^A-X]%' -- Last name not starting with A-X
-ORDER BY Last_Name;
+SELECT Customer_Id,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ WHERE Last_Name LIKE '[^A-X]%' -- Last name not starting with A-X
+ ORDER BY Last_Name;
 ```
 
-Using the `NOT LIKE` operator for getting the equivalent set
+- Using the `NOT LIKE` operator for getting the equivalent set
 
 ```sql
-SELECT 
-    Customer_Id, 
-    First_Name, 
-    Last_Name
-FROM Sales.Customers
-WHERE Last_Name NOT LIKE '[A-X]%' -- Last name not starting with A
-ORDER BY Last_Name;
+SELECT Customer_Id,
+       First_Name,
+       Last_Name
+  FROM Sales.Customers
+ WHERE Last_Name NOT LIKE '[A-X]%' -- Last name not starting with A
+ ORDER BY Last_Name;
 ```
 
-Using escape characters
+- Using escape characters
 
 ```sql
-SELECT 
-    Feedback_Id, 
-    Comment
-FROM Sales.Feedbacks
-WHERE Comment LIKE '%30\%%' ESCAPE '\';
+SELECT Feedback_Id,
+       Comment
+  FROM Sales.Feedbacks
+ WHERE Comment LIKE '%30\%%' ESCAPE '\';
 ```
 
 - Specified that the character `\` is the escape character
