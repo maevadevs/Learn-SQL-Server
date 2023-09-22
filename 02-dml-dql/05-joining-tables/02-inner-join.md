@@ -1,5 +1,14 @@
 # `INNER JOIN`
 
+---
+
+- [Format](#format)
+- [Figure Explanations](#figure-explanations)
+- [Example of Inner Join](#example-of-inner-join)
+- [Conditions in `WHERE` vs in `ON` clause](#conditions-in-where-vs-in-on-clause)
+
+---
+
 - One of the most commonly used joins in SQL Server
 - Query data from two or more related tables
 - **`INNER` keyword is optional: Default join is `INNER`**
@@ -8,9 +17,9 @@
 
 ```sql
 SELECT select_list
-FROM T1 
-[INNER] JOIN T2 
-    ON join_predicate;
+  FROM T1
+       JOIN T2
+         ON join_predicate;
 ```
 
 - Only rows that cause the join predicate to evaluate to `TRUE` are included in the result set
@@ -26,30 +35,28 @@ FROM T1
 ## Example of Inner Join
 
 ```sql
-SELECT
-    Product_Name,
-    Category_Name,
-    List_Price
-FROM Production.Products AS P 
-INNER JOIN Production.Categories AS C 
-    ON C.Category_Id = P.Category_Id
-ORDER BY Product_Name DESC;
+SELECT Product_Name,
+       Category_Name,
+       List_Price
+  FROM Production.Products AS P
+ INNER JOIN Production.Categories AS C
+         ON C.Category_Id = P.Category_Id
+ ORDER BY Product_Name DESC;
 ```
 
-We can run inner join on multiple tables at once
+- We can run inner join on multiple tables at once
 
 ```sql
-SELECT
-    Product_Name,
-    Category_Name,
-    List_Price,
-    Brand_Name
-FROM Production.Products AS P 
-INNER JOIN Production.Categories AS C 
-    ON C.Category_Id = P.Category_Id
-INNER JOIN Production.Brands AS B 
-    ON B.Brand_Id = P.Brand_Id
-ORDER BY Product_Name DESC;
+SELECT Product_Name,
+       Category_Name,
+       List_Price,
+       Brand_Name
+  FROM Production.Products AS P
+ INNER JOIN Production.Categories AS C
+         ON C.Category_Id = P.Category_Id
+ INNER JOIN Production.Brands AS B
+         ON B.Brand_Id = P.Brand_Id
+ ORDER BY Product_Name DESC;
 ```
 
 ## Conditions in `WHERE` vs in `ON` clause
@@ -62,20 +69,20 @@ ORDER BY Product_Name DESC;
 
 ```sql
 SELECT *
-FROM Sales.Customers AS C
-JOIN Sales.Orders AS O
-    ON C.Customer_Id = O.Customer_Id
-WHERE C.Customer_Id = 1
-    AND O.Order_Id > 1000;
+  FROM Sales.Customers AS C
+       JOIN Sales.Orders AS O
+         ON C.Customer_Id = O.Customer_Id
+ WHERE C.Customer_Id = 1
+       AND O.Order_Id > 1000;
 ```
 
 Which is functionally equivalent to
 
 ```sql
 SELECT *
-FROM Sales.Customers AS C
-JOIN Sales.Orders AS O
-    ON C.Customer_Id = O.Customer_Id
-    AND C.Customer_Id = 1
-    AND O.Order_Id > 1000;
+  FROM Sales.Customers AS C
+       JOIN Sales.Orders AS O
+         ON C.Customer_Id = O.Customer_Id
+        AND C.Customer_Id = 1
+        AND O.Order_Id > 1000;
 ```
