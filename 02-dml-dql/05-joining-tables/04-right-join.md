@@ -19,7 +19,14 @@
 
 ## Format
 
+- `OUTER` keyword is optional
+
 ```sql
+SELECT select_list
+  FROM T1
+ RIGHT OUTER JOIN T2
+               ON join_predicate;
+
 SELECT select_list
   FROM T1
  RIGHT JOIN T2
@@ -91,7 +98,7 @@ SELECT P.Product_Id,
   FROM Production.Products AS P
  RIGHT JOIN Sales.Order_Items AS OI
          ON P.Product_Id = OI.Product_Id
-         AND OI.Order_Id BETWEEN 1591 AND 1691
+        AND OI.Order_Id BETWEEN 1591 AND 1691
  ORDER BY OI.Order_Id DESC;
 ```
 

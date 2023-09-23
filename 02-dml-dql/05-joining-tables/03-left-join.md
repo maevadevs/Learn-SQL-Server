@@ -19,7 +19,14 @@
 
 ## Format
 
+- `OUTER` keyword is optional
+
 ```sql
+SELECT select_list
+  FROM T1
+  LEFT OUTER JOIN T2
+               ON join_predicate;
+
 SELECT select_list
   FROM T1
   LEFT JOIN T2
