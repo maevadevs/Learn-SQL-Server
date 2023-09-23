@@ -52,9 +52,9 @@ SELECT Product_Name,
        List_Price,
        Brand_Name
   FROM Production.Products AS P
- INNER JOIN Production.Categories AS C
+       JOIN Production.Categories AS C
          ON C.Category_Id = P.Category_Id
- INNER JOIN Production.Brands AS B
+       JOIN Production.Brands AS B
          ON B.Brand_Id = P.Brand_Id
  ORDER BY Product_Name DESC;
 ```
