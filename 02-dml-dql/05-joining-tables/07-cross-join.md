@@ -1,14 +1,31 @@
 # `CROSS JOIN`
 
+---
+
+- [Format](#format)
+- [Figure Explanations](#figure-explanations)
+- [Example of Cross Joins](#example-of-cross-joins)
+
+---
+
 - Returns a Cartesian product of rows from both tables
 - Join every single row from the first table with every single row from the second table
 - Does not establish a relationship between the joined tables
+  - No join condition is required
+- **NOTE: Cross-joins can negatively affect performance because we join every single row from one table to every single row in the second table**
 
 ## Format
 
 ```sql
 SELECT select_list
-FROM T1 CROSS JOIN T2;
+  FROM T1
+ CROSS JOIN T2;
+```
+
+- The count of result rows is the same as
+
+```sql
+SELECT (SELECT Count(*) FROM T1) * (SELECT Count(*) FROM T2)
 ```
 
 ## Figure Explanations
@@ -17,51 +34,46 @@ FROM T1 CROSS JOIN T2;
 
 ## Example of Cross Joins
 
-Combinations of all products and stores
+- Combinations of all products and stores
 
 ```sql
-SELECT
-    Product_Id,
-    Product_Name,
-    Store_Id,
-    0 AS Quantity -- Giving a default value
-FROM Production.Products 
-CROSS JOIN Sales.Stores
-ORDER BY
-    Product_Name,
-    Store_Id;
+SELECT P.Product_Id,
+       P.Product_Name,
+       S.Store_Id,
+       0 AS Quantity -- Giving a default value
+  FROM Production.Products P
+ CROSS JOIN Sales.Stores S
+ ORDER BY P.Product_Name,
+          S.Store_Id;
 ```
 
-Find products that have no sales across the stores
+- Find products that have no sales across the stores
 
 ```sql
-WITH SPS AS ( -- Store | Product | Sales
-    SELECT
-        S.Store_Id,
-        P.Product_Id,
-        SUM (Quantity * OI.List_Price) AS Sales
-    FROM Sales.Orders AS O
-    INNER JOIN Sales.Order_Items AS OI
-        ON OI.Order_Id = O.Order_Id
-    INNER JOIN Sales.Stores AS S 
-        ON S.Store_Id = O.Store_Id
-    INNER JOIN Production.Products AS P 
-        ON P.Product_Id = OI.Product_Id
-    GROUP BY
-        S.Store_Id,
-        P.Product_Id
+WITH SPS AS (
+    -- Store | Product | Sales
+    SELECT S.Store_Id,
+           P.Product_Id,
+           SUM (Quantity * OI.List_Price) AS Sales
+      FROM Sales.Orders AS O
+      JOIN Sales.Order_Items AS OI
+           ON O.Order_Id = OI.Order_Id
+      JOIN Sales.Stores AS S
+           ON O.Store_Id = S.Store_Id
+      JOIN Production.Products AS P
+           ON OI.Product_Id = P.Product_Id
+     GROUP BY S.Store_Id,
+              P.Product_Id
 )
-SELECT
-    S.Store_Id,
-    P.Product_Id,
-    ISNULL(Sales, 0) AS Sales
-FROM Sales.Stores AS S
+SELECT S.Store_Id,
+       P.Product_Id,
+       ISNULL(SPS.Sales, 0) AS Sales
+ FROM Sales.Stores AS S
 CROSS JOIN Production.Products AS P
-LEFT JOIN SPS
-    ON SPS.Store_Id = S.Store_Id
-    AND SPS.Product_Id = P.Product_Id
+ LEFT JOIN SPS
+       ON S.Store_Id = SPS.Store_Id
+      AND SPS.Product_Id = P.Product_Id
 WHERE Sales IS NULL
-ORDER BY
-    Product_Id,
-    Store_Id;
+ORDER BY Product_Id,
+         Store_Id;
 ```
