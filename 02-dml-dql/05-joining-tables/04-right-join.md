@@ -1,5 +1,18 @@
 # `RIGHT JOIN`/`RIGHT OUTER JOIN`
 
+---
+
+- [Format](#format)
+- [Figure Explanations](#figure-explanations)
+- [Example of Right Join](#example-of-right-join)
+- [Conditions in `WHERE` vs in `ON` clause](#conditions-in-where-vs-in-on-clause)
+  - [Case in `WHERE`: Finds the `Products` that belong to the `Order` id 100](#case-in-where-finds-the-products-that-belong-to-the-order-id-100)
+  - [Case in `ON`: Return all `Orders` but only the `Products` with id \> 100 has the associated product's information](#case-in-on-return-all-orders-but-only-the-products-with-id--100-has-the-associated-products-information)
+  - [Exclusive Right Join](#exclusive-right-join)
+  - [Right Join Exclusive Figure Explanation](#right-join-exclusive-figure-explanation)
+
+---
+
 - Join two or more tables on a column
 - Returns all rows from the right table and matching rows or `NULL` values from the left table
 - **Right-Prioirty: It is the same as left join with the order of the tables swapped**
@@ -8,8 +21,9 @@
 
 ```sql
 SELECT select_list
-FROM T1 RIGHT JOIN T2 
-    ON join_predicate;
+  FROM T1
+ RIGHT JOIN T2
+         ON join_predicate;
 ```
 
 - Include all rows from the right table that meet the predicate
@@ -23,29 +37,27 @@ FROM T1 RIGHT JOIN T2
 ## Example of Right Join
 
 ```sql
-SELECT
-    Product_Name,
-    Order_Id
-FROM Production.Products AS P 
-RIGHT JOIN Sales.Order_Items OI 
-    ON OI.Product_Id = P.Product_Id
-ORDER BY Order_Id;
+SELECT P.Product_Name,
+       OI.Order_Id
+  FROM Production.Products AS P
+ RIGHT JOIN Sales.Order_Items AS OI
+         ON OI.Product_Id = P.Product_Id
+ ORDER BY OI.Order_Id;
 ```
 
-We can run right join on multiple tables at once
+- We can run right join on multiple tables at once
 
 ```sql
-SELECT
-    P.Product_Name,
-    O.Order_Id,
-    OI.Item_Id,
-    O.Order_Date
-FROM Production.Products AS P 
-RIGHT JOIN Sales.Order_Items AS OI 
-    ON OI.Product_Id = P.Product_Id
-RIGHT JOIN Sales.Orders AS O 
-    ON O.Order_Id = OI.Order_Id
-ORDER BY Order_Id;
+SELECT P.Product_Name,
+       O.Order_Id,
+       OI.Item_Id,
+       O.Order_Date
+  FROM Production.Products AS P
+ RIGHT JOIN Sales.Order_Items AS OI
+         ON P.Product_Id = OI.Product_Id
+ RIGHT JOIN Sales.Orders AS O
+         ON OI.Order_Id = O.Order_Id
+ ORDER BY O.Order_Id;
 ```
 
 ## Conditions in `WHERE` vs in `ON` clause
@@ -55,34 +67,32 @@ ORDER BY Order_Id;
 
 ### Case in `WHERE`: Finds the `Products` that belong to the `Order` id 100
 
-Strict Condition: Excluded all orders where the `order_id` does not match the condition given value
+- Strict Condition: Excluded all orders where the `order_id` does not match the condition given value
 
 ```sql
-SELECT
-    P.Product_Id,
-    Product_Name,
-    Order_Id
-FROM Production.Products AS P 
-RIGHT JOIN Sales.Order_Items AS OI 
-    ON OI.Product_Id = P.Product_Id
-WHERE Order_Id = 100
-ORDER BY Order_Id DESC;
+SELECT P.Product_Id,
+       P.Product_Name,
+       OI.Order_Id
+  FROM Production.Products AS P
+ RIGHT JOIN Sales.Order_Items AS OI
+         ON P.Product_Id = OI.Product_Id
+ WHERE OI.Order_Id = 100
+ ORDER BY OI.Order_Id DESC;
 ```
 
 ### Case in `ON`: Return all `Orders` but only the `Products` with id > 100 has the associated product's information
 
-Flexible Condition: Substitute with `NULL` where `Product_Id` does not match the condition given value
+- Flexible Condition: Substitute with `NULL` where `Product_Id` does not match the condition given value
 
 ```sql
-SELECT
-    P.Product_Id,
-    Product_Name,
-    Order_Id
-FROM Production.Products AS P 
-RIGHT JOIN Sales.Order_Items AS OI 
-    ON OI.Product_Id = P.Product_Id
-    AND OI.Order_Id = 100
-ORDER BY Order_Id DESC;
+SELECT P.Product_Id,
+       P.Product_Name,
+       OI.Order_Id
+  FROM Production.Products AS P
+ RIGHT JOIN Sales.Order_Items AS OI
+         ON P.Product_Id = OI.Product_Id
+         AND OI.Order_Id BETWEEN 1591 AND 1691
+ ORDER BY OI.Order_Id DESC;
 ```
 
 ### Exclusive Right Join
@@ -90,15 +100,14 @@ ORDER BY Order_Id DESC;
 - We can get rows only in the right table but not in the left table by applying a `WHERE` condition with `NULL`
 
 ```sql
-SELECT
-    P.Product_Id,
-    Product_Name,
-    Order_Id
-FROM Sales.Order_Items AS OI 
-RIGHT JOIN Production.Products AS P
-    ON OI.Product_Id = P.Product_Id
-WHERE Order_Id IS NULL
-ORDER BY Order_Id;
+SELECT P.Product_Id,
+       P.Product_Name,
+       OI.Order_Id
+  FROM Sales.Order_Items AS OI
+ RIGHT JOIN Production.Products AS P
+         ON OI.Product_Id = P.Product_Id
+ WHERE OI.Order_Id IS NULL
+ ORDER BY OI.Order_Id;
 ```
 
 - SQL Server processes the `WHERE` clause after the `RIGHT JOIN` clause

@@ -42,7 +42,7 @@ SELECT P.Product_Name,
        OI.Order_Id
   FROM Production.Products AS P
   LEFT JOIN Sales.Order_Items AS OI
-         ON OI.Product_Id = P.Product_Id
+         ON P.Product_Id = OI.Product_Id
  ORDER BY OI.Order_Id;
 ```
 
@@ -55,9 +55,9 @@ SELECT P.Product_Name,
        O.Order_Date
   FROM Production.Products AS P
   LEFT JOIN Sales.Order_Items AS OI
-         ON OI.Product_Id = P.Product_Id
+         ON P.Product_Id = OI.Product_Id
   LEFT JOIN Sales.Orders AS O
-         ON O.Order_Id = OI.Order_Id
+         ON OI.Order_Id = O.Order_Id
  ORDER BY OI.Order_Id;
 ```
 
@@ -80,7 +80,7 @@ SELECT P.Product_Id,
        OI.Order_Id
   FROM Production.Products AS P
   LEFT JOIN Sales.Order_Items AS OI
-         ON OI.Product_Id = P.Product_Id
+         ON P.Product_Id = OI.Product_Id
  WHERE OI.Order_Id = 100
  ORDER BY OI.Order_Id DESC;
 ```
@@ -95,7 +95,7 @@ SELECT P.Product_Id,
        OI.Order_Id
   FROM Production.Products AS P
   LEFT JOIN Sales.Order_Items AS OI
-         ON OI.Product_Id = P.Product_Id
+         ON P.Product_Id = OI.Product_Id
         AND OI.Order_Id = 100
  ORDER BY OI.Order_Id DESC;
 ```
@@ -111,7 +111,7 @@ SELECT P.Product_Id,
        OI.Order_Id
   FROM Production.Products AS P
   LEFT JOIN Sales.Order_Items AS OI
-         ON OI.Product_Id = P.Product_Id
+         ON P.Product_Id = OI.Product_Id
  WHERE OI.Order_Id IS NULL
  ORDER BY OI.Order_Id;
 ```

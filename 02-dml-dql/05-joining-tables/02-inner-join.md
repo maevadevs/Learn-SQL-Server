@@ -35,28 +35,28 @@ SELECT select_list
 ## Example of Inner Join
 
 ```sql
-SELECT Product_Name,
-       Category_Name,
-       List_Price
+SELECT P.Product_Name,
+       C.Category_Name,
+       P.List_Price
   FROM Production.Products AS P
  INNER JOIN Production.Categories AS C
-         ON C.Category_Id = P.Category_Id
- ORDER BY Product_Name DESC;
+         ON P.Category_Id = C.Category_Id
+ ORDER BY P.Product_Name DESC;
 ```
 
 - We can run inner join on multiple tables at once
 
 ```sql
-SELECT Product_Name,
-       Category_Name,
-       List_Price,
-       Brand_Name
+SELECT P.Product_Name,
+       C.Category_Name,
+       P.List_Price,
+       B.Brand_Name
   FROM Production.Products AS P
        JOIN Production.Categories AS C
-         ON C.Category_Id = P.Category_Id
+         ON P.Category_Id = C.Category_Id
        JOIN Production.Brands AS B
-         ON B.Brand_Id = P.Brand_Id
- ORDER BY Product_Name DESC;
+         ON P.Brand_Id = B.Brand_Id
+ ORDER BY P.Product_Name DESC;
 ```
 
 ## Conditions in `WHERE` vs in `ON` clause

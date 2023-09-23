@@ -59,7 +59,7 @@ SELECT C.Id        AS Candidate_Id,
        E.Full_Name AS Employee_Name
   FROM hr.Candidates AS C
        JOIN hr.Employees AS E
-         ON E.Full_Name = C.Full_Name;
+         ON C.Full_Name = E.Full_Name;
 ```
 
 ### Inner Join Example Venn Diagram
@@ -92,7 +92,7 @@ SELECT C.Id        AS Candidate_Id,
        E.Full_Name AS Employee_Name
   FROM hr.Candidates AS C
   LEFT JOIN hr.Employees AS E
-         ON E.Full_Name = C.Full_Name;
+         ON C.Full_Name = E.Full_Name;
 ```
 
 ### Left Join Example Venn Diagram
@@ -110,7 +110,7 @@ SELECT C.Id        AS Candidate_Id,
        E.Full_Name AS Employee_Name
   FROM hr.Candidates AS C
   LEFT JOIN hr.Employees AS E
-         ON E.Full_Name = C.Full_Name
+         ON C.Full_Name = E.Full_Name
  WHERE E.Id IS NULL;
 ```
 
@@ -145,7 +145,7 @@ SELECT C.Id        AS Candidate_Id,
        E.Full_Name AS Employee_Name
   FROM hr.Candidates AS C
  RIGHT JOIN hr.Employees AS E
-         ON E.Full_Name = C.Full_Name;
+         ON C.Full_Name = E.Full_Name;
 ```
 
 ### Right Join Example Venn Diagram
@@ -163,7 +163,7 @@ SELECT C.Id        AS Candidate_Id,
        E.Full_Name AS Employee_Name
   FROM hr.Candidates AS C
  RIGHT JOIN hr.Employees AS E
-         ON E.Full_Name = C.Full_Name
+         ON C.Full_Name = E.Full_Name
  WHERE C.Id IS NULL;
 ```
 
@@ -197,7 +197,7 @@ SELECT C.Id        AS Candidate_Id,
        E.Full_Name AS Employee_Name
   FROM hr.Candidates AS C
   FULL JOIN hr.Employees AS E
-         ON E.Full_Name = C.Full_Name;
+         ON C.Full_Name = E.Full_Name;
 ```
 
 ### Full Join Example Venn Diagram
@@ -215,7 +215,7 @@ SELECT C.Id        AS Candidate_Id,
        E.Full_Name AS Employee_Name
   FROM hr.Candidates AS C
   FULL JOIN hr.Employees AS E
-         ON E.Full_Name = C.Full_Name
+         ON C.Full_Name = E.Full_Name;
  WHERE C.Id IS NULL
        OR E.Id IS NULL;
 ```
