@@ -8,10 +8,10 @@ GO
  *
  * This is used in 06-grouping-data/03-union-all-and-grouping-sets
  */
-SELECT B.Brand_Name                                               AS Brand,
-       C.Category_Name                                            AS Category,
+SELECT B.Brand_Name                                             AS Brand,
+       C.Category_Name                                          AS Category,
        P.Model_Year,
-       ROUND(SUM(Quantity * OI.List_Price * ( 1 - Discount )), 0) AS Sales
+       ROUND(SUM(Quantity * OI.List_Price * (1 - Discount)), 0) AS Sales
   INTO Sales.Sales_Summary -- Create into a new table
   FROM Sales.Order_Items AS OI
        JOIN Production.Products AS P
