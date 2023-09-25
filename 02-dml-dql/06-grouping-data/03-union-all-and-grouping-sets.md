@@ -1,5 +1,17 @@
 # `GROUPING SETS`
 
+---
+
+- [Creating a New Table for Example](#creating-a-new-table-for-example)
+- [`UNION ALL`](#union-all)
+- [`GROUPING SETS`](#grouping-sets-1)
+  - [Format](#format)
+  - [Example `GROUPING SETS`](#example-grouping-sets)
+- [`GROUPING()`](#grouping)
+  - [`GROUPING()` Example](#grouping-example)
+
+---
+
 - Generates multiple grouping sets in one query
 - Think of it as a way to generate in one single result set:
   - aggregates/subtotals by subgroups
@@ -11,30 +23,24 @@
 Retrieve the sales amount data by brand and category and populate it into the `Sales.Sales_Summary` table
 
 ```sql
-SELECT
-    B.Brand_Name AS Brand,
-    C.Category_Name AS Category,
-    P.Model_Year,
-    ROUND(
-        SUM(Quantity * OI.List_Price * (1 - Discount)),
-        0
-    ) AS Sales 
-INTO Sales.Sales_Summary -- Create into a new table
-FROM Sales.Order_Items AS OI
-INNER JOIN Production.Products AS P
-    ON P.Product_Id = OI.Product_Id
-INNER JOIN Production.Brands AS B 
-    ON B.Brand_Id = P.Brand_Id
-INNER JOIN Production.Categories AS C 
-    ON C.Category_Id = P.Category_Id
-GROUP BY
-    B.Brand_Name,
-    C.Category_Name,
-    P.Model_Year
-ORDER BY
-    B.Brand_Name,
-    C.Category_Name,
-    P.Model_Year;
+SELECT B.Brand_Name                                             AS Brand,
+       C.Category_Name                                          AS Category,
+       P.Model_Year,
+       ROUND(SUM(Quantity * OI.List_Price * (1 - Discount)), 0) AS Sales
+  INTO Sales.Sales_Summary -- Create into a new table
+  FROM Sales.Order_Items AS OI
+       JOIN Production.Products AS P
+         ON P.Product_Id = OI.Product_Id
+       JOIN Production.Brands AS B
+         ON B.Brand_Id = P.Brand_Id
+       JOIN Production.Categories AS C
+         ON C.Category_Id = P.Category_Id
+ GROUP BY B.Brand_Name,
+          C.Category_Name,
+          P.Model_Year
+ ORDER BY B.Brand_Name,
+          C.Category_Name,
+          P.Model_Year;
 ```
 
 - A *Grouping Set* is a group of columns by which you group
@@ -68,7 +74,8 @@ ORDER BY Brand;
 ```
 
 The following query defines an *Empty* grouping set `()`: It returns the sales amount for *All* brands and categories
-  - There is no grouping: This is the **Grand-Total**
+
+- There is no grouping: This is the **Grand-Total**
 
 ```sql
 SELECT SUM(Sales) AS Sales
@@ -123,7 +130,7 @@ SELECT
     NULL,
     SUM(Sales) AS Sales
 FROM Sales.Sales_Summary
-ORDER BY 
+ORDER BY
     Brand,
     Category;
 ```
@@ -131,7 +138,7 @@ ORDER BY
 - The query generated a single result set with the aggregates for all grouping sets as we expected
 - But it has two major problems:
   - The query is quite lengthy
-  - The query is slow: 
+  - The query is slow:
     - Execute four subqueries
     - Combine the result sets into a single one with `UNION ALL`
 

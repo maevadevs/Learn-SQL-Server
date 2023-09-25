@@ -25,7 +25,13 @@ SELECT select_list
 - The count of result rows is the same as
 
 ```sql
-SELECT (SELECT Count(*) FROM T1) * (SELECT Count(*) FROM T2)
+SELECT (
+           SELECT Count(*)
+             FROM T1
+       ) * (
+           SELECT Count(*)
+             FROM T2
+       )
 ```
 
 ## Figure Explanations
@@ -50,21 +56,21 @@ SELECT P.Product_Id,
 - Find products that have no sales across the stores
 
 ```sql
-WITH SPS AS (
-    -- Store | Product | Sales
-    SELECT S.Store_Id,
-           P.Product_Id,
-           SUM(OI.Quantity * OI.List_Price) AS Sales
-      FROM Sales.Orders AS O
-           JOIN Sales.Order_Items AS OI
-             ON O.Order_Id = OI.Order_Id
-           JOIN Sales.Stores AS S
-             ON O.Store_Id = S.Store_Id
-           JOIN Production.Products AS P
-             ON OI.Product_Id = P.Product_Id
-     GROUP BY S.Store_Id,
-              P.Product_Id
-)
+  WITH SPS AS (
+           -- Store | Product | Sales
+           SELECT S.Store_Id,
+                  P.Product_Id,
+                  SUM(OI.Quantity * OI.List_Price) AS Sales
+             FROM Sales.Orders AS O
+                  JOIN Sales.Order_Items AS OI
+                    ON O.Order_Id = OI.Order_Id
+                  JOIN Sales.Stores AS S
+                    ON O.Store_Id = S.Store_Id
+                  JOIN Production.Products AS P
+                    ON OI.Product_Id = P.Product_Id
+            GROUP BY S.Store_Id,
+                     P.Product_Id
+       )
 SELECT S.Store_Id,
        P.Product_Id,
        ISNULL(SPS.Sales, 0) AS Sales

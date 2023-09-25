@@ -82,9 +82,9 @@ SELECT Customer_Id,
        Phone
   FROM Sales.Customers
  WHERE Customer_Id NOT IN (
-       SELECT Customer_Id
-         FROM Sales.Customers
-        WHERE Phone IS NULL
+           SELECT Customer_Id
+             FROM Sales.Customers
+            WHERE Phone IS NULL
        )
  ORDER BY First_Name,
           Last_Name;
