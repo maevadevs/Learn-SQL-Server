@@ -54,26 +54,26 @@ WITH SPS AS (
     -- Store | Product | Sales
     SELECT S.Store_Id,
            P.Product_Id,
-           SUM (Quantity * OI.List_Price) AS Sales
+           SUM(OI.Quantity * OI.List_Price) AS Sales
       FROM Sales.Orders AS O
-      JOIN Sales.Order_Items AS OI
-           ON O.Order_Id = OI.Order_Id
-      JOIN Sales.Stores AS S
-           ON O.Store_Id = S.Store_Id
-      JOIN Production.Products AS P
-           ON OI.Product_Id = P.Product_Id
+           JOIN Sales.Order_Items AS OI
+             ON O.Order_Id = OI.Order_Id
+           JOIN Sales.Stores AS S
+             ON O.Store_Id = S.Store_Id
+           JOIN Production.Products AS P
+             ON OI.Product_Id = P.Product_Id
      GROUP BY S.Store_Id,
               P.Product_Id
 )
 SELECT S.Store_Id,
        P.Product_Id,
        ISNULL(SPS.Sales, 0) AS Sales
- FROM Sales.Stores AS S
-CROSS JOIN Production.Products AS P
- LEFT JOIN SPS
-       ON S.Store_Id = SPS.Store_Id
-      AND SPS.Product_Id = P.Product_Id
-WHERE Sales IS NULL
-ORDER BY Product_Id,
-         Store_Id;
+  FROM Sales.Stores AS S
+ CROSS JOIN Production.Products AS P
+  LEFT JOIN SPS
+         ON S.Store_Id = SPS.Store_Id
+        AND SPS.Product_Id = P.Product_Id
+ WHERE Sales IS NULL
+ ORDER BY P.Product_Id,
+          S.Store_Id;
 ```
