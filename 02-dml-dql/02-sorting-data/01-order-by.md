@@ -27,8 +27,8 @@
 
 ```sql
 - FROM
+- JOIN
 - ON
-- OUTER
 - WHERE
 - GROUP BY
 - HAVING

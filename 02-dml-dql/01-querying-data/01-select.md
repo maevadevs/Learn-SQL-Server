@@ -44,8 +44,8 @@ SELECT Col_1,
 
 ```sql
 - FROM
+- JOIN
 - ON
-- OUTER
 - WHERE
 - GROUP BY
 - HAVING

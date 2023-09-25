@@ -87,28 +87,28 @@ SELECT "State",
 ### Using `GROUP BY` with `MIN()` and `MAX()` example
 
 ```sql
-SELECT Brand_Name,
-       MIN(List_Price) AS Min_Price,
-       MAX(List_Price) AS Max_Price
+SELECT B.Brand_Name,
+       MIN(P.List_Price) AS Min_Price,
+       MAX(P.List_Price) AS Max_Price
   FROM Production.Products AS P
        JOIN Production.Brands AS B
          ON B.Brand_Id = P.Brand_Id
- WHERE Model_Year = 2018
- GROUP BY Brand_Name
- ORDER BY Brand_Name;
+ WHERE P.Model_Year = 2018
+ GROUP BY B.Brand_Name
+ ORDER BY B.Brand_Name;
 ```
 
 ### Using `GROUP BY` with `AVG()` example
 
 ```sql
-SELECT Brand_Name,
-       AVG(List_Price) AS Avg_Price
+SELECT B.Brand_Name,
+       AVG(P.List_Price) AS Avg_Price
   FROM Production.Products AS P
        JOIN Production.Brands AS B
          ON B.Brand_Id =P.Brand_Id
- WHERE Model_Year = 2018
- GROUP BY Brand_Name
- ORDER BY Brand_Name;
+ WHERE P.Model_Year = 2018
+ GROUP BY B.Brand_Name
+ ORDER BY B.Brand_Name;
 ```
 
 ### Using `GROUP BY` with `SUM()` example

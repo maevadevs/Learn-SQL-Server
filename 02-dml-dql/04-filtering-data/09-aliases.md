@@ -46,7 +46,16 @@ SELECT Category_Name AS "Product Category"
   - SQL Server processes the clauses in the following sequence:
 
 ```sql
-FROM -> ON -> OUTER -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> TOP
+- FROM
+- JOIN
+- ON
+- WHERE
+- GROUP BY
+- HAVING
+- SELECT
+- DISTINCT
+- ORDER BY
+- TOP
 ```
 
 - **Aliases cannot be used by other expressions within the same `SELECT` list**
