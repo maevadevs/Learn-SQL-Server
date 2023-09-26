@@ -1,5 +1,12 @@
 # Correlated Subquery
 
+---
+
+- [Example](#example)
+  - [Equivalent Pseudo-Code](#equivalent-pseudo-code)
+
+---
+
 - Also known as a *Repeating Subquery*
 - A subquery that depends on the outer query for its values
   - Normally, a subquery executes first before the outer query
@@ -12,34 +19,30 @@
 
 ## Example
 
-Finds the products whose list price is equal to the highest list price of the products within the same category
-
-**The key here is to use table aliases**
+- Finds the products whose list price is equal to the highest list price of the products within the same category
+- **The key here is to use table aliases**
 
 ```sql
-SELECT
-    Product_Name,
-    List_Price,
-    Category_Id
-FROM Production.Products AS p1
-WHERE List_Price IN (
-    -- List of max_prices per product category
-    SELECT MAX(p2.List_Price)
-    FROM Production.Products AS p2
-    WHERE p2.Category_Id = p1.Category_Id
-    GROUP BY p2.Category_Id
-)
-ORDER BY 
-    Category_Id,
-    Product_Name;
+SELECT Product_Name,
+       List_Price,
+       Category_Id
+  FROM Production.Products AS p1
+ WHERE List_Price IN (
+           -- List of max_prices per product category
+           SELECT MAX(p2.List_Price)
+             FROM Production.Products AS p2
+            WHERE p2.Category_Id = p1.Category_Id
+            GROUP BY p2.Category_Id
+       )
+ ORDER BY Category_Id,
+          Product_Name;
 ```
 
-For each product evaluated by the outer query:
-
-- Find the highest price of all products in its category
-- If the price of the current product is equal to the highest price of all products in its category
-  - Include the product in the result set
-- This process continues for the next product and so on
+- For each product evaluated by the outer query:
+  - Find the highest price of all products in its category
+  - If the price of the current product is equal to the highest price of all products in its category
+    - Include the product in the result set
+  - This process continues for the next product and so on
 
 ### Equivalent Pseudo-Code
 
