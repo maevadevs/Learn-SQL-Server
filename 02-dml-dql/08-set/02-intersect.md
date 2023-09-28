@@ -1,5 +1,13 @@
 # `INTERSECT`
 
+---
+
+- [Format](#format)
+- [Figure Explanations](#figure-explanations)
+- [Example of `INTERSECT`](#example-of-intersect)
+
+---
+
 - Return the intersection of the result sets of two or more queries
 - Return distinct rows that appear in both
 - There are 2 requirements:
@@ -9,9 +17,11 @@
 ## Format
 
 ```sql
-SELECT Columns from Table1
+   SELECT Columns
+     FROM Table1
 INTERSECT
-SELECT Columns from Table2
+   SELECT Columns
+     FROM Table2
 ```
 
 ## Figure Explanations
@@ -20,13 +30,13 @@ SELECT Columns from Table2
 
 ## Example of `INTERSECT`
 
-Return the common cities between Customers' cities and Stores' cities
+- Return the common cities between Customers' cities and Stores' cities
 
 ```sql
-SELECT City
-FROM Sales.Customers
+   SELECT City
+     FROM Sales.Customers
 INTERSECT
-SELECT City
-FROM Sales.Stores
-ORDER BY City;
+   SELECT City
+     FROM Sales.Stores
+    ORDER BY City;
 ```
