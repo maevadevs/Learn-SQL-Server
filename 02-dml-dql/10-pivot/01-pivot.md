@@ -111,6 +111,7 @@ SELECT *
 - Instead of manually listing the column names in `PIVOT()`, we can use `QUOTENAME()` to generate them
 - `LEFT()` removes the last comma from the `@columns` string
 - The `QUOTENAME()` function wraps the category name by the square brackets
+  - This helps when the values to be columns have spaces
 
 ```sql
 --Generating the column names list into a variable
