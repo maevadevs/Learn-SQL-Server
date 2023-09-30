@@ -36,12 +36,12 @@ Computed column | Calculated value
 
 ```sql
 CREATE TABLE Sales.Promotions (
-      Promotion_Id INT PRIMARY KEY IDENTITY (1, 1),
-    Promotion_Name VARCHAR (255) NOT NULL,
-          Discount NUMERIC (3, 2) DEFAULT 0,
-      "Start_Date" DATE NOT NULL,
-      Expired_Date DATE NOT NULL
-);
+             Promotion_Id INT PRIMARY KEY IDENTITY (1, 1),
+           Promotion_Name VARCHAR (255) NOT NULL,
+                 Discount NUMERIC (3, 2) DEFAULT 0,
+             "Start_Date" DATE NOT NULL,
+             Expired_Date DATE NOT NULL
+       );
 ```
 
 - `Promotion_Id` is an identity column
@@ -53,17 +53,17 @@ CREATE TABLE Sales.Promotions (
 
 ```sql
 INSERT INTO Sales.Promotions (
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 VALUES (
-    '2018 Summer Promotion',
-    0.15,
-    '20180601',
-    '20180901'
-);
+           '2018 Summer Promotion',
+           0.15,
+           '20180601',
+           '20180901'
+       );
 ```
 
 - We did not specify a value for the `Promotion_Id` because SQL Server provides the value for this column automatically
@@ -77,40 +77,40 @@ VALUES (
 
 ```sql
 INSERT INTO Sales.Promotions (
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 OUTPUT Inserted.Promotion_Id
 VALUES (
-    '2018 Fall Promotion',
-    0.15,
-    '20181001',
-    '20181101'
-);
+           '2018 Fall Promotion',
+           0.15,
+           '20181001',
+           '20181101'
+       );
 ```
 
 - Instead of just the PK, we can also specify multiple columns that we want to show
 
 ```sql
 INSERT INTO Sales.Promotions (
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 OUTPUT Inserted.Promotion_Id,
        Inserted.Promotion_Name,
        Inserted.Discount,
        Inserted.Start_Date,
        Inserted.Expired_Date
 VALUES (
-    '2018 Winter Promotion',
-    0.2,
-    '20181201',
-    '20190101'
-);
+           '2018 Winter Promotion',
+           0.2,
+           '20181201',
+           '20190101'
+       );
 ```
 
 ### Example of `INSERT` with Explicit Identity
@@ -137,19 +137,19 @@ SET IDENTITY_INSERT Schema_Name.Table_Name OFF;
 SET IDENTITY_INSERT Sales.Promotions ON;
 
 INSERT INTO Sales.Promotions (
-    Promotion_Id,
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Id,
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 VALUES (
-    4,
-    '2019 Spring Promotion',
-    0.25,
-    '20190201',
-    '20190301'
-);
+           4,
+           '2019 Spring Promotion',
+           0.25,
+           '20190201',
+           '20190301'
+       );
 
 -- Turn off explicit identity insert
 SET IDENTITY_INSERT Sales.Promotions OFF;
@@ -178,11 +178,11 @@ VALUES (Value_List_1),
 
 ```sql
 INSERT INTO Sales.Promotions (
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 VALUES ('2019 Summer Promotion',0.15,'20190601','20190901'),
        ('2019 Fall Promotion',0.20,'20191001','20191101'),
        ('2019 Winter Promotion',0.25,'20191201','20200101');
@@ -192,11 +192,11 @@ VALUES ('2019 Summer Promotion',0.15,'20190601','20190901'),
 
 ```sql
 INSERT INTO Sales.Promotions (
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 OUTPUT Inserted.Promotion_Id
 VALUES ('2019 Summer Promotion',0.15,'20190601','20190901'),
        ('2019 Fall Promotion',0.20,'20191001','20191101'),
@@ -207,11 +207,11 @@ VALUES ('2019 Summer Promotion',0.15,'20190601','20190901'),
 
 ```sql
 INSERT INTO Sales.Promotions (
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 OUTPUT Inserted.Promotion_Id,
        Inserted.Promotion_Name,
        Inserted.Discount,

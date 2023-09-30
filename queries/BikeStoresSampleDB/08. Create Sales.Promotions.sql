@@ -22,19 +22,19 @@ GO
 SET IDENTITY_INSERT Sales.Promotions ON;
 
 INSERT INTO Sales.Promotions (
-    Promotion_Id,
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Id,
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 VALUES (
-    4,
-    '2019 Spring Promotion',
-    0.25,
-    '20190201',
-    '20190301'
-);
+           4,
+           '2019 Spring Promotion',
+           0.25,
+           '20190201',
+           '20190301'
+       );
 
 -- Turn off explicit identity insert
 SET IDENTITY_INSERT Sales.Promotions OFF;
@@ -43,11 +43,12 @@ GO
 
 -- Multiple inserts
 INSERT INTO Sales.Promotions (
-    Promotion_Name,
-    Discount,
-    Start_Date,
-    Expired_Date
-)
+           Promotion_Id,
+           Promotion_Name,
+           Discount,
+           "Start_Date",
+           Expired_Date
+       )
 VALUES ('2019 Summer Promotion',0.15,'20190601','20190901'),
        ('2019 Fall Promotion',0.20,'20191001','20191101'),
        ('2019 Winter Promotion',0.25,'20191201','20200101');
