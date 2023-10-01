@@ -1,35 +1,13 @@
-# `UPDATE`
+USE BikeStores;
 
----
+GO
 
-- [Examples of `UPDATE`](#examples-of-update)
-  - [Update a Single Column For All Rows](#update-a-single-column-for-all-rows)
-  - [Update Multiple Columns](#update-multiple-columns)
-
----
-
-- Allows to modify/change/update existing data in tables
-
-1. Specify the name of the table from which the data is to be updated
-2. Specify a list of columns and their new values to be updated
-3. Specify the conditions in the `WHERE` clause for selecting the rows that are to be updated
-
-- **Note: The `WHERE` clause is optional. However, if the `WHERE` clause is skipped, all rows in the table are updated and overwritten**
-
-```sql
-UPDATE Schema.Name.Table_Name
-   SET Column_1 = Value_1,
-       Column_2 = Value_2,
-       ...
-       Column_N = Value_N
-[WHERE condition];
-```
-
-## Examples of `UPDATE`
-
-- Let's create a new table for demonstration
-
-```sql
+/**
+ * Create or Restore BikeStores Database
+ * - Load data for Sales.Taxes
+ *
+ * This is used in 11-modifying-data/02-update
+ */
 CREATE TABLE Sales.Taxes (
                        Tax_Id INT PRIMARY KEY IDENTITY (1, 1),
                       "State" VARCHAR (50) NOT NULL UNIQUE,
@@ -39,11 +17,9 @@ CREATE TABLE Sales.Taxes (
            Max_Local_Tax_Rate DEC (3, 2),
                    Updated_At datetime
        );
-```
 
-- And populate the table with some data
+GO
 
-```sql
 INSERT INTO Sales.Taxes(State,State_Tax_Rate,Avg_Local_Tax_Rate,Max_Local_Tax_Rate) VALUES('Alabama',0.04,0.05,0.07);
 INSERT INTO Sales.Taxes(State,State_Tax_Rate,Avg_Local_Tax_Rate,Max_Local_Tax_Rate) VALUES('Alaska',0,0.01,0.07);
 INSERT INTO Sales.Taxes(State,State_Tax_Rate,Avg_Local_Tax_Rate,Max_Local_Tax_Rate) VALUES('Arizona',0.05,0.02,0.05);
@@ -95,25 +71,5 @@ INSERT INTO Sales.Taxes(State,State_Tax_Rate,Avg_Local_Tax_Rate,Max_Local_Tax_Ra
 INSERT INTO Sales.Taxes(State,State_Tax_Rate,Avg_Local_Tax_Rate,Max_Local_Tax_Rate) VALUES('Wisconsin',0.05,0,0.01);
 INSERT INTO Sales.Taxes(State,State_Tax_Rate,Avg_Local_Tax_Rate,Max_Local_Tax_Rate) VALUES('Wyoming',0.04,0.01,0.02);
 INSERT INTO Sales.Taxes(State,State_Tax_Rate,Avg_Local_Tax_Rate,Max_Local_Tax_Rate) VALUES('D.C.',0.05,0,0);
-```
 
-### Update a Single Column For All Rows
-
-- When we do not apply `WHERE` conditions, the update applies to all the rows
-
-```sql
-UPDATE Sales.Taxes
-   SET updated_at = GETDATE();
-```
-
-### Update Multiple Columns
-
-- Increase the max local tax rate by 2% and the average local tax rate by 1% for states that have max local tax rate of 1%
-
-```sql
-UPDATE Sales.Taxes
-   SET Max_Local_Tax_Rate += 0.02,
-       Avg_Local_Tax_Rate += 0.01,
-       updated_at = GETDATE()
- WHERE Max_Local_Tax_Rate = 0.01;
-```
+GO
