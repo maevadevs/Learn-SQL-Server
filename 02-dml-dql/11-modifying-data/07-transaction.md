@@ -84,8 +84,8 @@ INSERT INTO Invoice_Items (
            Amount,
            Tax
        )
-VALUES (10, 1, 'Keyboard', 70, 0.08),
-       (20, 1, 'Mouse', 50, 0.08);
+VALUES (10, @invoice_id, 'Keyboard', 70, 0.08),
+       (20, @invoice_id, 'Mouse', 50, 0.08);
 
 -- 3. Calculate the total using the Invoice_Items table and update it to the Invoices table
 
@@ -93,7 +93,7 @@ UPDATE Invoices
    SET total = (
            SELECT SUM(Amount * (1 + Tax))
              FROM Invoice_Items
-            WHERE Invoice_Id = 1
+            WHERE Invoice_Id = @invoice_id
        );
 
 COMMIT;
