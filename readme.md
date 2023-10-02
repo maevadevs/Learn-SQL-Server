@@ -96,6 +96,7 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 - [`UPDATE JOIN`](02-dml-dql/11-modifying-data/04-update-join.md)
 - [`DELETE`](02-dml-dql/11-modifying-data/05-delete.md)
 - [`MERGE`](02-dml-dql/11-modifying-data/06-merge.md)
+- [Transaction](02-dml-dql/11-modifying-data/07-transaction.md)
 
 ---
 
