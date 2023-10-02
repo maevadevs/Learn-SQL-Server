@@ -20,6 +20,16 @@ DROP TABLE IF EXISTS Sales.Stores;
 DROP TABLE IF EXISTS Sales.Feedback;
 DROP TABLE IF EXISTS Hr.Employees;
 DROP TABLE IF EXISTS Hr.Candidates;
+DROP TABLE IF EXISTS Sales.Sales_Summary;
+DROP TABLE IF EXISTS Sales.Promotions;
+DROP TABLE IF EXISTS Sales.Addresses;
+DROP TABLE IF EXISTS Sales.Taxes;
+DROP TABLE IF EXISTS Sales.Targets;
+DROP TABLE IF EXISTS Sales.Commissions;
+DROP TABLE IF EXISTS Sales.Category;
+DROP TABLE IF EXISTS Sales.Category_Staging;
+DROP TABLE IF EXISTS Invoices;
+DROP TABLE IF EXISTS Invoice_Items;
 
 -- drop the schemas
 

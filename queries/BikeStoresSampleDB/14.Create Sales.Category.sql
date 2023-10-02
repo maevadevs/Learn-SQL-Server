@@ -19,7 +19,7 @@ CREATE TABLE Sales.Category (
 GO
 
 --Insert values into Category
-INSERT INTO Sales.Category(
+INSERT INTO Sales.Category (
            Category_Id,
            Category_Name,
            Amount

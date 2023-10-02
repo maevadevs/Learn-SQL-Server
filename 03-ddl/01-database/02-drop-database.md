@@ -1,5 +1,11 @@
 # `DROP DATABASE`
 
+---
+
+- [Example of Dropping a Database](#example-of-dropping-a-database)
+
+---
+
 Allows to delete a database in an SQL Server instance
 
 ```sql
