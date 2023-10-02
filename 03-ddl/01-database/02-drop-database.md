@@ -14,7 +14,7 @@ DROP DATABASE [IF EXISTS] Database_Name [,Database_Name2, ...];
 
 - **`IF EXISTS` option is available from SQL Server 2016 (13.x)**
   - Conditionally only delete a database if the database already exists, else skip
-  - **note: If you attempt to delete a nonexisting database without specifying the `IF EXISTS` option, SQL Server will issue an error**
+  - **NOTE: If you attempt to delete a nonexisting database without specifying the `IF EXISTS` option, SQL Server will issue an error**
 - **NOTE:**
   - `DROP DATABASE` deletes the database + the physical disk files used by the database
   - **Make sure to have a backup of the database in case you want to restore it in the future**
