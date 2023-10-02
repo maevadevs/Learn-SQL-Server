@@ -2,7 +2,7 @@
  * Get a list of fields in a specific table in a DB
  */
 
- -- Replace this with the database you want to use
+-- Replace this with the database you want to use
 USE [<Your Database Name Here>];
 
 DECLARE @tableName NVARCHAR(100);
@@ -10,19 +10,19 @@ DECLARE @tableName NVARCHAR(100);
 -- Set the name of the table you want to list the fields for
 SET @tableName = '<Your Table Name Here>';
 
-SELECT
-	schema_name(tab.schema_id) AS schema_name,
-    tab.name AS table_name,
-    col.column_id,
-    col.name AS column_name,
-    t.name AS data_type,
-    col.max_length,
-    col.precision
-FROM sys.tables AS tab
-INNER JOIN sys.columns AS col
-    ON tab.object_id = col.object_id
-LEFT JOIN sys.types AS t
-    ON col.user_type_id = t.user_type_id
-WHERE tab.name = @tableName
-ORDER BY column_name;
+SELECT Schema_Name(TAB.Schema_Id) AS Schema_Name,
+       TAB.Name                   AS Table_Name,
+       COL.Column_Id,
+       COL.Name                   AS Column_Name,
+       TP.Name                    AS Data_Type,
+       COL.Max_Length,
+       COL.Precision
+  FROM SYS.Tables AS TAB
+ INNER JOIN SYS.Columns AS COL
+         ON TAB.Object_Id = COL.Object_Id
+  LEFT JOIN SYS.Types AS TP
+         ON COL.User_Type_Id = TP.User_Type_Id
+ WHERE TAB.Name = @tableName
+ ORDER BY COL.Column_Id;
+
 GO

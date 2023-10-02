@@ -2,5 +2,6 @@
 USE [<Your Database Name Here>];
 
 SELECT *
-FROM [<Your Database Name Here>].INFORMATION_SCHEMA.TABLES;
+  FROM [<Your Database Name Here>].INFORMATION_SCHEMA.TABLES;
+
 GO

@@ -3,4 +3,5 @@
  */
 
 SELECT @@version AS SqlServerVersion;
+
 GO

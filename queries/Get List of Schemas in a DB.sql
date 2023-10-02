@@ -4,12 +4,12 @@
 -- Replace this with the database you want to use
 USE [<Your Database Name Here>];
 
-SELECT
-	schemas.name AS schema_name,
-    schemas.schema_id,
-    users.name AS schema_owner
-FROM sys.schemas AS schemas
-INNER JOIN sys.sysusers AS users
-    ON users.uid = schemas.principal_id
-ORDER BY schemas.name;
+SELECT SCH.Name      AS Schema_Name,
+       SCH.Schema_Id,
+       USR.Name      AS Schema_Owner
+  FROM Sys.Schemas AS SCH
+ INNER JOIN Sys.SysUsers AS USR
+         ON USR.uid = SCH.Principal_Id
+ ORDER BY SCH.Name;
+
 GO
