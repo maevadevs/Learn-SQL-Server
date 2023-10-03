@@ -112,8 +112,8 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 ### For Schemas
 
 - [`CREATE SCHEMA`](03-ddl/02-schema/01-create-schema.md)
-- [`DROP SCHEMA`](03-ddl/02-schema/02-drop-schema.md)
-- [`ALTER SCHEMA`](03-ddl/02-schema/03-alter-schema.md)
+- [`ALTER SCHEMA`](03-ddl/02-schema/02-alter-schema.md)
+- [`DROP SCHEMA`](03-ddl/02-schema/03-drop-schema.md)
 
 ### For Tables
 
