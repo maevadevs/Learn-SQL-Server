@@ -1,17 +1,32 @@
 # `CREATE SCHEMA`
 
-- **Schema** - A collection of database objects for organization-purposes
-  - Tables
-  - Views
-  - Triggers
-  - Stored Procedures
-  - Indexes
-- A Schema is associated with a username (*Schema Owner*)
+---
+
+- [Benefits of Schemas](#benefits-of-schemas)
+- [Schema Example](#schema-example)
+- [Listing All Schemas and Schema Owners in Current Database](#listing-all-schemas-and-schema-owners-in-current-database)
+- [Built-In Schemas for SQL Server](#built-in-schemas-for-sql-server)
+  - [`dbo`](#dbo)
+  - [`sys`](#sys)
+  - [`INFORMATION_SCHEMA`](#information_schema)
+- [Using `CREATE SCHEMA`](#using-create-schema)
+- [Example of `CREATE SCHEMA`](#example-of-create-schema)
+
+---
+
+- **Schema**
+  - A collection of *database objects* for organization-purposes
+    - Tables
+    - Views
+    - Triggers
+    - Stored Procedures
+    - Indexes
+- Associated with a username (*Schema Owner*)
   - Owner of the logically-related database objects
 - One-to-Many Relationship
   - A Schema always belongs to *One Database*
   - A Database may have *one or multiple Schemas*
-- Every SQL Server schema must have:
+- Every SQL Server schema must have
   - A Database user
   - A Schema owner
 - **The schema is a database-scoped entity**
@@ -29,30 +44,28 @@
 
 ## Schema Example
 
-In the `BikeStoresSampleDB`, there are 3 Schemas:
-
-- `Hr`
-- `Production`
-- `Sales`
-
-An object within a schema is qualified as `Schema_Name.Object_Name`
-
-- It is possible for 2 tables in different schemas to share the same name
-- In those cases, use the qualified name to distinguish the tables from each other
-- Example: `Hr.Employees` vs `Sales.Employees`
+- In the `BikeStoresSampleDB`, there are 3 Schemas:
+  - `Hr`
+  - `Production`
+  - `Sales`
+- An object within a schema is qualified as `Schema_Name.Object_Name`
+- *It is possible for 2 tables in different schemas to share the same name*
+  - In those cases, use the qualified name to distinguish the tables from each other
+  - Example: `Hr.Employees` vs `Sales.Employees`
 
 ## Listing All Schemas and Schema Owners in Current Database
 
-- In SSMS, Schemas are listed under `Security > Schemas` of the current database
+- In SSMS, Schemas are listed under `[DatabaseName] > Security > Schemas` of the current database
 - Alternatively, we can run the following query on `Sys.Schemas`:
 
 ```sql
-SELECT       S.Name               AS Schema_Name
-            ,U.Name               AS Schema_Owner
-FROM        Sys.Schemas           AS S 
-INNER JOIN  Sys.Sysusers          AS U 
-  ON        U.Uid = S.Principal_Id
-ORDER BY    S.Name;
+SELECT SCH.Name      AS Schema_Name,
+       SCH.Schema_Id,
+       USR.Name      AS Schema_Owner
+  FROM Sys.Schemas AS SCH
+ INNER JOIN Sys.SysUsers AS USR
+         ON USR.Uid = SCH.Principal_Id
+ ORDER BY SCH.Name;
 ```
 
 ## Built-In Schemas for SQL Server
@@ -86,30 +99,32 @@ SELECT Schema_Name() AS DefaultSchema;
 
 ## Using `CREATE SCHEMA`
 
-To create a new schema in the current database
+- To create a new schema in the current database
 
 ```sql
-CREATE SCHEMA   Schema_Name
-[AUTHORIZATION  Owner_Name];
+CREATE SCHEMA Schema_Name
+[AUTHORIZATION Owner_Name];
 ```
 
 ## Example of `CREATE SCHEMA`
 
 ```sql
 CREATE SCHEMA Customer_Services;
+
 GO
 ```
 
-After creating a schema, we can start populating it with objects
+- After creating a schema, we can start populating it with objects
+- `GO` instructs to send the SQL statements up to the `GO` statement to the server to be executed
 
 ```sql
---Create a "Jobs" table in the "Customer_Services" schema
-CREATE TABLE      Customer_Services.Jobs 
-(
-     Job_Id       INT             PRIMARY KEY 
-                                  IDENTITY
-    ,Customer_Id  INT             NOT NULL
-    ,Description  VARCHAR(200)
-    ,Created_At   DATETIME2       NOT NULL
-);
+-- Create a "Jobs" table in the "Customer_Services" schema
+CREATE TABLE Customer_Services.Jobs (
+                Job_Id INT PRIMARY KEY IDENTITY,
+           Customer_Id INT NOT NULL,
+           Description VARCHAR(200),
+            Created_At DATETIME2 NOT NULL
+       );
+
+GO
 ```

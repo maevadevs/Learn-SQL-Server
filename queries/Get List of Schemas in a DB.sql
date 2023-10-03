@@ -9,7 +9,7 @@ SELECT SCH.Name      AS Schema_Name,
        USR.Name      AS Schema_Owner
   FROM Sys.Schemas AS SCH
  INNER JOIN Sys.SysUsers AS USR
-         ON USR.uid = SCH.Principal_Id
+         ON USR.Uid = SCH.Principal_Id
  ORDER BY SCH.Name;
 
 GO
