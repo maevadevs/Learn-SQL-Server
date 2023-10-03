@@ -125,4 +125,5 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 
 ### For Sequences
 
-- [`SEQUENCE`](03-ddl/05-sequence/01-sequence.md)
+- [`SEQUENCE`](03-ddl/05-sequence/01-sequence-object.md)
+- [`CREATE SEQUENCE`](03-ddl/05-sequence/02-create-sequence.md)

@@ -1,176 +1,169 @@
 # `CREATE SEQUENCE`
 
-Created Sequence Objects can be found in `Programmability` > `Sequences`
+---
+
+- [Example `CREATE SEQUENCE`](#example-create-sequence)
+- [Example of Usage In A Table](#example-of-usage-in-a-table)
+- [Example of Usage In Multiple Tables](#example-of-usage-in-multiple-tables)
+- [`SEQUENCE` vs `IDENTITY` Column](#sequence-vs-identity-column)
+  - [When To Use Sequence](#when-to-use-sequence)
+- [Getting Sequences Info](#getting-sequences-info)
+
+---
+
+- Created Sequence Objects can be found in `Programmability` > `Sequences`
 
 ```sql
-CREATE SEQUENCE     [Schema_Mame.] Sequence_Name  
-[ AS                integer_type ]  
-[ START WITH        start_value ]  
-[ INCREMENT BY      increment_value ]  
-[ { MINVALUE        [ min_value ] } | { NO MINVALUE } ]  
-[ { MAXVALUE        [ max_value ] } | { NO MAXVALUE } ]  
-[ CYCLE | { NO CYCLE } ]  
-[ { CACHE [ cache_size ] } | { NO CACHE } ];
+CREATE SEQUENCE [Schema_Mame.]Sequence_Name [AS integer_type]
+       [START WITH start_value]
+       [INCREMENT BY increment_value]
+       [{MINVALUE [min_value]} | {NO MINVALUE}]
+       [{MAXVALUE [max_value]} | {NO MAXVALUE}]
+       [CYCLE | {NO CYCLE}]
+       [{CACHE [cache_size]} | {NO CACHE}];
 ```
 
-- `Sequence_Name` - A unique name for the sequence which is in the current database
-- `integer_type` - Any valid SQL integer-type (Default: `BIGINT`)
-- `start_value` - The first value that the sequence returns
-  - Must be between the range `[min_value, max_value]`
-- `increment_value` - Used when calling the `NEXT VALUE FOR` function
-  - Can be negative for descneding-sequence
-  - Cannot be zero
-- `min_value ` - Lower-bound for the sequence object
-  - Defaults to the minimum value of the data type
-- `max_value` - Upper-bound for the sequence object
-  - Default: The maximum value of the data type
-- `CYCLE | NO CYCLE`
-  - `CYCLE` - The value of the sequence object restart from the `min_value` for ascending sequence object, `max_value` for descending sequence object
-  - Default: `NO CYCLE`
-- `cache_size` - Number of values to cache to improve the performance of the sequence
-  - Minimize the number of disk I/O required to generate sequence numbers
-  - Default: `NO CACHE`
+Placeholder|Description
+:-|:-
+`Sequence_Name`|- A unique name for the sequence in the current database
+`integer_type`|- Any valid SQL integer-type (Default: `BIGINT`)
+`start_value`|- The first value that the sequence returns<br>- Must be between the range `[min_value, max_value]`
+`increment_value`|- Used when calling the `NEXT VALUE FOR` function<br>- Can be negative for descending-sequence<br>- Cannot be zero
+`min_value`|- Lower-bound for the sequence object<br>- Defaults to the minimum value of the data type
+`max_value`|- Upper-bound for the sequence object<br>- Defaults to the maximum value of the data type
+`CYCLE \| NO CYCLE`|- The value of the sequence object restart from the `min_value` for ascending sequence object, `max_value` for descending sequence object<br>- Default: `NO CYCLE`
+`cache_size`|- Number of values to cache to improve the performance of the sequence<br>- Minimize the number of disk I/O required to generate sequence numbers<br>- Default: `NO CACHE`
 
 ## Example `CREATE SEQUENCE`
 
-Create a new sequence named `Item_Counter` with the type of integer `INT`, which starts from `10` and increments by `10`
+- Create a new sequence named `Item_Counter` with the type of integer `INT`, which starts from `10` and increments by `10`
 
 ```sql
-CREATE SEQUENCE     Item_Counter
-AS                  INT
-START WITH          10
-INCREMENT BY        10;
+CREATE SEQUENCE Item_Counter AS INT
+       START WITH 10
+       INCREMENT BY 10;
 ```
 
-To get the current value of the sequence:
+- To get the current value of the sequence:
 
 ```sql
 SELECT NEXT VALUE FOR Item_Counter;
 ```
 
-Each time we call the Sequence object, a new value will be generated
+- Each time we call the Sequence object, a new value will be generated
 
 ## Example of Usage In A Table
 
-Let's create a schema
+- Let's create a schema
 
 ```sql
 CREATE SCHEMA Procurement;
+
 GO
 ```
 
-And add a table to it
+- And add a table to it
 
 ```sql
-CREATE TABLE    Procurement.Purchase_Orders 
-(
-     Order_Id    INT     PRIMARY KEY
-    ,Vendor_Id   INT     NOT NULL
-    ,Order_Date  DATE    NOT NULL
-);
+CREATE TABLE Procurement.Purchase_Orders (
+             Order_Id INT PRIMARY KEY,
+            Vendor_Id INT NOT NULL,
+           Order_Date DATE NOT NULL
+       );
 ```
 
-A new sequence object named `Order_Number` that starts with `1` and is incremented by `1`
+- A new sequence object named `Order_Number` that starts with `1` and is incremented by `1`
 
 ```sql
-CREATE SEQUENCE Procurement.Order_Number 
-AS              INT
-START WITH      1
-INCREMENT BY    1;
+CREATE SEQUENCE Procurement.Order_Number AS INT
+       START WITH 1
+       INCREMENT BY 1;
 ```
 
-Now, we insert three rows into the `Procurement.Purchase_Orders` table and uses values generated by the `Procurement.Order_Number` sequence
+- Now, we insert three rows into the `Procurement.Purchase_Orders` table and uses values generated by the `Procurement.Order_Number` sequence
 
 ```sql
-INSERT INTO Procurement.Purchase_Orders 
-(
-     Order_Id
-    ,Vendor_Id
-    ,Order_Date
-)
-VALUES 
-(
-    NEXT VALUE FOR Procurement.Order_Number,
-    1,
-    '2019-04-30'
-);
+INSERT INTO Procurement.Purchase_Orders (
+             Order_Id,
+            Vendor_Id,
+           Order_Date
+       )
+VALUES (
+           NEXT VALUE FOR Procurement.Order_Number,
+           1,
+           '2019-04-30'
+       );
 
 GO
 
-INSERT INTO Procurement.Purchase_Orders 
-(
-     Order_Id
-    ,Vendor_Id
-    ,Order_Date
-)
-VALUES 
-(
-    NEXT VALUE FOR Procurement.Order_Number,
-    2,
-    '2019-05-01'
-);
+INSERT INTO Procurement.Purchase_Orders (
+             Order_Id,
+            Vendor_Id,
+           Order_Date
+       )
+VALUES (
+           NEXT VALUE FOR Procurement.Order_Number,
+           2,
+           '2019-05-01'
+       );
 
 GO
 
-INSERT INTO Procurement.Purchase_Orders 
-(
-     Order_Id
-    ,Vendor_Id
-    ,Order_Date
-)
-VALUES 
-(
-    NEXT VALUE FOR Procurement.Order_Number,
-    3,
-    '2019-05-02'
-);
+INSERT INTO Procurement.Purchase_Orders (
+             Order_Id,
+            Vendor_Id,
+           Order_Date
+       )
+VALUES (
+           NEXT VALUE FOR Procurement.Order_Number,
+           3,
+           '2019-05-02'
+       );
+
+GO
 ```
 
-Checking result in `Procurement.Orders`
+- Checking result in `Procurement.Orders`
 
 ```sql
-SELECT  Order_Id
-        ,Vendor_Id
-        ,Order_Date
-FROM    Procurement.Purchase_Orders;
+SELECT Order_Id,
+       Vendor_Id,
+       Order_Date
+  FROM Procurement.Purchase_Orders;
 ```
 
-We can see that `Order_Id` is auto-incremented
+- We can see that `Order_Id` is auto-incremented
 
 ## Example of Usage In Multiple Tables
 
-Let's create a new Sequence Object
+- Let's create a new Sequence Object
 
 ```sql
 CREATE SEQUENCE Procurement.Receipt_No
-START WITH      1
-INCREMENT BY    1;
+       START WITH 1
+       INCREMENT BY 1;
 ```
 
-And add 2 tables
+- And add 2 tables
 
 ```sql
-CREATE TABLE         Procurement.Goods_Receipts 
-(
-     Receipt_Id      INT            PRIMARY KEY 
-                                    DEFAULT (NEXT VALUE FOR Procurement.Receipt_No)
-    ,Order_Id        INT            NOT NULL
-    ,Full_Receipt    BIT            NOT NULL
-    ,Receipt_Date    DATE           NOT NULL
-    ,Note            NVARCHAR(100)
-);
+CREATE TABLE Procurement.Goods_Receipts (
+             Receipt_Id INT PRIMARY KEY DEFAULT (NEXT VALUE FOR Procurement.Receipt_No),
+               Order_Id INT NOT NULL,
+           Full_Receipt BIT NOT NULL,
+           Receipt_Date DATE NOT NULL,
+                   Note NVARCHAR(100)
+       );
 
 GO
 
-CREATE TABLE        Procurement.Invoice_Receipts 
-(
-     Receipt_Id     INT             PRIMARY KEY 
-                                    DEFAULT (NEXT VALUE FOR Procurement.Receipt_No) 
-    ,Order_Id       INT             NOT NULL
-    ,Is_Late        BIT             NOT NULL
-    ,Receipt_Date   DATE            NOT NULL
-    ,Note           NVARCHAR(100)
-);
+CREATE TABLE Procurement.Invoice_Receipts (
+             Receipt_Id INT PRIMARY KEY DEFAULT (NEXT VALUE FOR Procurement.Receipt_No),
+               Order_Id INT NOT NULL,
+                Is_Late BIT NOT NULL,
+           Receipt_Date DATE NOT NULL,
+                   Note NVARCHAR(100)
+       );
 
 GO
 ```
@@ -179,74 +172,77 @@ GO
 - Now, let's try to insert some data into the tables
 
 ```sql
-INSERT INTO Procurement.Goods_Receipts 
-(
-     Order_Id
-    ,Full_Receipt
-    ,Receipt_Date
-    ,Note
-)
-VALUES 
-(
-     1,
-    ,1
-    ,'2019-05-12'
-    ,'Goods receipt completed at warehouse'
-);
-INSERT INTO Procurement.Goods_Receipts 
-(
-     Order_Id
-    ,Full_Receipt
-    ,Receipt_Date
-    ,Note
-)
-VALUES 
-(
-     1
-    ,0
-    ,'2019-05-12'
-    ,'Goods receipt has not completed at warehouse'
-);
-
-INSERT INTO Procurement.Invoice_Receipts 
-(
-     Order_Id
-    ,Is_Late
-    ,Receipt_Date
-    ,Note
-)
-VALUES 
-(
-     1
-    ,0
-    ,'2019-05-13'
-    ,'Invoice duly received'
-);
-
-INSERT INTO Procurement.Invoice_Receipts 
-(
-     Order_Id
-    ,Is_Late
-    ,Receipt_Date
-    ,Note
-)
+INSERT INTO Procurement.Goods_Receipts (
+           Order_Id,
+           Full_Receipt,
+           Receipt_Date,
+           Note
+       )
 VALUES (
-     2
-    ,0
-    ,'2019-05-15'
-    ,'Invoice duly received'
-);
+           1,
+           1,
+           '2019-05-12',
+           'Goods receipt completed at warehouse'
+       );
+INSERT INTO Procurement.Goods_Receipts (
+           Order_Id,
+           Full_Receipt,
+           Receipt_Date,
+           Note
+       )
+VALUES (
+           1,
+           0,
+           '2019-05-12',
+           'Goods receipt has not completed at warehouse'
+       );
+
+INSERT INTO Procurement.Invoice_Receipts (
+           Order_Id,
+           Is_Late,
+           Receipt_Date,
+           Note
+       )
+VALUES (
+           1,
+           0,
+           '2019-05-13',
+           'Invoice duly received'
+       );
+
+INSERT INTO Procurement.Invoice_Receipts (
+           Order_Id,
+           Is_Late,
+           Receipt_Date,
+           Note
+       )
+VALUES (
+           2,
+           0,
+           '2019-05-15',
+           'Invoice duly received'
+       );
 ```
 
-Querying the data from both table will show that the sequence of the valu persist across the 2 tables 
+- Querying the data from both table will show that the sequence of the values persist across the 2 tables
+  - **The sequence does not reset when switching to a different table**
 
-- The sequence does not reset when switching to a different table
+```sql
+SELECT Receipt_Id
+  FROM Procurement.Goods_Receipts;
+-- 1, 2
+
+SELECT Receipt_Id
+  FROM Procurement.Invoice_Receipts;
+-- 3, 4
+```
 
 ## `SEQUENCE` vs `IDENTITY` Column
 
 - Identity columns are part of a table
   - It is a unique feature of the table
-- Sequences are not associated to any table: Independent from any table
+- Sequences are not associated to any table
+  - Independent from any table
   - The relationship between the table and the sequence is through the application
   - Sequences can be shared across multiple tables
 
@@ -264,12 +260,13 @@ Allow using in multiple tables|No|Yes
 - The application requires a number before inserting values into the table
 - The application requires sharing a sequence of numbers across multiple tables or multiple columns within the same table
 - The application requires to restart the number when a specified value is reached
-- The application requires multiple numbers to be assigned at the same time. Note that you can call the stored procedure `sp_sequence_get_range` to retrieve several numbers in a sequence at once
+- The application requires multiple numbers to be assigned at the same time
+  - Note that you can call the stored procedure `sp_sequence_get_range` to retrieve several numbers in a sequence at once
 - The application needs to change the specification of the sequence like maximum value
 
 ## Getting Sequences Info
 
 ```sql
-SELECT  * 
-FROM    sys.sequences;
+SELECT *
+  FROM sys.sequences;
 ```
