@@ -122,7 +122,9 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 ### For Columns
 
 - [`IDENTITY`](03-ddl/04-column/01-identity-column.md)
-- [`ALTER TABLE`](03-ddl/04-column/02-alter-table.md)
+- [`ALTER TABLE ADD Column`](03-ddl/04-column/02-alter-table-add-column.md)
+- [`ALTER TABLE ALTER Column`](03-ddl/04-column/03-alter-table-alter-column.md)
+- [`ALTER TABLE DROP Column`](03-ddl/04-column/04-alter-table-drop-column.md)
 
 ### For Sequences
 
