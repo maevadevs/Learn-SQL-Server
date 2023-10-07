@@ -59,9 +59,7 @@ VALUES ('Silicon Valley','400 North 1st Street, San Jose, CA 95130'),
 - Then, create a Stored Procedure that finds offices by `Office_Id`
 
 ```sql
-CREATE PROCEDURE Usp_Get_Office_By_Id (
-           @id INT
-       ) AS
+CREATE PROCEDURE Usp_Get_Office_By_Id(@id INT) AS
        BEGIN
            SELECT *
              FROM dbo.Offices
@@ -87,9 +85,7 @@ EXEC dbo.Usp_Get_Office_By_Id @id = 1;
 - We have to manually modify the Stored Procedure to reflect the new schema
 
 ```sql
-ALTER PROCEDURE Usp_Get_Office_By_Id (
-          @id INT
-      ) AS
+ALTER PROCEDURE Usp_Get_Office_By_Id(@id INT) AS
       BEGIN
           SELECT *
             FROM Sales.Offices

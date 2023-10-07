@@ -84,8 +84,8 @@ CREATE SEQUENCE Procurement.Order_Number AS INT
 
 ```sql
 INSERT INTO Procurement.Purchase_Orders (
-             Order_Id,
-            Vendor_Id,
+           Order_Id,
+           Vendor_Id,
            Order_Date
        )
 VALUES (
@@ -97,8 +97,8 @@ VALUES (
 GO
 
 INSERT INTO Procurement.Purchase_Orders (
-             Order_Id,
-            Vendor_Id,
+           Order_Id,
+           Vendor_Id,
            Order_Date
        )
 VALUES (
@@ -184,6 +184,7 @@ VALUES (
            '2019-05-12',
            'Goods receipt completed at warehouse'
        );
+
 INSERT INTO Procurement.Goods_Receipts (
            Order_Id,
            Full_Receipt,

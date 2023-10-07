@@ -43,7 +43,7 @@ GO
 
 --Insert values into the table
 INSERT INTO Sales.Targets (
-              Target_Id,
+           Target_Id,
            "Percentage"
        )
 VALUES (1,0.2),

@@ -60,9 +60,7 @@ BEGIN TRANSACTION;
 
 -- 1. Insert a row into the Invoices table and return the Invoice_Id
 
-DECLARE @invoice TABLE (
-            Id int
-        );
+DECLARE @invoice TABLE (Id int);
 DECLARE @invoice_id int;
 
 INSERT INTO Invoices (
