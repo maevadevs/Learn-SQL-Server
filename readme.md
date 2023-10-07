@@ -118,6 +118,7 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 ### For Tables
 
 - [`CREATE TABLE`](03-ddl/03-table/01-create-table.md)
+- [`DROP TABLE`](03-ddl/03-table/02-drop-table.md)
 
 ### For Columns
 
