@@ -122,6 +122,7 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 - [`TRUNCATE TABLE`](03-ddl/03-table/03-truncate-table.md)
 - [`RENAME TABLE`](03-ddl/03-table/04-rename-table.md)
 - [`SELECT INTO`](03-ddl/03-table/05-select-into.md)
+- [Temporary Table](03-ddl/03-table/06-temporary-table.md)
 
 ### For Columns
 
