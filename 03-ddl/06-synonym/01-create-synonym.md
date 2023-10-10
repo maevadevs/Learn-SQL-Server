@@ -6,6 +6,8 @@
 - [Creating a synonym for a table in another database](#creating-a-synonym-for-a-table-in-another-database)
 - [Listing all synonyms of a database](#listing-all-synonyms-of-a-database)
 - [Listing synonyms using SQL Server Management Studio](#listing-synonyms-using-sql-server-management-studio)
+- [When to use Synonyms](#when-to-use-synonyms)
+- [Benefits of Synonyms](#benefits-of-synonyms)
 
 ---
 
@@ -100,3 +102,18 @@ SELECT "Name",
 ## Listing synonyms using SQL Server Management Studio
 
 - Synonyms are stored in the `Synonyms` folder of the database
+
+## When to use Synonyms
+
+- Simplify object names
+- Using an object from another database (even from a remote server)
+- Enable seamless object name changes
+  - When renaming an object, the existing database objects that reference to this object need to be manually modified to reflect the new name
+  - All current applications that use this table need to be changed and possibly to be recompiled
+  - To avoid all of these hard work, we can rename the object and create a synonym for it to keep existing applications function properly
+
+## Benefits of Synonyms
+
+- Provide a layer of abstraction over the base objects
+- Shorten the lengthy name with a simplified alias
+- Allow backward compatibility for the existing applications when renaming database objects
