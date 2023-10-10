@@ -140,3 +140,4 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 ### For Synonyms
 
 - [`CREATE SYNONYM`](03-ddl/06-synonym/01-create-synonym.md)
+- [`DROP SYNONYM`](03-ddl/06-synonym/02-drop-synonym.md)
