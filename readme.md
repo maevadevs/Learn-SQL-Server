@@ -136,3 +136,7 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 
 - [`SEQUENCE`](03-ddl/05-sequence/01-sequence-object.md)
 - [`CREATE SEQUENCE`](03-ddl/05-sequence/02-create-sequence.md)
+
+### For Synonyms
+
+- [`CREATE SYNONYM`](03-ddl/06-synonym/01-create-synonym.md)
