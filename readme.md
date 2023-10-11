@@ -141,3 +141,9 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 
 - [`CREATE SYNONYM`](03-ddl/06-synonym/01-create-synonym.md)
 - [`DROP SYNONYM`](03-ddl/06-synonym/02-drop-synonym.md)
+
+---
+
+## 4. Data Types
+
+- [T-SQL Data Types](./04-data-types/01-tsql-data-types.md)
