@@ -147,3 +147,4 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 ## 4. Data Types
 
 - [T-SQL Data Types](./04-data-types/01-tsql-data-types.md)
+- [`BIT` Data Type](./04-data-types/02-bit-data-type.md)
