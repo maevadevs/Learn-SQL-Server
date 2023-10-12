@@ -1,4 +1,4 @@
-# `decimal`/`numeric` Data Type
+# `DECIMAL`/`NUMERIC` Data Type
 
 ---
 
