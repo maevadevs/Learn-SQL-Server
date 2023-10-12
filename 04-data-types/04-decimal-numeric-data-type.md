@@ -39,7 +39,7 @@ NUMERIC(precision, scale)
   - *Prior to SQL Server 2016 (13.x), conversion of `float` values to `decimal` or `numeric` is restricted to values of precision 17 digits only: Any float value less than `5E-18` rounds down to 0*
 
 Precision|Storage bytes
----------|-------------
+:-------:|:-----------:
 1 - 9|5
 10-19|9
 20-28|13
