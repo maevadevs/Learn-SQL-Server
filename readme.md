@@ -155,5 +155,6 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 - [T-SQL Data Types](./04-data-types/01-tsql-data-types.md)
 - [`BIT` Data Type](./04-data-types/02-bit-data-type.md)
 - [Integers Data Types](./04-data-types/03-integer-data-types.md)
-- [Decimal/Numeric Data Types](./04-data-types/04-decimal-numeric-data-type.md)
-- [Money/SmallMoney Data Types](./04-data-types/05-money-smallmoney-data-types.md)
+- [`DECIMAL`/`NUMERIC` Data Types](./04-data-types/04-decimal-numeric-data-type.md)
+- [`MONEY`/`SMALLMONEY` Data Types](./04-data-types/05-money-smallmoney-data-types.md)
+- [`CHAR` Data Type](./04-data-types/06-char-data-type.md)
