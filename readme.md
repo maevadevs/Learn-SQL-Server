@@ -7,6 +7,12 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 - RDBMS developed and marketed by Microsoft
 - Store and retrieve data used by other applications
 
+1. Introduction
+2. DML / DQL
+3. DDL
+4. Data Types
+5. Constraints
+
 ---
 
 ## 1. Introduction
