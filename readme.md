@@ -164,3 +164,4 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 - [`DATETIME2` Data Type](./04-data-types/10-datetime2-data-type.md)
 - [`DATE` Data Type](./04-data-types/11-date-data-type.md)
 - [`TIME` Data Type](./04-data-types/12-time-data-type.md)
+- [`DATETIMEOFFSET` Data Type](./04-data-types/13-datetimeoffset-data-type.md)
