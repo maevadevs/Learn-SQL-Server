@@ -10,7 +10,7 @@
 
 ## Overview
 
-- Store fixed-length, Unicode character string data
+- Store **fixed-length**, **Unicode** character string data
 - For storing fixed-length character string only
   - If the lengths of data values are variable, consider using `VARCHAR` or `NVARCHAR` instead
 
@@ -20,7 +20,7 @@ NCHAR(n)
 
 - String length `n` ranges from 1 to 4000
 - Storage size of is two times `n` bytes
-- ISO synonym for `NATIONAL CHAR` is `NATIONAL CHARACTER`
+- ISO synonym for `NCHAR` is `NATIONAL CHARACTER`
   - Can use them interchangeably
 
 ## `CHAR` vs `NCHAR`

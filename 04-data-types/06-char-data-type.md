@@ -9,7 +9,7 @@
 
 ## Overview
 
-- Allows to store the fixed-length, non-Unicode character strings
+- Allows to store the **fixed-length**, **non-Unicode** character strings
 - Use only when the sizes of values in the column are fixed
 
 ```sql
