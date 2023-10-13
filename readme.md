@@ -158,3 +158,4 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 - [`DECIMAL`/`NUMERIC` Data Types](./04-data-types/04-decimal-numeric-data-type.md)
 - [`MONEY`/`SMALLMONEY` Data Types](./04-data-types/05-money-smallmoney-data-types.md)
 - [`CHAR` Data Type](./04-data-types/06-char-data-type.md)
+- [`NCHAR` Data Type](./04-data-types/07-nchar-data-type.md)
