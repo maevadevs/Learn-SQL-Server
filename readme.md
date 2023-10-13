@@ -160,3 +160,4 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 - [`CHAR` Data Type](./04-data-types/06-char-data-type.md)
 - [`NCHAR` Data Type](./04-data-types/07-nchar-data-type.md)
 - [`VARCHAR` Data Type](./04-data-types/08-varchar-data-type.md)
+- [`NVARCHAR` Data Type](./04-data-types/09-nvarchar-data-type.md)
