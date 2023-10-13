@@ -166,3 +166,4 @@ This is a collection of references for Microsoft SQL Server and Transact-SQL
 - [`TIME` Data Type](./04-data-types/12-time-data-type.md)
 - [`DATETIMEOFFSET` Data Type](./04-data-types/13-datetimeoffset-data-type.md)
 - [GUID Data Type](./04-data-types/14-guid-data-type.md)
+- [Data Type Synonyms](./04-data-types/15-data-types-synonyms.md)
